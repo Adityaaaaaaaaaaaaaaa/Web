@@ -165,6 +165,7 @@ if (!isset($_SESSION['adminUname'])) {
 							<option value="xml">XML</option>
 							<option value="csv">CSV</option>
 							<option value="json">JSON</option>
+							<!--<option value="excel">Excel</option>-->
 						</select>
 					</div>
 
@@ -190,9 +191,9 @@ if (!isset($_SESSION['adminUname'])) {
 				var downloadOptions = document.getElementById("downloadOptions");
 				var fileOptions = document.getElementById("fileOptions");
 
-				if (selectedTable === "x") { // default option
+				if (selectedTable === "x") { // Assuming "x" represents the default option
 					downloadOptions.style.display = "none";
-					fileOptions.style.display = "none"; 
+					fileOptions.style.display = "none"; // Hide file options as well
 				} else if (selectedTable === "uploaded_files") {
 					downloadOptions.style.display = "none";
 					fileOptions.style.display = "block";

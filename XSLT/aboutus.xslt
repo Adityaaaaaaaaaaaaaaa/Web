@@ -21,8 +21,7 @@
 		<div style="display: block; flex-direction: row; align-items: center;
 									max-width: 85%; margin: 10px ; padding: 20px;">
 
-			<div class="{//image/@class}" style="max-width: 300px; max-height: 400px; 
-												border-radius: 10%;, box-shadow: var(--userImg-boxShadow);">
+			<div class="{//image/@class}" style="max-width: 300px; max-height: 400px; border-radius: 10%;, box-shadow: var(--userImg-boxShadow);">
 				<xsl:copy-of select="image/img"/>
 			</div>
 			<div class="{//intro/@class}" style="flex-grow: 1; text-align: justify; padding: 30px; line-height: 22px; 

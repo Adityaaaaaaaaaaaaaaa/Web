@@ -171,7 +171,7 @@
 						convenience. Whether you choose to hang your pictures on your wall or display them on shelves. We bring forward 
 						these services with the hope, you like it!.<br><br>Thank you for considering TAKE TWO for your product needs. We are 
 						committed to providing you with a seamless and satisfying experience, from start to finish.
-						<br><br>
+						<br><br> 
 					</p>
 				</div>
 			</div><br><br><br><br><br>-->

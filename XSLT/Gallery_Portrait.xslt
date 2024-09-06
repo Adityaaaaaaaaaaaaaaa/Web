@@ -25,6 +25,7 @@
 
     <!--  img  -->
     <xsl:template match="img">
+        <!--  img  -->
         <img class="//img/@class" src="{@src}" alt="" style="max-width: 100%; max-height: 100%; background-size: auto; aspect-ratio: 9/16;
 													opacity: 1; transition: 1ms ease; backface-visibility: hidden; border-radius: 17px;
 													transform: scale(1); transition: transform 2s, filter 2s;" />
