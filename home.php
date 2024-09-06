@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Home</title>
 		<link rel="stylesheet" type="text/css" href="./CSS/home.css">
-		<!--<link rel="stylesheet" type="text/css" href="./assets/particles.css"> currently not in use, leave commented-->
 		<link href="https://fonts.googleapis.com/css2?family=Neon+Tubes&display=swap" rel="stylesheet"><!-- neon font-->
 		<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 		<style>
@@ -24,75 +23,6 @@
 			.imagelogo:hover {
 				transform: scale(1.1);
 			}
-
-			/* css appplied throught xslt, bwlow is original css used, keep commented
-			do not delete comment, class removed by me
-			.main {
-				max-width: 80%;
-				height: auto;
-				opacity: 0;
-				transition: opacity 1s cubic-bezier(0.95, 0.05, 0.795, 0.035); /* Transition for opacity *
-				position: absolute;
-				z-index: 0; /* set z-index: 0 it kind of fixed the hover issue for the nav bar *
-				background: transparent;
-				display : flex;
-				align-items: center; 
-				justify-content: center;
-				padding: 10px; 
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------*
-				columns: 2;
-				column-gap:20px;
-			}*
-
-			img[id="biglogo"]{
-				height: auto;
-				width: 400px;
-				object-fit: cover;
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------*
-			}
-
-			.imagelogo, .intro {
-				flex: 1; 
-				padding: 0 20px; 
-				text-align: center; 
-				align-items:center;
-			}
-
-			.imagelogo:hover {
-				filter: brightness(1) drop-shadow(0 0 5px rgba(255, 239, 15, 0.8));
-			}
-
-			.intro {
-				max-width: auto;/*650px;*
-				max-height: auto;/*450px;*
-				padding: 5px;
-				backdrop-filter: blur(1px);
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------*
-				text-align: center; 
-				align-items:center;
-				flex: 1;
-				font-family: 'Neon Tubes', cursive;
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------*
-				columns: 1;
-				column-gap:20px;
-			}*
-
-			.main-paragraph {
-				font-size: 20px;
-				color: var(--maintext-color);
-				text-shadow: 0 0 20px var(--maintext-color); 
-				line-height: 1.35; 
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------*
-			}
-
-			/* 3d logo * 3d logo css positioning, keep commented 
-			#spline {
-				max-width: 75%; /* 450px;*
-				height: 100%; /* 450px;*
-				border: dashed 1px var(--border-test); /* remove ---------------------------------*
-				backdrop-filter: blur(1px);
-				margin: auto;
-			}*/
 		</style>
 		<script>
 			window.onload = function() {
@@ -152,31 +82,6 @@
 			</ul>
 		</div> 
 
-		<!-- animation div --
-		<div id="particles-js"> Do not remove-->
-
-		<!--	<div class="fade-in">removed class main 
-				<div class="imagelogo">
-					<img src ="Images/Website logo/TakeTwo.png" id="biglogo" >
-				</div>
-				<!- Do not remove - Spline 3D logo >>> keep commented --
-				<div id="spline">
-					<script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.523/build/spline-viewer.js"></script>
-					<spline-viewer url="https://prod.spline.design/nrf8dZK5a3MFuMB7/scene.splinecode"></spline-viewer>
-				</div>-->
-				<!--<div class="intro">demo text 
-					<p  class="main-paragraph">Welcome to the official website of TAKE TWO, where we offer an extensive range of products 
-						in both digital and physical forms. Our focus is dedicated to providing our customers with exceptional 
-						quality and value.<br><br>In addition to our gallery and photo services, we offer a variety of frames for your 
-						convenience. Whether you choose to hang your pictures on your wall or display them on shelves. We bring forward 
-						these services with the hope, you like it!.<br><br>Thank you for considering TAKE TWO for your product needs. We are 
-						committed to providing you with a seamless and satisfying experience, from start to finish.
-						<br><br> 
-					</p>
-				</div>
-			</div><br><br><br><br><br>-->
-		<!--</div>-->
-		<!-- end of the animation div -->
 
 		<!-- Php to call the xml  -->
 		<?php
@@ -264,15 +169,6 @@
 
 		<!-- mouse trail -->
 		<script src="./Js/mouse.js"></script>
-
-		<!-- CDN Link for particles effect -- keep commented
-		<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-		<script>
-			/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-			particlesJS.load('particles-js', 'assets/particles.json', function() {
-				console.log('callback - particles.js config loaded');
-			});
-		</script>-->
 
 		<!-- dark mode js -->
 		<script src="./Js/dark-mode.js"></script>

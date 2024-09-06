@@ -107,16 +107,16 @@
                     alert("Your browser does not support AJAX!");
                 }
 
-                var uname = document.loginForm.mLogUname.value; //retrieve value
+                var uname = document.loginForm.mLogUname.value;
                 var url = "../PHP/chkLgUname.php";
 
-                if (uname !== "") { // Check if the username is not empty
+                if (uname !== "") {
                     requestbox.open("POST", url, true); 
                     requestbox.onreadystatechange = verifyUname;
                     requestbox.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     requestbox.send("mLogUname=" + uname);
                 } else {
-                    document.getElementById('loginMsg').innerHTML = ""; // Clear the message
+                    document.getElementById('loginMsg').innerHTML = "";
                 }
 
                 function verifyUname(){
@@ -134,16 +134,16 @@
                     alert("Your browser does not support AJAX!");
                 }
 
-                var uname = document.registerForm.mRegUname.value; //retrieve value
+                var uname = document.registerForm.mRegUname.value;
                 var url = "../PHP/chkRgUname.php";
 
-                if (uname !== "") { // Check if the username is not empty
+                if (uname !== "") {
                     requestbox.open("POST", url, true); 
                     requestbox.onreadystatechange = chkUname;
                     requestbox.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     requestbox.send("mRegUname=" + uname);
                 } else {
-                    document.getElementById('registerMsg').innerHTML = ""; // Clear the message
+                    document.getElementById('registerMsg').innerHTML = "";
                 }
 
                 function chkUname(){
@@ -162,69 +162,12 @@
 			};
 		</script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <!--<script> /*ajax for xml form, xml xsd, xslt working but javascript not working to swtich form and so is the form process /*
-            $(document).ready(function () {
-                function displayLoginForm() {
-                    $.ajax({
-                        url: "../XML/login.xml",
-                        dataType: "xml",
-                        success: function (response) {
-                            $.ajax({
-                                url: "../XSLT/login.xslt",
-                                dataType: "xml",
-                                success: function (xsl) {
-                                    var xsltProcessor = new XSLTProcessor();
-                                    xsltProcessor.importStylesheet(xsl);
-                                    var transformed = xsltProcessor.transformToFragment(response, document);
-
-                                    $("#content_here").empty().append(transformed);
-
-                                    // Add event listeners to the buttons for form switching
-                                    $('#content_here').find('.switchbut').on('click', function() {
-                                        var x = document.getElementById("f-login");
-                                        var y = document.getElementById("f-regis");
-                                        var z = document.getElementById("FormBox-id");
-                                        
-                                        if (this.id === 'switch-login') {
-                                            x.style.left = '50px';
-                                            y.style.left = '450px';
-                                            z.style.left = '0px';
-                                        } else if (this.id === 'switch-register') {
-                                            x.style.left = '-400px';
-                                            y.style.left = '50px';
-                                            z.style.left = '110px';
-                                        }
-                                    });
-
-                                    function goBack() {
-                                        window.history.back();
-                                    }
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                    console.error("XSLT Error:", textStatus, errorThrown);
-                                    alert("An error occurred while processing the XSLT.");
-                                }
-                            });
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.error("AJAX Error:", textStatus, errorThrown);
-                            alert("An error occurred while loading the XML.");
-                        }
-                    });
-                }
-
-                // Call the function to display the form when the page is loaded
-                displayLoginForm();
-            });
-        </script>-->
 
     </head>
     <body>
         
         <!-- Particle container -->
         <div id="particle-container"></div>
-
-        <!--<div id="content_here"></div>-->
 
         <div class="loginform fade-in">
             <div class="mainForm-box" id="FormBox-id">
@@ -290,9 +233,6 @@
             </div>
         </div>
 
-        <!-- mouse trail -->
-        <script src="../Js/mouse.js"></script>
-
         <script>
             // Function to create particles
             function createParticle() {
@@ -314,5 +254,6 @@
             // Generate particles at regular intervals
             setInterval(createParticle, 100); //particle density and speed
         </script>
+        <script src="../Js/mouse.js"></script>
     </body>
 </html>

@@ -16,126 +16,6 @@
 			<h1 class="main-title">Wall Art</h1>
 		</div>
 
-		<!-- <div class="bigbox">
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/20230219_212754.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php /*
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/20230219_212754.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/birmingham-museums-trust-9pOXS0ZGPDM-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/birmingham-museums-trust-9pOXS0ZGPDM-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023 (2).jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023 (2).jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023 (3).jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023 (3).jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-02.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-02.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-03.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-03.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-05.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-05.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-06.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-06.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-09.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}*/
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-09.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-		</div> -->
-
 		<?php 
 			// Create an XMLReader instance
 			$reader = new XMLReader();
@@ -256,12 +136,8 @@
 			});
 		</script>
 
-		<!-- mouse trail -->
 		<script src="../Js/mouse.js"></script>
-
-		<!-- dark mode js -->
 		<script src="../Js/dark-mode.js"></script>
-
 	</body>
 </html>
 

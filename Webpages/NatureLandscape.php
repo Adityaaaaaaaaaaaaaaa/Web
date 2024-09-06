@@ -19,127 +19,6 @@
 			<h1 class="main-title">Nature & Landscape Photography</h1>
 		</div>
 
-		<!-- <div class="bigbox">
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/silas-baisch-Wn4ulyzVoD4-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				/*if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/silas-baisch-Wn4ulyzVoD4-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/tim-marshall-jqj2SqvxMVY-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/tim-marshall-jqj2SqvxMVY-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/pexels-francesco-ungaro-2325446 (1).jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/pexels-francesco-ungaro-2325446 (1).jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/ryan-schroeder-Gg7uKdHFb_c-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/ryan-schroeder-Gg7uKdHFb_c-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/john-mark-arnold-XNIjmb6Ax04-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/john-mark-arnold-XNIjmb6Ax04-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/marita-kavelashvili-ugnrXk1129g-unsplash (1).jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/marita-kavelashvili-ugnrXk1129g-unsplash (1).jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/michael-DXQB5D1njMY-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/michael-DXQB5D1njMY-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/PSX_20210222_201738-01.jpeg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Nature & landscape/PSX_20210222_201738-01.jpeg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Nature & landscape/johann-juraver-2CEkiJSEAFA-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}*/
-				?><br><a href="../Images/Nature & landscape/johann-juraver-2CEkiJSEAFA-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-		</div> -->
-
 		<?php 
 			// Create an XMLReader instance
 			$reader = new XMLReader();
@@ -260,12 +139,8 @@
 			});
 		</script>
 
-		<!-- mouse trail -->
 		<script src="../Js/mouse.js"></script>
-
-		<!-- dark mode js -->
 		<script src="../Js/dark-mode.js"></script>
-		
 	</body>
 </html>
 

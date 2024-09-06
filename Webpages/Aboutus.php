@@ -60,114 +60,12 @@
 				margin-left: 50%;
 				box-shadow: var(--userImg-boxShadow);
 			}
-
-			/*p {
-				line-height: 22px;
-				color: var(--paragraph-color); 
-				font-size: 18px; 
-				font-family: Cambria;
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------*
-			}
-
-			/*.profile-container {
-				display: flex;
-				justify-content: center;
-			}
-
-			.author {
-				display: flex;
-				flex-direction: row;/*column;
-				align-items: center;
-				max-width: 85%;
-				margin: 0 auto; /* Center the author section 
-				padding: 20px;
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------
-			}*
-
-			.authorimg {
-				flex-shrink: 0; /* Prevent the image from shrinking *
-				width: 300px;
-				height: 400px;
-				margin-right: 20px; /* Adjust margin for spacing between image and text *
-			}*
-
-			.img:not(#smalllogo) {
-				max-width: 100%; /* Make the image responsive *
-				height: auto;
-				border-radius: 20%;
-				border: dashed 1px var(--border-test); /* remove ---------------------------------*
-			}
-
-			/*.authorintro {
-				flex-grow: 1; /* Allow the text to grow and take remaining space 
-				padding: 0 20px;
-				text-align: justify;
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------
-			}
-
-			H1 {
-				/*border: dashed 1px var(--border-test); /* remove ---------------------------------
-				color: transparent;
-				background-image: var(--h1-gradient-color);
-				-webkit-background-clip: text;
-				background-clip: text;
-				text-align: center;
-				display: block;
-				font-size: 5em;
-				margin-bottom: 20px;
-				margin-top: 5px;
-				text-shadow: var(--h1-glow-Effect);
-			} */
 		</style>
 
 	</head>
 	<body>
 		
 		<?php include "../Webpages/Header.php"; ?>
-
-		<!--<h1>Meet us !</h1>
-
-		<div class="profile-container">
-			<div class="profile">
-				<div class="author">
-					<div class="authorimg">image path, add new image 
-						<img src ="../Images/About Us/AdeetyaAboutus.jpg" id="adi">
-					</div><br><br>
-
-					<div class="authorintro"> to change 
-						<p>Hello, my name is Doollah Adeetya, and I am a 21-year-old photographer with a passion for capturing life's most beautiful 
-						moments. Together with my partner and friend, Aqsaa, we offer professional photography services that are sure to amaze 
-						your eyes.<br><br>
-
-						We understand that every moment is unique, and we strive to capture those special memories with skill and artistry. We'll make 
-						sure to keep a keen eye for detail ensuring that we deliver outstanding results that exceed your expectations.<br><br>
-
-						If you would like to view some of my personal works, I invite you to visit my Unsplash portfolio at 
-						<a href="https://unsplash.com/@aditya_doula_" style="color:white;" id="unsplashadi" >unsplash.com/@aditya_doula_</a><br><br>
-
-						Also check-out more of my personal works on my Instagram &rarr; 
-						<a href="https://www.instagram.com/aditya_doula_" target="_blanks" class="fa fa-instagram" id="instaadi"></a></p>
-					</div>
-				</div><br>
-
-				<div class="author">
-					<div class="authorimg" > image path, add new image 
-						<img src ="../Images/About Us/userX.jpg" id="aqsaa">
-					</div><br><br>
-
-					<div class="authorintro"> to change 
-						<p>Hello, my name is Soobedar Aqsaa, and I am a 22-year-old professional photographer. With over five years of experience, I 
-						have honed my skills to capture the beauty of the world around us.<br><br>
-
-						I have experienced firsthand the profound impact of photography.
-						What began as a passing interest quickly evolved into a deep passion. 
-						As I immersed myself in capturing special moments, I realized the incredible power of a photograph to evoke emotions and change perspectives.<BR><BR>
-						Join us on our journey as we continue to explore the captivating world of visual storytelling. &rarr; 
-						<a href="https:#" target="_blanks" class="fa fa-instagram" id="instaaqsaa"></a></p>
-					</div>
-				</div>
-			</div>
-		</div><br> -->
 
 		<?php
 			// Load the XML content
@@ -191,11 +89,7 @@
 
 		<?php include '../Webpages/Footer.php'; ?>
 
-		<!-- mouse trail -->
 		<script src="../Js/mouse.js"></script>
-
-		<!-- dark mode js -->
 		<script src="../Js/dark-mode.js"></script>
-
 	</body>
 </html>	

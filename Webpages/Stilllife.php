@@ -20,127 +20,6 @@
 			<h1 class="main-title">Still Life Photography</h1>
 		</div>
 
-		<!-- <div class="bigbox">
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/20210711_123406.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php /*
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/20210711_123406.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/20210730_174857 (1).jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/20210730_174857 (1).jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/20210918_212544.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/20210918_212544.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/20210929_120637 (1).jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/20210929_120637 (1).jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/20220119_102843.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/20220119_102843.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/20230131_205736.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/20230131_205736.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/aditya-doula-1O56gmrEQzo-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/aditya-doula-1O56gmrEQzo-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/aditya-doula-Cd9kNW2eBkA-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Still life/aditya-doula-Cd9kNW2eBkA-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Still life/aditya-doula-JdxOJRlgomo-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}*/
-				?><br><a href="../Images/Still life/aditya-doula-JdxOJRlgomo-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-		</div> -->
-
 		<?php 
 			// Create an XMLReader instance
 			$reader = new XMLReader();
@@ -261,12 +140,8 @@
 			});
 		</script>
 		
-		<!-- mouse trail -->
 		<script src="../Js/mouse.js"></script>
-
-		<!-- dark mode js -->
 		<script src="../Js/dark-mode.js"></script>
-
 	</body>
 </html>
 

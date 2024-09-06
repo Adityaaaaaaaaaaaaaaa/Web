@@ -1,14 +1,12 @@
 <?php
-session_start();
+	session_start();
 
-// Check if the user is logged in
-if(!(isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-    include ('../PHP/Taketwoconnect.php');
-	
-    // Redirect if the user is not logged in
-    header("location: ../Webpages/Login.php");
-    exit();
-}
+	if(!(isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
+		include ('../PHP/Taketwoconnect.php');
+		
+		header("location: ../Webpages/Login.php");
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,35 +67,6 @@ if(!(isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
 	<body>
 
 		<?php include "../Webpages/Header.php"; ?>
-
-		<!-- <div id="container" class="fade-in">
-
-            <div id="infoMsg">
-                <h1>~ Delete Your Profile Information ?~</h1>
-                <h5>Leaving us ... &#128579; ?</h5>
-            </div><br>
-
-			<form name="delProfile" method="POST" action="../PHP/profileDelete.php">
-				<div id="form1">
-                    <div class="divlabel2">
-                        <p>Deleting your account will remove all your data from our system</p><br>
-                        <p>This action cannot be undone !</p><br><br>
-                        <p>Note: You will be logged out upon deletion and redirected to the home page</p><br>
-                        <p>Please re-enter your password :</p><br>
-                    </div><br><br>
-
-                    <div id="passwordDisplay" class="divlabel">
-						<label for="password1">Enter Password</label><br>
-						<input type="password" name="delPwd" id="passwordField" onblur="ajaxPwd()" />
-                        <div id="delbtn"></div>
-					</div><br><br>
-
-					<div id="buttonX">
-						<button id="nox" disabled><a href="../Webpages/profile.php">Cancel</a></button>
-					</div>
-				</div>
-			</form>
-		</div> -->
 
 		<div id="containerHere"></div>
 
@@ -225,10 +194,7 @@ if(!(isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
 
 		<?php include '../Webpages/Footer.php'; ?>
 
-		<!-- mouse trail -->
 		<script src="../Js/mouse.js"></script>
-		
-		<!-- dark mode js -->
 		<script src="../Js/dark-mode.js"></script>
 	</body>
 </html>

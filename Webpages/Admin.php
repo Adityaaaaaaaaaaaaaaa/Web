@@ -1,42 +1,39 @@
 <?php
 session_start();
 
-// Check for responses in the URL parameters
-if (isset($_GET['userdatafile'])) {
-    $userdatafile_response = $_GET['userdatafile'];
-} else {
-    $userdatafile_response = "Select File to upload<br>Note: Error code X = No file was uploaded/Array Empty.";
-}
+	// Check for responses in the URL parameters
+	if (isset($_GET['userdatafile'])) {
+		$userdatafile_response = $_GET['userdatafile'];
+	} else {
+		$userdatafile_response = "Select File to upload<br>Note: Error code X = No file was uploaded/Array Empty.";
+	}
 
-if (isset($_GET['otherfile'])) {
-    $otherfile_response = $_GET['otherfile'];
-} else {
-    $otherfile_response = "Note: Experiemntal - Upload Small Files < 3500 Kb<br> Large Files timeout the connection<br>php.ini file not configured!";
-}
+	if (isset($_GET['otherfile'])) {
+		$otherfile_response = $_GET['otherfile'];
+	} else {
+		$otherfile_response = "Note: Experiemntal - Upload Small Files < 3500 Kb<br> Large Files timeout the connection<br>php.ini file not configured!";
+	}
 
-// Check if the user is authenticated
-if (!isset($_SESSION['adminUname'])) {
-    //echo "Unauthorized access";
-    //exit;
-    echo ' <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <!-- XSAlert CSS -->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/themes/light-theme.css">
-            <!-- XAlert core JS -->
-            <script src="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/xsalert.js"></script>
-            <script>
-            XSAlert({
-                title: "Sneaking in?",
-                message: "You know what to do",
-                icon: \'error\',
-                hideCancelButton: true,
-                closeOnOutsideClick: false,
-                hideOkButton: true,
-                closeWithESC: false,
-                footer: \'<a href="../home.php">Home</a>\'
-            })
-        </script>';
-}
+	if (!isset($_SESSION['adminUname'])) {
+		echo ' <!-- jQuery -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+				<!-- XSAlert CSS -->
+				<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/themes/light-theme.css">
+				<!-- XAlert core JS -->
+				<script src="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/xsalert.js"></script>
+				<script>
+				XSAlert({
+					title: "Sneaking in?",
+					message: "You know what to do",
+					icon: \'error\',
+					hideCancelButton: true,
+					closeOnOutsideClick: false,
+					hideOkButton: true,
+					closeWithESC: false,
+					footer: \'<a href="../home.php">Home</a>\'
+				})
+			</script>';
+	}
 ?>
 
 <!DOCTYPE html>
@@ -77,25 +74,6 @@ if (!isset($_SESSION['adminUname'])) {
 						</p>
                         <p>Stats below, Enjoy!</p>
                     </div><br><br>
-
-                    <!--<div id="tableStats"> instead we are using php and xml 
-						<p id="stats">Use the drop-down menu to view more results: </p>
-                            <?php /*
-                                require "../PHP/Taketwoconnect.php";
-
-                                // Define table names
-                                $tables = array("client", "reservation", "inquiry", "feedback");
-
-                                foreach ($tables as $table) {
-                                    $query = "SELECT COUNT(*) AS count FROM $table";
-                                    $result = mysqli_query($conn, $query);
-                                    $row = mysqli_fetch_assoc($result);
-                                    $count = $row['count'];
-
-                                    echo "<p id='stats'>Number of records in $table: $count</p>";
-                                }*/
-                            ?>
-                    </div>-->
 
                     <div id="formAdmin">
 						<p id="stats">Use the drop-down menu to view more results: </p>
@@ -165,7 +143,6 @@ if (!isset($_SESSION['adminUname'])) {
 							<option value="xml">XML</option>
 							<option value="csv">CSV</option>
 							<option value="json">JSON</option>
-							<!--<option value="excel">Excel</option>-->
 						</select>
 					</div>
 
@@ -252,10 +229,7 @@ if (!isset($_SESSION['adminUname'])) {
 
 		<?php include '../Webpages/Footer.php'; ?>
 
-		<!-- mouse trail -->
 		<script src="../Js/mouse.js"></script>
-
-		<!-- dark mode js -->
 		<script src="../Js/dark-mode.js"></script>
 	</body>
 </html>	

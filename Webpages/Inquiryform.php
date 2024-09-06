@@ -1,36 +1,30 @@
 <?php
-session_start();
+	session_start();
 
-// Check if the user is logged in
-if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
-    include ('../PHP/Taketwoconnect.php');
+	if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
+		include ('../PHP/Taketwoconnect.php');
 
-    // Get the session type, if user session or admin session
-    $sessionType = isset($_SESSION['user_login']) ? 'user' : 'admin';
+		$sessionType = isset($_SESSION['user_login']) ? 'user' : 'admin';
 
-    if ($sessionType === 'user') {
-        // Get the username from the session
-        $userName = $_SESSION['user_login'];
+		if ($sessionType === 'user') {
+			// Get the username from the session
+			$userName = $_SESSION['user_login'];
 
-        // Get the username from the session
-		$userName = $_SESSION['user_login'];
+			$userName = $_SESSION['user_login'];
 
-		// Sql query
-		$sql = "SELECT clnFn, clnLn, clnUn, clnEmail, clnPhone, clnPwd FROM client WHERE clnUn = '$userName';";
+			$sql = "SELECT clnFn, clnLn, clnUn, clnEmail, clnPhone, clnPwd FROM client WHERE clnUn = '$userName';";
 
-		// Execute the query
-		$result = mysqli_query($conn, $sql);
+			$result = mysqli_query($conn, $sql);
 
-		// Fetch the user data as an associative array
-		$userData = mysqli_fetch_assoc($result);
+			// Fetch the user data as an associative array
+			$userData = mysqli_fetch_assoc($result);
 
-		// Close the database connection
-		mysqli_close($conn);
-    }
-} else {
-	header("Location: ../webpages/Login.php");
-	exit();
-}
+			mysqli_close($conn);
+		}
+	} else {
+		header("Location: ../webpages/Login.php");
+		exit();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -42,16 +36,9 @@ if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
 		
 		<script>
 	  	function checkform1(form) {
-		    // ARRAY created to identify any encountered error(s) and display it/them to the user at the same time
 		    var errors = [];
-
-		    // regular expression to match only alphanumeric characters and spaces
 		    var special = /^[\w ]+$/;
-
-		    // regular expression to match any digit
 		    var digits = /\d/;
-
-		    // regular expression to match .com at the end of the email address
 		    var end = /(\.com)$/;
 
 		    // validation fails if the First Name field is empty
@@ -148,12 +135,8 @@ if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
 
 		<?php include '../Webpages/Footer.php'; ?>
 
-		<!-- mouse trail -->
 		<script src="../Js/mouse.js"></script>
-
-		<!-- dark mode js -->
 		<script src="../Js/dark-mode.js"></script>
-
 	</body>
 </html>
 
