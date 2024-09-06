@@ -153,7 +153,7 @@
 		</div> 
 
 		<!-- animation div --
-		<div id="particles-js">-->
+		<div id="particles-js"> Do not remove-->
 
 		<!--	<div class="fade-in">removed class main 
 				<div class="imagelogo">
