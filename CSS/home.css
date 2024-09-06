@@ -1,0 +1,136 @@
+body {
+	font-family: Cambria;
+	background-color: #211d23;
+}
+
+ul {
+	list-style-type: none;
+	margin: 2px;
+	padding: 2px ;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+}
+
+/* menu list position ----- */
+li {
+	float: left;
+}
+
+/* menu list visual display , spacing and color --------- */
+li a, .dropbtn {
+	display: inline-block;
+	color: darkgrey;
+	text-align: absolute;
+	padding: 15px 15px;
+	text-decoration: none;
+	border-radius: 17px;
+}
+
+/* dropdown list hover -------------------------*/
+li a:hover, .dropdown:hover .dropbtn {
+	background-color: rgb(105, 108, 96, .2);
+	box-shadow: 0 0 5px 2px crimson;
+}
+
+li.dropdown {
+	display: inline-block;
+}
+
+/* drop down background color & display --------- */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: lightgrey;
+	min-width: auto;
+	z-index: 1;
+	border-radius: 17px;
+}
+
+/* dropdown list links ----------------*/
+.dropdown-content a {
+	color: black;
+	padding: 20px 24px;
+	display: block;
+	text-align: left;
+}
+
+/* dropdown list hover color ----------------------*/
+.dropdown-content a:hover {
+	background-color: rgb(34, 34, 34, .3);
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.navbar a{
+	float:  left;
+	text-align: center;
+}
+
+/* footer styling ----------------------------*/
+footer {
+	background-color: #303030;
+	color: #bfbfbf;
+	margin-top: 50px;
+	border-radius: 15px;
+	box-shadow: 0 0 10px 1px white;
+}
+
+.footer-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+}
+
+/* links in ul ------------------ */
+.quicklinks ul {
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+}
+
+.quicklinks li {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.quicklinks a {
+	color: #fff;
+}
+
+/* link colour on hover ------------------*/
+.quicklinks a:active,.quicklinks a:focus,.quicklinks a:hover {
+	color:#3366cc;
+	text-decoration:none;
+}
+
+/* footer logo image -----------------*/
+#smalllogo {
+	height: 75px;
+	max-width: auto;
+}
+
+/* small about section in footer -----------*/
+.about {
+	font-size: 14px;
+	margin-top: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	flex-basis: 100%;
+	line-height: 15px;
+}
+
+.about p {
+	margin: 2px;
+}
+
+hr {
+	width: 60%;
+	border-width: 1px;
+	border-radius: 15px;
+}

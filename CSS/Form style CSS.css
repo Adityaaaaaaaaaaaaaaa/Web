@@ -1,0 +1,146 @@
+body {
+	background-color: #211d23;
+	font-family: Cambria;
+}
+
+#head1 {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+/* form box -------------------------------*/
+#container {
+	width: 750px;
+	margin: 50px auto;
+	background-color: rgb(35.67, 59.955, 59.955, .9);
+	border-radius: 15px;
+	box-shadow: 0px 0px 70px 10px #00ffff;
+	padding: 30px;		
+}
+
+/* all id's of the different Div tags on the 3 forms */
+#name1, #name2, #name3, #emailid1, #emailid2, #phone, #message, #date, #age, #gender, #qualityService, #suggestion, #recommend, #photoQuality {
+	line-height: 30px;
+	padding: 10px;
+	margin: auto;
+	font-family: fantasy, serif, 'Impact';
+	color: #d3d3d3;
+	display: inline-block;
+}
+
+/* input tags - all 3 forms ------------------*/
+input, label {
+	margin: 10px;
+	padding: 5px;
+	padding-left: 15px;
+	font-size: 20px;
+}
+
+input {
+	transition: box-shadow .5s;
+	width: 320px;
+	height: 40px;
+	margin: 10px;
+	border-radius:10px;
+	border: 2px solid #808080;
+	background: lightgrey;
+	float: left;
+}
+
+input:hover {
+	box-shadow: 0 0 50px 10px rgb(123, 31, 162);
+	background-color: #fffafa;
+}
+
+input::placeholder, textarea::placeholder {
+	color: black;
+	font-family: 'Baskerville', serif;
+}
+
+/* heading ---------------------------- */
+h1{
+	font-size: 40px;
+	font-family: 'Baskerville' , serif;
+	color: #b0c4de;
+}
+
+h5 {
+	font-size: 30px;
+	font-family: bradley hand , cursive;
+	color: #b0c4de;			
+}
+
+/* message box ---------------------------- */
+#text {
+	background-color: #d3d3d3;
+	border-radius: 10px;
+	border-color:#808080 ;
+	transition: .5s;
+	padding: 20px;
+	font-size: 20px;
+}
+
+#text:hover {
+	box-shadow: 0 0 50px 20px rgb(123, 31, 162);
+	background-color: #fffafa;
+}
+
+/* button - all 3 forms --------------------- */
+#button {
+	text-align: center;
+}
+
+#sub, #clear {
+	border: 1px;
+	margin: 20px;
+	padding: 15px;
+	border-radius: 15px;
+	text-align: center;
+	font-family: fantasy, serif, 'Impact';
+	font-size: 20px;
+	background-color: #a9a9a9;
+}
+
+#clear {
+	margin-left: auto;
+}
+
+#clear:hover {
+	box-shadow: 0 0 30px 10px #ffa500;
+	background-color: snow;
+}
+
+#sub:hover {
+	box-shadow: 0 0 30px 10px #00ff00;
+	background-color: snow;
+}
+
+/* radio buttons - feedback page ----------------- */
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"] + label {
+	font-size: 16px;
+	padding-left: 30px;
+	position: relative;
+	cursor: pointer;
+}
+
+input[type="radio"] + label:before {
+	content: "";
+	background: white;
+	border: 2px solid black;
+	border-radius: 50%;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+input[type="radio"]:checked + label:before {
+	background: lightgreen;
+}
+
