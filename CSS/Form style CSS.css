@@ -1,5 +1,38 @@
+:root {
+	/* Dark color mode */
+	--h-titleColor: #b0c4de;
+	--formbox-dropShadow: #E0115F;
+	--formBox-bgColor: rgba(255, 255, 255, 0.1);
+	--formTitle-textColor: #d3d3d3;
+	--input-borderColor: #808080;
+	--input-bg: rgba(255, 255, 255, 0.3);
+	--input-bgHover: rgba(255, 255, 255, 0.6);
+	--hover-boxShadow: rgb(123, 31, 162);
+	--buttonBg-color: #a9a9a9;
+	--buttonBg-colorHover: snow;
+	--clearButton-hover: #ffa500;
+	--subButton-hover: #00ff00;
+	--feedback-checked: lightgreen;
+}
+
+:root.light-mode {
+    /* Light color mode */
+    --h-titleColor: #d5d3d3; 
+    --formbox-dropShadow: #ff0040;
+    --formBox-bgColor: #393939; 
+    --formTitle-textColor: #cecece; 
+    --input-borderColor: #000000; 
+    --input-bg: #ffffff; 
+    --input-bgHover: #787474; 
+    --hover-boxShadow: rgba(58, 216, 44, .7);
+    --buttonBg-color: #a9a9a9; 
+    --buttonBg-colorHover: snow; 
+    --clearButton-hover: #ffa500; 
+    --subButton-hover: #00ff00; 
+    --feedback-checked: #80ff00;
+}
+
 body {
-	background-color: #211d23;
 	font-family: Cambria;
 }
 
@@ -8,27 +41,29 @@ body {
 	margin-bottom: 50px;
 }
 
-/* form box ------------------------------- */
+/* Form box */
 #container {
 	width: 750px;
 	margin: 50px auto;
-	background-color: rgb(35.67, 59.955, 59.955, .9);
+	background: var(--formBox-bgColor);
 	border-radius: 15px;
-	box-shadow: 0px 0px 70px 10px #E0115F;	/*#00ffff;*/
-	padding: 30px;		
+	box-shadow: 0px 0px 70px 10px var(--formbox-dropShadow), 0 0 20px rgba(255, 255, 255, 0.3) inset;
+	padding: 30px;
 }
 
-/* all id's of the different Div tags on the 3 forms */
-#name1, #name2, #name3, #emailid1, #emailid2, #phone, #message, #date, #age, #gender, #qualityService, #suggestion, #recommend, #photoQuality {
+/* All ID's of the different Div tags on the forms */
+#name1, #name2, #name3, #emailid1, #emailid2, 
+#phone, #message, #date, #age, #gender, 
+#qualityService, #suggestion, #recommend, #photoQuality {
 	line-height: 30px;
 	padding: 10px;
 	margin: auto;
 	font-family: fantasy, serif, 'Impact';
-	color: #d3d3d3;
+	color: var(--formTitle-textColor);;
 	display: inline-block;
 }
 
-/* input tags - all 3 forms ------------------*/
+/* Input tags */
 input, label {
 	margin: 10px;
 	padding: 5px;
@@ -41,15 +76,16 @@ input {
 	width: 320px;
 	height: 40px;
 	margin: 10px;
-	border-radius:10px;
-	border: 2px solid #808080;
-	background: lightgrey;
+	border-radius: 10px;
+	border: 2px solid var(--input-borderColor);
+	background: var(--input-bg);
 	float: left;
+	cursor: pointer;
 }
 
 input:hover {
-	box-shadow: 0 0 50px 10px rgb(123, 31, 162);
-	background-color: #fffafa;
+	box-shadow: 0 0 20px 5px var(--hover-boxShadow);
+	background-color: var(--input-bgHover);
 }
 
 input::placeholder, textarea::placeholder {
@@ -57,35 +93,39 @@ input::placeholder, textarea::placeholder {
 	font-family: 'Baskerville', serif;
 }
 
-/* heading ---------------------------- */
-h1{
+/* Heading */
+h1 {
 	font-size: 40px;
 	font-family: 'Baskerville' , serif;
-	color: #b0c4de;
+	color: var(--h-titleColor);
 }
 
 h5 {
 	font-size: 30px;
 	font-family: bradley hand , cursive;
-	color: #b0c4de;			
+	color: var(--h-titleColor);			
 }
 
-/* message box ---------------------------- */
+/* Message box */
 #text {
-	background-color: #d3d3d3;
+	background-color: var(--input-bg);
 	border-radius: 10px;
-	border-color:#808080 ;
+	border-color: var(--input-borderColor);
 	transition: .5s;
 	padding: 20px;
 	font-size: 20px;
 }
 
 #text:hover {
-	box-shadow: 0 0 50px 20px rgb(123, 31, 162);
-	background-color: #fffafa;
+	box-shadow: 0 0 20px 5px var(--hover-boxShadow);
+	background-color: var(--input-bgHover);
 }
 
-/* button - all 3 forms --------------------- */
+textarea {
+	cursor: pointer;
+}
+
+/* Buttons */
 #button {
 	text-align: center;
 }
@@ -98,7 +138,8 @@ h5 {
 	text-align: center;
 	font-family: fantasy, serif, 'Impact';
 	font-size: 20px;
-	background-color: #a9a9a9;
+	background-color: var(--buttonBg-color);
+	cursor: pointer;
 }
 
 a #sub, a #clear {
@@ -110,16 +151,16 @@ a #sub, a #clear {
 }
 
 #clear:hover {
-	box-shadow: 0 0 30px 10px #ffa500;
-	background-color: snow;
+	box-shadow: 0 0 20px 5px var(--clearButton-hover);
+	background-color: var(--buttonBg-colorHover);
 }
 
 #sub:hover {
-	box-shadow: 0 0 30px 10px #00ff00;
-	background-color: snow;
+	box-shadow: 0 0 20px 5px var(--subButton-hover);
+	background-color: var(--buttonBg-colorHover);
 }
 
-/* radio buttons - feedback page ----------------- */
+/* Radio buttons */
 input[type="radio"] {
 	display: none;
 }
@@ -145,10 +186,10 @@ input[type="radio"] + label:before {
 }
 
 input[type="radio"]:checked + label:before {
-	background: lightgreen;
+	background: var(--feedback-checked);
 }
 
-/* CSS class for fade-in transition */
+/* Fade-in transition */
 .fade-in {
     opacity: 0;
     transition: opacity 1s ease-in-out;

@@ -1,0 +1,155 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="step" type="xs:string"/>
+	<xs:element name="label" type="xs:string"/>
+	<xs:element name="link">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="href" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="th" type="xs:string"/>
+	<xs:element name="tr">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="th"/>
+				<xs:element ref="td"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+  	<xs:element name="td" type="xs:string"/>
+ 	<xs:element name="thead">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tr"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tbody">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tr" maxOccurs="unbounded" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Bheading2">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="class"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="para">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="class"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Bheading3">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="class"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BhowTo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="step" maxOccurs="unbounded" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="class"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="br" type="xs:string"/>
+	<xs:element name="BbuyBtn">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="label"/>
+				<xs:element ref="link"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="class"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Rheading3">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="class"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RhowTo">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="step" maxOccurs="unbounded" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="class" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="THeading4">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="class"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="table">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="thead" minOccurs="0"/>
+				<xs:element ref="tbody" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RbuyBtn">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="label"/>
+				<xs:element ref="link"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="class"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="content">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="Bheading2"/>
+				<xs:element ref="para"/>
+				<xs:element ref="Bheading3">
+					<xs:annotation>
+						<xs:documentation> Section 1: How to Buy a Photo </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="BhowTo"/>
+				<xs:element ref="br"/>
+				<xs:element ref="BbuyBtn"/>
+				<xs:element ref="Rheading3">
+					<xs:annotation>
+						<xs:documentation> Section 2: Reserve a Custom Session </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="RhowTo"/>
+				<xs:element ref="THeading4">
+					<xs:annotation>
+						<xs:documentation> Section 3: Pricing Packages for Custom Shots </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="table"/>
+				<xs:element ref="RbuyBtn"/>
+			</xs:choice>
+			<xs:attribute type="xs:string" name="class"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

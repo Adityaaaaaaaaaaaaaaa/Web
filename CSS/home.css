@@ -1,8 +1,156 @@
-body {
-	font-family: Cambria;
-	background-color: #211d23;
+:root {
+	/* dark colour mode*/
+	/* global */
+	--bodyBG-color: #211d23;
+	--mouse-trail: #4169E1;
+	--scrollbar-thumb: /* #322e34; */ Orange;
+	--scrollbar-track: /* #4d4151; */ #211d23;
+	--navBar-text:rgba(255,255,255,.5);
+	--navBar-textHover: snow;
+	--nav-corner1: #3E8914;
+	--nav-corner2: #2E640F;
+	--dropdown-bg: rgba(255, 255, 255, .2);
+	--dropdown-bgHover: rgba(255, 255, 255, .05);
+	--dropdown-text: snow;
+	--dropdown-textHover: black;
+	--footer-text: rgba(255,255,255,.5);
+	--footer-textHover: snow;
+	--footer-bg: #303030;
+	--footer-aboutColour: #bfbfbf;
+	--footer-box-shadow: 0 0 10px 1px white;
+	--smallLogo-dropShadow: 0 0 5px rgba(255, 239, 15, 0.8);
+	--border-test: yellow; /* just for testing layouts and borders clash */
+	--icon-color: #fff;
+	--icon-color-hover: yellow;
+	--fotter-hover: orange;
 }
 
+:root.light-mode {
+	/* light colour mode */
+	--bodyBG-color: rgb(118, 118, 160); 
+	--mouse-trail: #ff0000; 
+	--scrollbar-thumb: /* #898989; */ white;
+	--scrollbar-track: /* #c6d7db; */ rgb(118, 118, 160); 
+	--navBar-text: rgba(0, 0, 0, 0.5); 
+	--navBar-textHover: #000000; 
+	--nav-corner1: #005eff; 
+	--nav-corner2: #00a6ff; 
+	--dropdown-bg: rgba(0, 0, 0, 0.2); 
+	--dropdown-bgHover: rgba(0, 0, 0, 0.1); 
+	--dropdown-text: white;
+	--dropdown-textHover: rgb(255, 0, 175);
+	--footer-text: rgba(0, 0, 0, 0.5); 
+	--footer-textHover: #000000; 
+	--footer-bg: rgba(158, 174, 199, .3);
+	--footer-aboutColour: #353535; 
+	--footer-box-shadow: 0 0 10px 1px black;
+	--smallLogo-dropShadow: 0 0 5px rgb(255, 0, 204); 
+	--border-test: black; /* just for testing  layouts and  borders clash */
+	--icon-color: #fff;
+	--icon-color-hover: rgb(255, 0, 204);
+	--fotter-hover : rgb(255, 0, 0);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+	font-family: Cambria;
+	background-color: var(--bodyBG-color);
+}
+
+/* scroll bar */
+body::-webkit-scrollbar {
+    width: 4px;
+	height: 4px;
+}
+
+/* color of the thumb */
+body::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb); 
+}
+
+/* color of the track */
+body::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track); 
+}
+
+/* nav bar */
+.nav {
+	font-family: 'Titillium Web';
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 600;
+	max-width: auto;
+    z-index: 10;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
+	position: inherit;
+}
+
+.nav * {
+	box-sizing: border-box;
+	transition: all .35s ease;
+}
+
+.nav li {
+	display: inline-block;
+	list-style: outside none none;
+	margin: .5em 1em;
+	padding: 0;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
+}
+
+.nav a {
+	padding: .5em .8em;
+	color: var(--navBar-text);
+	position: relative;
+	text-decoration: none;
+	font-size: 20px;
+	font-style: italic;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
+}
+
+.nav a::before,
+.nav a::after {
+	content: '';
+	height: 14px;
+	width: 14px;
+	position: absolute;
+	transition: all .35s ease;
+	opacity: 0;
+}
+
+.nav a::before {
+	content: '';
+	right: 0;
+	top: 0;
+	border-top: 3px solid var(--nav-corner1); /* ti right angle vert la */ 
+	border-right: 3px solid var(--nav-corner2);
+	transform: translate(-100%, 50%);
+}
+
+.nav a:after {
+	content: '';
+	left: 0;
+	bottom: 0;
+	border-bottom: 3px solid var(--nav-corner2);
+	border-left: 3px solid var(--nav-corner1);
+	transform: translate(100%, -50%)
+}
+
+.nav a:hover:before,
+.nav a:hover:after{
+	transform: translate(0,0);
+	opacity: 1;
+}
+
+.nav a:hover {
+	color: var(--navBar-textHover);
+	scale: 1.1;
+}
+
+/* also nav bar */
 ul {
 	list-style-type: none;
 	margin: 2px;
@@ -20,36 +168,25 @@ li {
 /* menu list visual display , spacing and color --------- */
 li a, .dropbtn {
 	display: inline-block;
-	color: darkgrey;
-	text-align: absolute;
-	padding: 15px 15px;
 	text-decoration: none;
-	border-radius: 17px;
-}
-
-/* dropdown list hover -------------------------*/
-li a:hover, .dropdown:hover .dropbtn {
-	background-color: rgb(105, 108, 96, .2);
-	box-shadow: 0 0 5px 2px crimson;
-}
-
-li.dropdown {
-	display: inline-block;
+	border-radius: 10px;
+	backdrop-filter: blur(3px);
 }
 
 /* drop down background color & display --------- */
 .dropdown-content {
 	display: none;
 	position: absolute;
-	background-color: lightgrey;
+	background-color: var(--dropdown-bg);
 	min-width: auto;
 	z-index: 1;
-	border-radius: 17px;
+	border-radius: 10px;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
 }
 
 /* dropdown list links ----------------*/
 .dropdown-content a {
-	color: black;
+	color: var(--dropdown-text);
 	padding: 20px 24px;
 	display: block;
 	text-align: left;
@@ -57,7 +194,9 @@ li.dropdown {
 
 /* dropdown list hover color ----------------------*/
 .dropdown-content a:hover {
-	background-color: rgb(34, 34, 34, .3);
+	background-color: var(--dropdown-bgHover);
+	color: var(--dropdown-textHover);
+	backdrop-filter: blur(6px);
 }
 
 .dropdown:hover .dropdown-content {
@@ -71,11 +210,12 @@ li.dropdown {
 
 /* footer styling ----------------------------*/
 footer {
-	background-color: #303030;
-	color: #bfbfbf;
-	margin-top: 100px;
+	background-color: var(--footer-bg);
+	color: var(--footer-aboutColour);
+	/*margin-top: 100px;*/
+	margin: 2% 1% 1% 1%;
 	border-radius: 15px;
-	box-shadow: 0 0 10px 1px white;
+	box-shadow: var(--footer-box-shadow);
 }
 
 .footer-container {
@@ -84,6 +224,7 @@ footer {
 	justify-content: center;
 	align-items: center;
 	padding: 5px;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
 }
 
 /* links in ul ------------------ */
@@ -99,19 +240,25 @@ footer {
 }
 
 .quicklinks a {
-	color: #fff;
+	color: var(--footer-text)
 }
 
 /* link colour on hover ------------------*/
 .quicklinks a:active,.quicklinks a:focus,.quicklinks a:hover {
-	color:#3366cc;
+	color: var(--footer-textHover);
 	text-decoration:none;
 }
 
 /* footer logo image -----------------*/
 #smalllogo {
-	height: 75px;
+	height: 72px;
 	max-width: auto;
+	transition: filter 0.1s ease-in-out;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
+}
+
+#smalllogo:hover {
+	filter: brightness(3) drop-shadow(var(--smallLogo-dropShadow));
 }
 
 /* small about section in footer -----------*/
@@ -123,10 +270,13 @@ footer {
 	text-align: center;
 	flex-basis: 100%;
 	line-height: 15px;
+	cursor: pointer;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
 }
 
 .about p {
 	margin: 2px;
+	/*border: dashed 1px var(--border-test); /* remove ---------------------------------*/
 }
 
 hr {
@@ -135,8 +285,146 @@ hr {
 	border-radius: 15px;
 }
 
+#icon {
+	color: var(--icon-color);
+}
+
+#icon:hover {
+	color: var(--icon-color-hover);
+}
+
+#footerTake2:hover, #year:hover {
+	color: var(--fotter-hover);
+}
+
+
+
 /* CSS class for fade-in transition */
 .fade-in {
     opacity: 0;
     transition: opacity 1s ease-in-out;
+}
+
+/* mouse trail effect original do not remove *
+.trail {
+	z-index: -3;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 1px solid #e15353;
+	background: #e15353;
+	position: fixed;
+	animation: come .5s linear forwards;
+}
+
+@keyframes come {
+	0% {
+		transform: scale(0);
+	}
+	10% {
+		transform: scale(1) translateY(0px);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(0) translateY(50px);
+		opacity: 0;
+	}
+}*/
+
+
+/* mouse trail effect, added seperately for adminlogin.php */
+.trail {
+    z-index: 0; /* set to -3 if it lags */
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--mouse-trail);
+    position: fixed;
+    animation: trail .5s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+@keyframes trail {
+    0%, 100% {
+        transform: scale(0) translateY(0);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1) translateY(0px);
+        opacity: 0.8;
+    }
+	50% {
+		transform: scale(1.2) translateY(0px);
+        opacity: 1;
+	}
+	80% {
+		transform: scale(1) translateY(0px);
+		opacity: 0.8;
+	}
+}
+
+/* dark mode button */
+.darkModeToggle {
+	padding: .5em .8em;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	position: relative;
+	z-index: 0;
+	border-radius: 10px;
+	font-family: 'Titillium Web';
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 600;
+}
+
+.darkModeToggle:before {
+	content: "";
+	background: linear-gradient(
+		45deg,
+		#ff0000,
+		#ff7300,
+		#fffb00,
+		#48ff00,
+		#00ffd5,
+		#002bff,
+		#7a00ff,
+		#ff00c8,
+		#ff0000
+	);
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	background-size: 400%;
+	z-index: -1;
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	animation: glowing-darkModeToggle 20s linear infinite;
+	transition: opacity 0.3s ease-in-out;
+	border-radius: 10px;
+}
+
+@keyframes glowing-darkModeToggle {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.darkModeToggle:after {
+	z-index: -1;
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #222;
+	left: 0;
+	top: 0;
+	border-radius: 10px;
 }

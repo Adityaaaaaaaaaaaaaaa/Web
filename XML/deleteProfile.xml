@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container id="container" class="fade-in" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../XSD/deleteProfile.xsd">
+
+    <info id="infoMsg">
+        <heading1>~ Delete Your Profile Information ?~</heading1>
+        <heading5>Leaving us ... &#128579; ?</heading5>
+    </info><br/>
+
+    <form name="delProfile" method="POST" action="../PHP/profileDelete.php">
+        <formdiv id="form1">
+            <label1 class="divlabel2">
+                <para>Deleting your account will remove all your data from our system</para><br/>
+                <para>This action cannot be undone !</para><br/><br/>
+                <para>Note: You will be logged out upon deletion</para><br/>
+                <para>Please re-enter your password :</para><br/>
+            </label1><br/><br/>
+
+            <label2 id="passwordDisplay" class="divlabel">
+                <label for="password1">Enter Password</label><br/>
+                <input type="password" name="delPwd" id="passwordField" onblur="ajaxPwd()" />
+                <div id="delbtn"></div>
+            </label2><br/><br/>
+
+            <buttonDiv id="buttonX">
+                <button id="nox" disabled="true"><a href="../Webpages/profile.php">Cancel</a></button>
+            </buttonDiv>
+        </formdiv>
+    </form>
+</container>

@@ -20,7 +20,7 @@ try {
     $sql2 = "INSERT INTO adminx (id, adminUname, adminPwd)
         VALUES
         (1, 'Aditya', 'aditya1234'),
-        (2, 'Irfaan', 'irfaan1234');";
+        (2, 'Aqsaa', 'aqsaa1234');";
 
     if (mysqli_query($conn, $sql2)) {
         echo "Insert successfully.";

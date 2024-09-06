@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<about xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../XSD/aboutus.xsd">
+    <heading>Meet us !</heading>
+    <profiles>
+        <author>
+            <image class="authorimg">
+                <img src ="../Images/About Us/user1.jpg" id="adi"/>
+            </image>
+            <intro class="authorintro">
+                Hello, my name is Doollah Adeetya, and I am a 21-year-old photographer with a passion for capturing life's most beautiful 
+                moments. Together with my partner and friend, Aqsaa, we offer professional photography services that are sure to amaze 
+                your eyes.
+
+                We understand that every moment is unique, and we strive to capture those special memories with skill and artistry. We'll make 
+                sure to keep a keen eye for detail ensuring that we deliver outstanding results that exceed your expectations.
+
+                If you would like to view some of my personal works, I invite you to visit my Unsplash portfolio at 
+                <a href="https://unsplash.com/@aditya_doula_" style="color: var(--link-color); text-decoration: none;" id="unsplashAdi" >unsplash.com/@aditya_doula_</a>.
+
+                Also check-out more of my personal works on my Instagram  
+                <a href="https://www.instagram.com/aditya_doula_" target="_blanks" class="fa fa-instagram" id="instaAdi"></a>
+            </intro>
+        </author>
+
+        <author>
+            <image class="authorimg">
+				<img src ="../Images/About Us/user2.jpg" id="aqsaa"/>
+            </image>
+            <intro class="authorintro">
+                Hello, my name is Soobedar Aqsaa, and I am a 22-year-old professional photographer. With over five years of experience, I 
+                have honed my skills to capture the beauty of the world around us.
+
+                I have experienced firsthand the profound impact of photography.
+                What began as a passing interest quickly evolved into a deep passion. 
+                As I immersed myself in capturing special moments, I realized the incredible power of a photograph to evoke emotions and change perspectives.
+                Join us on our journey as we continue to explore the captivating world of visual storytelling.
+
+                Also check-out more of my personal works on my Instagram  
+                <a href="https:#" target="_blanks" class="fa fa-instagram" id="instaaqsaa"></a>
+            </intro>        
+        </author>
+    </profiles>
+</about>

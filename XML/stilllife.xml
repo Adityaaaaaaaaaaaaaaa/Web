@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../XSLT/NatureLandscape.xslt"?>
+<imgcontainer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../XSD/Gallery.xsd">
+    <bigbox class="bigbox">
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/20210711_123406.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/20210711_123406.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/20210730_174857 (1).jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/20210730_174857 (1).jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/20210918_212544.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/20210918_212544.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/20210929_120637 (1).jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/20210929_120637 (1).jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/20220119_102843.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/20220119_102843.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/20230131_205736.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/20230131_205736.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/aditya-doula-1O56gmrEQzo-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/aditya-doula-1O56gmrEQzo-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/aditya-doula-Cd9kNW2eBkA-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/aditya-doula-Cd9kNW2eBkA-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Still life/aditya-doula-JdxOJRlgomo-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Still life/aditya-doula-JdxOJRlgomo-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+    </bigbox>
+</imgcontainer>

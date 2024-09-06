@@ -1,30 +1,61 @@
+:root {
+	/* dark colour mode*/
+	--h1-titleColor: #d3d3d3;
+	--bigBox-border: #00ffff;
+	--bigBox-boxShadow: #31cd1a;
+	--imgBox-boxShadow: #f0f8ff;
+	--textBg-color: rgb(111.56, 111.56, 111.56, .9);
+	--linkcolor: #bfbfbf;
+	--linkcolor-hover: #2308f7;
+	--gradient-1: rgba(163, 189, 188, .1);
+	--gradient-2: rgb(67, 90, 91);
+    --button-border: yellow;
+	--text-boxShadow: 0 0 10px 1px rgba(0, 255, 255);
+
+}
+
+:root.light-mode {
+	/* light colour mode */
+	--h1-titleColor: #473333;
+	--bigBox-border: #eeff00;
+	--bigBox-boxShadow: #2b00ff;
+	--imgBox-boxShadow: #f0f8ff;
+	--textBg-color: rgb(112, 112, 112);
+	--linkcolor: #bfbfbf;
+	--linkcolor-hover: #000000;
+	--gradient-1: rgb(50, 196, 62, .5);
+	--gradient-2: rgb(133, 63, 203);
+    --button-border: lime;
+	--text-boxShadow: 0 0 10px 1px rgba(255, 255, 0);
+}
+
 body {
-	background-color: #211d23;
 	font-family: Cambria;
 }
 
-/* catagory heading - 4 pages ----------------------------*/
+/* catagory heading - 4 pages */
 h1 {
 	text-align: center;
 	font-family: serif, 'verdana';
-	color: #d3d3d3;
+	color: var(--h1-titleColor);
 }
 
-/* Div image container - all images - 4 pages ------------*/
+/*-------------------------Comment when using xslt ----------------------------------------------------------------------------*/
+/* Div image container - all images - 4 pages*/
 .bigbox {
 	max-width: 100%;
 	height: inherit; 
-	border: 2px solid #00ffff;
+	border: 2px solid var(--bigBox-border);
 	border-radius: 15px;
-	background-color: rgb(47, 79, 79, .9);
-	box-shadow: 0px 0px 30px 1px rgb(0, 255, 255);
+	background: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+	box-shadow: 0px 0px 30px 1px var(--bigBox-boxShadow);
 	display: table;
 	align-items: flex-start;
 	justify-content: space-around;
 	padding: 5px;
 }
 
-/* individual image container - 4 pages ,  Portrait apart ----------- */
+/* individual image container - 4 pages ,  Portrait apart */
 #imgbox {
 	box-sizing: content-box;
 	border-radius: 17px;
@@ -34,13 +65,14 @@ h1 {
 	overflow: hidden;
 	position: relative;
 	object-fit: scale-down;
-	box-shadow: 0px 0px 3px 1px rgb(240, 248, 255);
+	box-shadow: 0px 0px 3px 1px var(--imgBox-boxShadow);
 	margin: 10px;
 	background-size: cover;
 	background-position: center;
 }
+/* ---------------- end of comment -------------------------------------------------------------------------------------------*/
 
-/* individual image - 4 pages , portrait apart ----------*/
+/* individual image - 4 pages , portrait apart >>>>>>>>>>>>>>>>>>>>>> DO NOT COMMENT <<<<<<<<<<<<<<<<<<<<<<<< */
 img:not(#smalllogo) { /* exclude css on footer logo */
 	max-width: 100%;
 	max-height: auto;
@@ -50,9 +82,12 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 	transition: 1ms ease;
 	backface-visibility: hidden;
 	border-radius: 17px;
+	transform: scale(1);
+	transition: transform 2s, filter 2s;
 }
 
-/* hidden link on images - all images , portrait apart ---------- */
+/* --------------------------------comment when using xslt -----------------------------------------------------------------------*/
+/* hidden link on images - all images , portrait apart */
 .middle {
 	transition: .5s ease-in-out;
 	opacity: 0;
@@ -64,46 +99,63 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 	-ms-transform: translate(-50%, -50%)
 }
 
-/* text on hidden link box ---------------- */
+/* text on hidden link box */
 .text {
-	background-color: rgb(111.56, 111.56, 111.56, .9);
-	font-size: 16px;
-	padding: 16px 32px;
-	line-height: 25px;
-	border-radius: 20px;
+	border: 1px solid var(--button-border); 
+	background-color: var(--textBg-color);
+	box-shadow: var(--text-boxShadow);
+    padding: 5px 20px 5px 20px; 
+	border-radius: 5px;
+	line-height: 1.5;
 }
+/*---------------------------------end of comment -------------------------------------------------------------------------------*/
 
-/* link color ----------- */
+/* link color */
 .text a {
-	color: #bfbfbf;
+	color: var(--linkcolor);
+	text-decoration: none;
 }
 
-/* on hover effects -------------------- */
+/* on hover effects */
 #imgbox:hover img {
 	opacity: 1;
+	transform: scale(1.1);
+	animation: color-transition 1.5s linear;
+
+}
+
+@keyframes color-transition {
+	50% {
+		filter: grayscale(100%);
+	}
+	100% {
+		filter: none;
+	}
 }
 
 #imgbox:hover {
-	box-shadow: 0 0 7px 2px #FA2FB5;
+	box-shadow: 0 0 7px 2px var(--bigBox-border);
 }
 
-
+/* ------------------------comment when using xslt-------------------------------------------------------------------------------- */
 .middle:hover {
 	opacity: 1;
 	transition: .1s ease;
+	cursor: pointer;
 }
 
 .text a:hover, .text a:active, .text a:focus {
-	color:#2308f7;
+	color: var(--linkcolor-hover);
 }
+/* -------------------------------------end of comment ------------------------------------------------------------------------------*/
 
-/* footer logo image ----------------------- */
+/* footer logo image */
 #smalllogo {
  	height: 75px;
   	width: auto;
 }
 
-/* back to top button --------------------------*/
+/* back to top button */
 #myBtn{
 	display: none;
   	position: fixed;
@@ -123,3 +175,4 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 #myBtn:hover {
 	background-color: #211d23;	
 }
+
