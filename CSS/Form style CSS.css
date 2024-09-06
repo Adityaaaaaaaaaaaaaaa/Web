@@ -8,13 +8,13 @@ body {
 	margin-bottom: 50px;
 }
 
-/* form box -------------------------------*/
+/* form box ------------------------------- */
 #container {
 	width: 750px;
 	margin: 50px auto;
 	background-color: rgb(35.67, 59.955, 59.955, .9);
 	border-radius: 15px;
-	box-shadow: 0px 0px 70px 10px #00ffff;
+	box-shadow: 0px 0px 70px 10px #E0115F;	/*#00ffff;*/
 	padding: 30px;		
 }
 
@@ -101,6 +101,10 @@ h5 {
 	background-color: #a9a9a9;
 }
 
+a #sub, a #clear {
+	text-decoration: none;
+}
+
 #clear {
 	margin-left: auto;
 }
@@ -144,3 +148,8 @@ input[type="radio"]:checked + label:before {
 	background: lightgreen;
 }
 
+/* CSS class for fade-in transition */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}

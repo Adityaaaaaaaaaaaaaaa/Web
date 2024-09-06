@@ -13,12 +13,12 @@ h1 {
 /* Div image container - all images - 4 pages ------------*/
 .bigbox {
 	max-width: 100%;
-	height: auto;
+	height: inherit; 
 	border: 2px solid #00ffff;
 	border-radius: 15px;
 	background-color: rgb(47, 79, 79, .9);
-	box-shadow: 0px 0px 40px 10px rgb(0, 255, 255);
-	display: inline-block;
+	box-shadow: 0px 0px 30px 1px rgb(0, 255, 255);
+	display: table;
 	align-items: flex-start;
 	justify-content: space-around;
 	padding: 5px;
@@ -28,15 +28,16 @@ h1 {
 #imgbox {
 	box-sizing: content-box;
 	border-radius: 17px;
-	max-width: calc(33%);
-	height: 220px;
+	max-width: calc(33.33% - 20px);
+	height: auto;
 	display: inline-block;
 	overflow: hidden;
 	position: relative;
 	object-fit: scale-down;
 	box-shadow: 0px 0px 3px 1px rgb(240, 248, 255);
-	margin: 5px 1px 5px 0px;
-	left: calc(.2%);
+	margin: 10px;
+	background-size: cover;
+	background-position: center;
 }
 
 /* individual image - 4 pages , portrait apart ----------*/
@@ -58,6 +59,7 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	text-align: center;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%)
 }
@@ -85,6 +87,7 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 	box-shadow: 0 0 7px 2px #FA2FB5;
 }
 
+
 .middle:hover {
 	opacity: 1;
 	transition: .1s ease;
@@ -105,7 +108,6 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 	display: none;
   	position: fixed;
   	bottom: 45px;
-  	right: 50%;
 	font-size: 15px;
 	border: none;
 	outline: groove;
@@ -114,6 +116,8 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 	cursor: pointer;
 	padding: 10px;
 	border-radius: 15px;
+	left: 50%;
+    transform: translateX(-50%); /* Horizontally center the button */
 }
 
 #myBtn:hover {

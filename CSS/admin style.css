@@ -1,0 +1,220 @@
+/* admin login page */
+/* background image*/
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('../Images/backgrounds/milad-fakurian-wNsHBf_bTBo-unsplash.jpg'); 
+	background-size: 100% 100%;
+	filter: blur(5px); 
+	z-index: -1;
+}
+
+.loginform {
+	position: relative;
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(20px);
+	padding: 30px;
+	border-radius: 10px;
+	max-width: 400px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* input box */
+.input-box {
+	width: auto;
+	padding: 10px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(5px);
+	color: white;
+	font-size: 16px;
+}
+
+.input-box::placeholder {
+	color: rgba(255, 255, 255, 0.5); 
+	font-size: 14px; 
+}
+
+/*  button with glowing effect */
+.submitBtn, .backBtn {
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	margin-top: 10px;
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.3s;
+}
+
+.submitBtn:hover, .backBtn:hover {
+	animation: glowing 1.5s infinite;
+	transform: scale(1.02); /* Add a slight scale effect */
+}
+
+@keyframes glowing {
+	0% {
+		box-shadow: 0 0 5px #4CAF50, 0 0 20px rgba(76, 175, 80, 0.5);
+	}
+	50% {
+		box-shadow: 0 0 20px #4CAF50, 0 0 30px rgba(76, 175, 80, 0.7);
+	}
+	100% {
+		box-shadow: 0 0 5px #4CAF50, 0 0 20px rgba(76, 175, 80, 0.5);
+	}
+}
+
+/* heading */
+h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: white;
+	text-align: center;
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(5px);
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ajax display */
+#adUname, #adPwd {
+	font-family: 'Times New Roman', sans-serif;
+	font-size: 13px;
+	color: gold; /* Adjust the color as needed */
+	margin-top: 3px;
+}
+
+/* CSS class for fade-in transition */
+.fade-in {
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
+
+/* Admin page styling ------------------------------------------- */
+
+/* Styling for the main content */
+.main {
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+	padding: 20px;
+}
+
+.fade-in {
+	opacity: 1;
+}
+
+/* Styling for the dashboard section */
+.dashboard-section {
+	background-color: paleturquoise;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 2px rgba(255, 0, 0);
+	text-align: center;
+}
+
+.dashboard-section h2 {
+	margin-top: 0;
+}
+
+.dashboard-section p {
+	margin: 10px 0;
+}
+
+/* Styling for the table stats */
+#tableStats {
+	margin-top: 20px;
+}
+
+#stats {
+	font-size: 18px;
+	margin: 10px 0;
+	color: aliceblue;
+}
+
+/* Styling for the form  */
+#formAdmin {
+	margin-top: 20px;
+}
+
+#tableList {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+#displayDataBtn {
+	padding: 8px 20px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in-out;
+}
+
+#displayDataBtn:hover {
+	background-color: #0056b3;
+}
+
+/* adminData.php */
+.data-table {
+	margin: 20px auto;
+	border-collapse: collapse;
+	width: 80%;
+	background-color: #2c2c2c; 
+}
+
+.data-table th {
+	background-color: #444; 
+	color: #fff;
+	font-weight: bold;
+	padding: 10px;
+	text-align: left;
+	border: 1px solid #333;
+}
+
+.data-table td {
+	padding: 8px;
+	border: 1px solid #333;
+}
+
+.data-table tbody tr:nth-child(even) {
+	background-color: #333; 
+}
+
+.data-table tbody tr:hover {
+	background-color: #444; 
+}
+
+/* Style the back button */
+.button-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.button-container button {
+	background-color: #007bff;
+	margin: 10px;
+	color: #fff;
+	padding: 12px 17px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.button-container button:hover {
+	background-color: #0056b3;
+	box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}

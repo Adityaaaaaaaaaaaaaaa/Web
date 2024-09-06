@@ -1,0 +1,149 @@
+body {
+	background-color: #211d23;
+	font-family: Cambria;
+}
+
+#infoMsg {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+/* form box -------------------------------*/
+#container {
+	width: 750px;
+	margin: 50px auto;
+	background-color: rgb(35.67, 59.955, 59.955, .9);
+	border-radius: 15px;
+	box-shadow: 0px 0px 70px 10px /*#00ffff;*/ #E0115F;
+	padding: 30px;		
+}
+
+/* all id's of the different Div tags on the 3 forms */
+.divlabel {
+    line-height: 30px;
+	padding: 10px;
+	margin: auto;
+	font-family: fantasy, serif, 'Impact';
+	color: #d3d3d3;
+	display: inline-block;
+}
+
+/* delete page paragraphs*/
+.divlabel2 p {
+    font-size: 16px;
+    line-height: 2px;
+	padding: 5px;
+	padding-left: 15px;
+	margin: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #d3d3d3;
+	display: inline-block;
+}
+
+/* Ajax response text div */
+#delbtn {
+    font-size: 14px;
+    line-height: 10px;
+	padding: 5px;
+    margin: auto;
+	margin-left: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #d3d3d3;
+	display: inline-block;
+}
+
+/* input tags - all 3 forms ------------------*/
+input, label {
+	margin: 10px;
+	padding: 5px;
+	padding-left: 15px;
+	font-size: 20px;
+}
+
+input {
+	transition: box-shadow .5s;
+	width: 320px;
+	height: 40px;
+	margin: 10px;
+	border-radius:10px;
+	border: 2px solid #808080;
+	background: lightgrey;
+	float: left;
+}
+
+input:hover {
+	box-shadow: 0 0 50px 10px rgb(123, 31, 162);
+	background-color: #fffafa;
+}
+
+input::placeholder {
+	color: black;
+	font-family: 'Baskerville', serif;
+}
+
+/* heading ---------------------------- */
+h1{
+	font-size: 40px;
+	font-family: 'Baskerville' , serif;
+	color: #b0c4de;
+}
+
+h5 {
+	font-size: 30px;
+	font-family: bradley hand , cursive;
+	color: #b0c4de;			
+}
+
+#yesx, #nox {
+	border: 1px;
+	margin: 20px;
+	padding: 15px;
+	border-radius: 15px;
+	text-align: center;
+	font-family: fantasy, serif, 'Impact';
+	font-size: 20px;
+	background-color: #a9a9a9;
+}
+
+#yesx a, #nox a {
+    text-decoration: none;
+	color: black;
+}
+
+#nox {
+	margin-left: auto;
+}
+
+#nox:hover {
+	box-shadow: 0 0 30px 10px red;
+	background-color: snow;
+}
+
+#yesx:hover {
+	box-shadow: 0 0 30px 10px #00ff00;
+	background-color: snow;
+}
+
+/* CSS class for fade-in transition */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Ajax display button */
+#yesx1 {
+	border: 1px;
+	margin: 20px;
+    margin-left: 0px;
+	padding: 15px;
+	border-radius: 15px;
+	text-align: center;
+	font-family: fantasy, serif, 'Impact';
+	font-size: 20px;
+	background-color: #a9a9a9;
+}
+
+#yesx1:hover {
+	box-shadow: 0 0 30px 10px #00ff00;
+	background-color: snow;
+}
