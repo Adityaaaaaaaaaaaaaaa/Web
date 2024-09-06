@@ -27,7 +27,8 @@ try {
         (2, 'user2', 'bbb', 'user222', 'user2@gmail.com', '5222 2222', 'u222'),
         (3, 'user3', 'ccc', 'user333', 'user3@gmail.com', '5333 3333', 'u333'),
         (4, 'user4', 'ddd', 'user444', 'user4@gmail.com', '5444 4444', 'u444'),
-        (5, 'user5', 'eee', 'user555', 'user5@gmail.com', '5555 5555', 'u555');";
+        (5, 'user5', 'eee', 'user555', 'user5@gmail.com', '5555 5555', 'u555'),
+        (6,	'Jennifer', 'Taii', 'jentaii', 'jentaii@gmail.com', '5673 7837', 'jenny');";
 
     if (mysqli_query($conn, $sql2)) {
         echo "Insert successfully.";

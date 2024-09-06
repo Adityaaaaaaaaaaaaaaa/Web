@@ -1,0 +1,139 @@
+:root {
+	/* dark colour mode*/
+	/* global */
+	--border-test: yellow; /* just for testing layouts and borders clash */
+	--h1-glow-Effect: 0 0 10px rgba(233, 54, 158, 0.8), 0 0 20px rgba(57, 16, 29, 0.8);
+	--h1-gradient-color: linear-gradient(45deg, rgb(226, 159, 159), rgb(55, 55, 196), rgb(255, 0, 238));
+	--heading-color: white; 
+    --text-color: lightgrey;
+	--subHeading: rgb(147, 93, 201);
+	--subHeading-dropShadow: 0px 0px 10px 2px rgb(0, 255, 255);
+	--buttonbg-color: #5a52ff;
+	--buttonbg-color-hover: #4aff4d;
+    --button-color: white;
+	--button-color-hover: black;
+	--tableBg: #a98bc2;
+	--tableBg2:#4f535e;
+	--table-th:#a1a1a1;
+}
+
+:root.light-mode {
+	/* light colour mode */
+	--border-test: black; /* just for testing  layouts and  borders clash */
+	--h1-glow-Effect: 0 0 10px rgb(242, 255, 0, 0.8), 0 0 20px rgba(173, 21, 70, 0.8), 0 0 20px rgba(85, 255, 0, 0.5);
+	--h1-gradient-color: linear-gradient(45deg, rgb(104, 43, 128), rgb(140, 184, 69), rgb(179, 137, 47));
+	--heading-color: #303030;
+    --text-color: black;
+	--subHeading: rgb(105, 131, 131);
+	--subHeading-dropShadow: 0px 0px 10px 2px rgba(255, 0, 0);
+	--buttonbg-color: #6c63ff;
+	--buttonbg-color-hover: #4df2b0;
+    --button-color: white;
+	--button-color-hover: black;
+	--tableBg: #454664;
+	--tableBg2:#a0cdc9;
+	--table-th:#89a3e9;
+}
+
+/* the big heading */
+.heading {
+	color: transparent;
+	background-image: var(--h1-gradient-color);
+	-webkit-background-clip: text;
+	background-clip: text;
+	text-align: center;
+	display: block;
+	font-size: 5em;
+	margin-bottom: 20px;
+	margin-top: 5px;
+	text-shadow: var(--h1-glow-Effect);
+}
+
+/* Main container styling */
+.content {
+    color: var(--text-color);
+    padding: 20px;
+	margin: 0 auto;
+    max-width: 95%;
+}
+
+/* Sub-heading styles */
+.sub-heading {
+    color: var(--heading-color);
+    margin-top: 50px;
+	text-align: center;
+	background-color: var(--subHeading);
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: var(--subHeading-dropShadow);
+}
+
+.Welcome {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 20px;
+	line-height: 1.5;
+}
+
+.howTo p {
+	line-height: 1.5;
+	max-width: 100%;
+    margin: 10px 50px;
+	font-size: 17px;
+}
+
+.tableHeading {
+	color: var(--heading-color);
+    margin-top: 50px;
+	text-align: center;
+	padding: 20px;
+}
+
+/* Button styles */
+.buyBtn {
+    background-color: var(--buttonbg-color);
+    color: var(--button-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: block; 
+    cursor: pointer;
+	line-height: 1.5;
+}
+
+/* Button hover effect */
+.buyBtn:hover {
+    background-color: var(--buttonbg-color-hover);
+	color: var(--button-color-hover);
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+/* Table styles */
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: var(--subHeading); 
+    color: var(--text-color);
+    border-radius: 10px;
+	text-align: center;
+}
+
+th, td {
+    border: 1px solid var(--text-color);
+    padding: 20px;
+}
+
+th {
+    background-color: var(--table-th); 
+}
+
+td:nth-child(even) {
+    background-color: var(--tableBg2);
+}

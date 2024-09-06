@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../XSD/home.xsd">
+
+    <logo class="imagelogo">
+        <img src ="Images/Website logo/TakeTwo.png" id="biglogo"/>
+    </logo>
+    
+    <intro class="intro">
+        <paragraph class="main-paragraph">
+            Welcome to the official website of TAKE TWO, where we offer an extensive range of services 
+            in both digital and physical forms. Our focus is dedicated to providing our customers with exceptional quality and value. 
+            In addition to our gallery and photo services, We invite you to register with us to frame your moments wherever, whenever and whatever 
+            you want. We bring forward these services with the hope, you like it!. Thank you for considering TAKE TWO for your product needs. We are 
+            committed to providing you with a seamless and satisfying experience, from start to finish. Login &amp; Drop us a message
+            via our contact options!, See you soon!
+        </paragraph>
+    </intro>    
+</content>

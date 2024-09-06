@@ -1,40 +1,44 @@
 body{
-	margin: 0 auto;
-	font-family: sans-serif;
-	overflow: hidden;
+	margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    /*background-color: #313131; overwritten my home.css */
 }
 
-/*login form box */
 .loginform {
-	width: 400px;
+    width: 375px;
 	height: 550px;
-	margin: 30px auto;
 	position: relative;
-	background-color: #233b3b;
-	border-radius: 20px;
-	border: solid 1px #1a227e;
-	overflow: hidden;
-    box-shadow: 0px 0px 50px 5px #E0115F; /*#00ffff;*/
+    margin: 50px auto;
+    background-color: #484747;
+    border-radius: 20px;
+	border: solid 1px #6af713;
+    box-shadow: 0px 0px 30px rgb(106, 247, 19);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: justify;
 }
 
-/* form switch button style*/
-.switchbut{
-	padding: 10px 30px;
-	cursor: pointer;
-	background: transparent;
-	border-color: #1a227e;
-	outline: none;
+.switchbut {
+    padding: 10px 30px;
+    cursor: pointer;
+    background-color: rgb(143, 143, 143);
+    border: none;
+    outline: none;
 	position: relative;
+    border-radius: 30px;
+    transition: box-shadow .2s ease-in-out; 
+    color: #000000; 
+    font-weight: bold; 
 	left: 85px;
-	border-radius: 30px;
-	transition: box-shadow 0.5s ease-in-out;
 	top: 20px;
-	color: antiquewhite;
-    box-shadow: 0 0 10px 1px turquoise;
+    box-shadow: 0 0 1px 1px rgb(255, 255, 255);
 }
 
 .switchbut:hover {
-    box-shadow: 0 0 10px 1px lime;
+    box-shadow: 0 0 5px 1px lime;
+    background-color: rgb(143, 143, 143, 0.6);
 }
 
 /* form */
@@ -42,34 +46,37 @@ body{
 	top: 150px;
 	position: absolute;
 	width: 280px;
-	transition: .5s;
+	transition: .5s ease-in-out;
 }
 
 .Reg-f{
 	top: 105px;
 	position: absolute;
 	width: 280px;
-	transition: .5s;
+	transition: .5s ease-in-out;
 }
 
-/* input boxes styling*/
-.input-box{
-	width: 100%;
-	padding: 5px 0;
-	margin: 5px 0;
-	border-left: 0;
-	border-right: 0;
-	border-bottom: 2px solid grey;
-	outline: none;
-	background: lightgrey;
-	border-radius: 10px;
-	margin-top: 5px;
-	text-align: center;
-	transition: box-shadow .5s ease;
+/* Input boxes styling */
+.input-box {
+    width: calc(100% - 20px); 
+    padding: 5px 0;
+    margin: 5px 0;
+    border: 2px solid #454545; 
+    outline: none;
+    background-color: #f8f9fa; 
+    border-radius: 12px;
+    text-align: center;
+	color: #000000;
+}
+
+.input-box:focus {
+    border-color: #ffae00;
+    background-color: #c5c5c5; 
+	color: #888888;
 }
 
 .input-box:hover {
-	box-shadow: 0 0 10px 1px lightpink;
+	box-shadow: 0 0 10px 3px rgb(231, 135, 149);
 	background-color: #fffafa;
 }
 
@@ -113,14 +120,14 @@ body{
     margin-top: 10px; 
 }
 
+/* login/Register button hover glow */
 #f-login .SubBtn:hover,
 #f-regis .SubBtn:hover {
 	background-color: snow;
 	box-shadow: 0 0 10px 3px #00ff00;
-
 }
 
-/* login-register form Ajax response display*/
+/* back button hover glow */
 .backBtn:hover {
 	box-shadow: 0 0 10px 3px #ffa500;
 	background-color: snow;
@@ -130,4 +137,42 @@ body{
 .fade-in {
     opacity: 0;
     transition: opacity 1s ease-in-out;
+}
+
+/* page particle animation */
+/* Styles for particle container */
+#particle-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow: hidden;
+}
+
+/* Styles for particles */
+.particle {
+	position: absolute;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.6);
+	pointer-events: none;
+	animation: move 10s ease-in-out infinite;
+	opacity: 0; /* Start with zero opacity */
+}
+
+/* Keyframes for particle animation */
+@keyframes move {
+	0% {
+		transform: translateY(0) translateX(0) scale(1);
+		opacity: 0; 
+	}
+	50% {
+		transform: translateY(-400px) translateX(-200px) scale(0.7); /* Move particles diagonally */
+		opacity: 0.6; 
+	}
+	100% {
+		transform: translateY(-800px) translateX(400px) scale(0); /* Move particles further */
+		opacity: 0;
+	}
 }

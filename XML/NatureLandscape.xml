@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../XSLT/NatureLandscape.xslt"?>
+<imgcontainer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../XSD/Gallery.xsd">
+    <bigbox class="bigbox">
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/silas-baisch-Wn4ulyzVoD4-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/silas-baisch-Wn4ulyzVoD4-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/tim-marshall-jqj2SqvxMVY-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/tim-marshall-jqj2SqvxMVY-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy">buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/pexels-francesco-ungaro-2325446 (1).jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/pexels-francesco-ungaro-2325446 (1).jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/ryan-schroeder-Gg7uKdHFb_c-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/ryan-schroeder-Gg7uKdHFb_c-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/john-mark-arnold-XNIjmb6Ax04-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/john-mark-arnold-XNIjmb6Ax04-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/marita-kavelashvili-ugnrXk1129g-unsplash (1).jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/marita-kavelashvili-ugnrXk1129g-unsplash (1).jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/michael-DXQB5D1njMY-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/michael-DXQB5D1njMY-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/PSX_20210222_201738-01.jpeg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/PSX_20210222_201738-01.jpeg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+        <imgbox id="imgbox">
+            <img class="img" src="../Images/Nature-landscape/johann-juraver-2CEkiJSEAFA-unsplash.jpg" alt=''/>
+            <middle class="middle">
+                <text class="text">
+                    <a href="../Webpages/Reservationform.php">Reserve</a>
+                    <a href="../Webpages/Login.php" id="login">login to buy!</a>
+                    <a href="../Images/Nature-landscape/johann-juraver-2CEkiJSEAFA-unsplash.jpg" target="_self" id="view">View</a>
+                    <a href="../Webpages/Buy.php" id="Buy" >buy</a>
+                </text>
+            </middle>
+        </imgbox>
+    </bigbox>
+</imgcontainer>

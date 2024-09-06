@@ -1,68 +1,27 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang='en'>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
 		<title>Wall Art</title>
 		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
-		<link rel="stylesheet" type="text/css" href="../CSS/Gallery style CSS.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/Gallery style CSS.css"> 
 		<script src="../Js/jquery-3.7.0.js"></script>
 	</head>
 	<body>
-
-		<div>
-			<ul>
-				<li><a href="../home.php"><i class ="fa fa-fw-home">Home</a></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Gallery</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/NatureLandscape.php">Nature and Landscape</a>
-					<a href="../Webpages/Stilllife.php">Still life</a>
-					<a href="../Webpages/Portrait.php">Portraits</a>
-					<a href="../Webpages/WallArt.php">Wall Art</a>
-				</div></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Contact</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/Inquiryform.php">Inquiry form</a>
-					<?php
-						session_start();
-						if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
-						echo '<a href="../Webpages/Reservationform.php">Reservation form</a>';
-						} else {
-						echo '<a href="../Webpages/Login.php">Reservation form</a>';
-						}
-					?>
-					<a href="../Webpages/Feedbackform.php">Feedback</a> 
-				</div></li>    
-				<li><a href="../Webpages/Aboutus.php"><i class ="fa fa-fw-user">About us</a></li>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "Profile" link
-					echo '<li><a href="../Webpages/profile.php"><i class="fa fa-fw fa-user"></i>Profile</a></li>';
-					}
-				?>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "logout" link
-					echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Log out</a></li>';
-					} else {
-					 // If not logged in, show "Login" link
-					echo '<li><a href="../Webpages/Login.php"><i class="fa fa-fw fa-sign-out"></i>login</a></li>';
-					}
-				?>
-			</ul>
-		</div><br>	
+		<?php include "../Webpages/Header.php"; ?>
 
 		<dic class="headings">
 			<h1 class="main-title">Wall Art</h1>
 		</div>
 
-		<div class="bigbox">
+		<!-- <div class="bigbox">
 
 			<div id="imgbox">
 				<img class="img" src="../Images/Wall arts/20230219_212754.jpg" alt=''>
 				<div class="middle">
-					<div class="text"><?php
+					<div class="text"><?php /*
 				if(isset($_SESSION['user_login'])){
 				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
 				} else {
@@ -171,635 +130,74 @@
 				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
 				} else {
 				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
+				}*/
 				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-09.jpg" target="_self">View</a></div>
 				</div>
 			</div>
+		</div> -->
 
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-10.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-10.jpg" target="_self">View</a></div>
-				</div>
-			</div>
+		<?php 
+			// Create an XMLReader instance
+			$reader = new XMLReader();
+			// Open the XML file
+			$reader->open("../XML/WallArt.xml");
 
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-11.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-11.jpg" target="_self">View</a></div>
-				</div>
-			</div>
+			// Initialize variables to store image data
+			$images = array();
 
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-13.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
+			while ($reader->read()) {
+				if ($reader->nodeType === XMLReader::ELEMENT && $reader->name === "imgbox") {
+					$src = '';
+					$buyHref = '';
+					$login = '';
+			
+					while ($reader->read() && ($reader->nodeType !== XMLReader::END_ELEMENT || $reader->name !== "imgbox")) {
+						if ($reader->nodeType === XMLReader::ELEMENT) {
+							switch ($reader->name) {
+								case "img":
+									$src = $reader->getAttribute("src");
+									break;
+								case "a":
+									if ($reader->getAttribute("id") === "Buy") {
+										$buyHref = $reader->getAttribute("href");
+									} elseif ($reader->getAttribute("id") === "login") {
+										$login = $reader->getAttribute("href");
+									}
+									break;
+							}
+						}
+					}
+			
+					if (!empty($src)) {
+						$images[] = array(
+							"src" => $src,
+							"buyHref" => $buyHref,
+							"login" => $login
+						);
+					}
 				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-13.jpg" target="_self">View</a></div>
-				</div>
-			</div>
+			}
+			
+			// Close the XMLReader
+			$reader->close();
 
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-16.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
+			echo '<div class="bigbox">';
+			foreach ($images as $image) {
+				echo "<div id='imgbox'>";
+				echo "<img class='img' src='{$image['src']}'>";
+				echo "<div class='middle'>";
+				echo "<div class='text'>";
+				if (isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])) {
+					echo "<a href='{$image['buyHref']}'>Buy !</a>";
 				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
+					echo "<a href='{$image['login']}'>login to buy!</a>";
 				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-16.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-17.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-17.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-18.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-18.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-19.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-19.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-20.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-20.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-24.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-24.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-25.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-25.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-26.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-26.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-27.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-27.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-29.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-29.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-30.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-30.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-33.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-33.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-34.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-34.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-36.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-36.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-37.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-37.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-38.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-38.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-41.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-41.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-44.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-44.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-47.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-47.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-48.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-48.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-53.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-53.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-54.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-54.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-57.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-57.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-58.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-58.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-59.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-59.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-61.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-61.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-63.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-63.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-64.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-64.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-66.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-66.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-73.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-73.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-75.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-75.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-77.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-77.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-78.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-78.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-79.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/copyR@AD_AdobeLr_19_02_2023-79.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/cosmic-timetraveler-pYyOZ8q7AII-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/cosmic-timetraveler-pYyOZ8q7AII-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/egor-myznik-AIZ8a9llDdo-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/egor-myznik-AIZ8a9llDdo-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/europeana-DfBSs2SSNwQ-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/europeana-DfBSs2SSNwQ-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/europeana-YIfFVwDcgu8-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/europeana-YIfFVwDcgu8-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/evie-s-IPVdy-P8m_Q-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/evie-s-IPVdy-P8m_Q-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/evie-s-kqJfP-lrl-8-unsplash - Copy.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/evie-s-kqJfP-lrl-8-unsplash - Copy.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/Hippopx.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/Hippopx.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/johannes-plenio-E-Zuyev2XWo-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/johannes-plenio-E-Zuyev2XWo-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/sebastian-svenson-d2w-_1LJioQ-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/sebastian-svenson-d2w-_1LJioQ-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/steve-johnson-e5LdlAMpkEw-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/steve-johnson-e5LdlAMpkEw-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-
-			<div id="imgbox">
-				<img class="img" src="../Images/Wall arts/zoltan-tasi-YJLuG13ue5w-unsplash.jpg" alt=''>
-				<div class="middle">
-					<div class="text"><?php
-				if(isset($_SESSION['user_login'])){
-				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
-				} else {
-				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
-				?><br><a href="../Images/Wall arts/zoltan-tasi-YJLuG13ue5w-unsplash.jpg" target="_self">View</a></div>
-				</div>
-			</div>
-		</div>
+				echo "<br><a href='{$image['src']}' target='_self'>View</a></div>";
+				echo "</div>";
+				echo "</div>";
+			}
+			echo '</div>';
+		?>
 
 		<button onclick="topFunction()" id="myBtn" title="Click here to go to the top of this page">Back to top</button>
 
@@ -825,37 +223,7 @@
 			}
 		</script>					
 
-		<footer>
-			<div class="footer-container">
-
-				<div class="logo">
-					<a href="../home.php"><img src="../Images/Website logo/TakeTwo.png" id="smalllogo" alt="TAKE TWO logo" /></a>
-				</div>
-
-				<div class="quicklinks">
-					<ul>
-						<li><a href="../Webpages/Inquiryform.php">Contact</a></li>
-						<li><a href="../Webpages/Feedbackform.php">Feedback</a></li>
-						<li><a href="../Webpages/Aboutus.php">About Us</a></li>
-						<?php
-						if(isset($_SESSION['adminUname'])){
-							// If logged in, show "logout" link
-							echo '<li><a href="../Webpages/Admin.php"><i class="fa fa-fw fa-user"></i>Admin</a></li>';
-							echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Admin Log out</a></li>';
-							} else {
-							// If not logged in, show "Login" link
-							echo '<li><a href="../Webpages/AdminLogin.php"><i class="fa fa-fw fa-sign-out"></i>Admin</a></li>';
-							}
-						?>
-					</ul>
-				</div>
-
-				<div class="about">
-					<p>Personalized service  -||-  Attention to detail  -||-  Moments  -||-  Customer satisfaction  -||-  Customized solutions  -||-  Memories <hr>&diams; Copyright &copy; 2023 , All photos used were properly sourced and used under proper licensing &diams;</p>
-				</div>
-				
-			</div>
-		</footer>
+		<?php include '../Webpages/Footer.php'; ?>
 
 		<!-- heading jquery --> 
 		<script>
@@ -887,6 +255,12 @@
 				typeWriterLoop('.main-title', mainTitleText, mainTitleSpeed);
 			});
 		</script>
+
+		<!-- mouse trail -->
+		<script src="../Js/mouse.js"></script>
+
+		<!-- dark mode js -->
+		<script src="../Js/dark-mode.js"></script>
 
 	</body>
 </html>

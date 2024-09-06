@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if(!(isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
+    include ('../PHP/Taketwoconnect.php');
+	
+    // Redirect if the user is not logged in
+    header("location: ../Webpages/Login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -56,53 +68,13 @@
 	</head>
 	<body>
 
-		<div>
-			<ul>
-				<li><a href="../home.php"><i class ="fa fa-fw-home">Home</a></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Gallery</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/NatureLandscape.php">Nature and Landscape</a>
-					<a href="../Webpages/Stilllife.php">Still life</a>
-					<a href="../Webpages/Portrait.php">Portraits</a>
-					<a href="../Webpages/WallArt.php">Wall Art</a>
-				</div></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Contact</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/Inquiryform.php">Inquiry form</a>
-					<?php
-						session_start();
-						if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
-						echo '<a href="../Webpages/Reservationform.php">Reservation form</a>';
-						} else {
-						echo '<a href="../Webpages/Login.php">Reservation form</a>';
-						}
-					?>
-					<a href="../Webpages/Feedbackform.php">Feedback</a> 
-				</div></li>    
-				<li><a href="../Webpages/Aboutus.php"><i class ="fa fa-fw-user">About us</a></li>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "Profile" link
-					echo '<li><a href="../Webpages/profile.php"><i class="fa fa-fw fa-user"></i>Profile</a></li>';
-					}
-				?>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "logout" link
-					echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Log out</a></li>';
-					} else {
-					 // If not logged in, show "Login" link
-					echo '<li><a href="../Webpages/Login.php"><i class="fa fa-fw fa-sign-out"></i>login</a></li>';
-					}
-				?>
-			</ul>
-		</div><br>	
+		<?php include "../Webpages/Header.php"; ?>
 
-		<div id="container" class="fade-in">
+		<!-- <div id="container" class="fade-in">
 
             <div id="infoMsg">
                 <h1>~ Delete Your Profile Information ?~</h1>
-                <h5>Leaving us ... &#128579;</h5>
+                <h5>Leaving us ... &#128579; ?</h5>
             </div><br>
 
 			<form name="delProfile" method="POST" action="../PHP/profileDelete.php">
@@ -110,7 +82,7 @@
                     <div class="divlabel2">
                         <p>Deleting your account will remove all your data from our system</p><br>
                         <p>This action cannot be undone !</p><br><br>
-                        <p>Note: You will be logged out upon deletion</p><br>
+                        <p>Note: You will be logged out upon deletion and redirected to the home page</p><br>
                         <p>Please re-enter your password :</p><br>
                     </div><br><br>
 
@@ -125,37 +97,138 @@
 					</div>
 				</div>
 			</form>
-		</div>
+		</div> -->
 
-		<footer>
-			<div class="footer-container">
+		<div id="containerHere"></div>
 
-				<div class="logo">
-					<a href="../home.php"><img src="../Images/Website logo/TakeTwo.png" id="smalllogo" alt="TAKE TWO logo" /></a>
-				</div>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				loadXMLDoc();
+			});
 
-				<div class="quicklinks">
-					<ul>
-						<li><a href="../Webpages/Inquiryform.php">Contact</a></li>
-						<li><a href="../Webpages/Feedbackform.php">Feedback</a></li>
-						<li><a href="../Webpages/Aboutus.php">About Us</a></li>
-						<?php
-						if(isset($_SESSION['adminUname'])){
-							// If logged in, show "logout" link
-							echo '<li><a href="../Webpages/Admin.php"><i class="fa fa-fw fa-user"></i>Admin</a></li>';
-							echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Admin Log out</a></li>';
-							} else {
-							// If not logged in, show "Login" link
-							echo '<li><a href="../Webpages/AdminLogin.php"><i class="fa fa-fw fa-sign-out"></i>Admin</a></li>';
+			function loadXMLDoc() {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						try {
+							var xmlDoc = this.responseXML;
+
+							// Recreate HTML structure
+							var container = xmlDoc.getElementsByTagName("container")[0];
+							var htmlContainer = document.createElement("div");
+							htmlContainer.id = container.getAttribute("id");
+							htmlContainer.className = container.getAttribute("class");
+
+							var info = container.getElementsByTagName("info")[0];
+							var infoDiv = document.createElement("div");
+							infoDiv.id = info.getAttribute("id");
+							htmlContainer.appendChild(infoDiv);
+
+							var heading1 = info.getElementsByTagName("heading1")[0];
+							var h1 = document.createElement("h1");
+							h1.textContent = heading1.textContent;
+							infoDiv.appendChild(h1);
+
+							var heading5 = info.getElementsByTagName("heading5")[0];
+							var h5 = document.createElement("h5");
+							h5.innerHTML = heading5.textContent;
+							infoDiv.appendChild(h5);
+
+							var form = container.getElementsByTagName("form")[0];
+							var formElement = document.createElement("form");
+							formElement.name = form.getAttribute("name");
+							formElement.method = form.getAttribute("method");
+							formElement.action = form.getAttribute("action");
+							htmlContainer.appendChild(formElement);
+
+							var formdiv = form.getElementsByTagName("formdiv")[0];
+							var formdivDiv = document.createElement("div");
+							formdivDiv.id = formdiv.getAttribute("id");
+							formElement.appendChild(formdivDiv);
+
+							var label1 = formdiv.getElementsByTagName("label1")[0];
+							var label1Div = document.createElement("div");
+							label1Div.className = label1.getAttribute("class");
+							formdivDiv.appendChild(label1Div);
+
+							var paras = label1.getElementsByTagName("para");
+							for (var i = 0; i < paras.length; i++) {
+								var p = document.createElement("p");
+								p.textContent = paras[i].textContent;
+								label1Div.appendChild(p);
+								if (i < paras.length - 1) {
+									label1Div.appendChild(document.createElement("br"));
+								}
 							}
-						?>
-					</ul>
-				</div>
-				
-				<div class="about">
-					<p>Personalized service  -||-  Attention to detail  -||-  Moments  -||-  Customer satisfaction  -||-  Customized solutions  -||-  Memories <hr>&diams; Copyright &copy; 2023 , All photos used were properly sourced and used under proper licensing &diams;</p>
-				</div>
-			</div>
-		</footer>
+							label1Div.appendChild(document.createElement("br")); 
+							label1Div.appendChild(document.createElement("br")); 
+
+							var label2 = formdiv.getElementsByTagName("label2")[0];
+							var label2Div = document.createElement("div");
+							label2Div.id = label2.getAttribute("id");
+							label2Div.className = label2.getAttribute("class");
+							formdivDiv.appendChild(label2Div);
+
+							var label2Label = document.createElement("label");
+							label2Label.setAttribute("for", "password1");
+							label2Label.textContent = "Enter Password";
+							label2Div.appendChild(label2Label);
+							label2Div.appendChild(document.createElement("br"));
+
+							var input = document.createElement("input");
+							input.type = "password";
+							input.name = "delPwd";
+							input.id = "passwordField";
+							input.setAttribute("onblur", "ajaxPwd()");
+							label2Div.appendChild(input);
+							label2Div.appendChild(document.createElement("br")); 
+							label2Div.appendChild(document.createElement("br")); 
+
+							var delBtnDiv = label2.getElementsByTagName("div")[0];
+							var delBtnContainer = document.createElement("div");
+							delBtnContainer.id = delBtnDiv.getAttribute("id");
+							delBtnDiv.childNodes.forEach(function(node) {
+								delBtnContainer.appendChild(node.cloneNode(true));
+							});
+							label2Div.appendChild(delBtnContainer);
+							label2Div.appendChild(document.createElement("br"));
+
+							var buttonDiv = container.getElementsByTagName("buttonDiv")[0];
+							var buttonDivDiv = document.createElement("div");
+							buttonDivDiv.id = buttonDiv.getAttribute("id");
+							formdivDiv.appendChild(buttonDivDiv);
+
+							var button = buttonDiv.getElementsByTagName("button")[0];
+							var buttonElement = document.createElement("button");
+							buttonElement.id = button.getAttribute("id");
+							buttonElement.disabled = button.getAttribute("disabled");
+							buttonDivDiv.appendChild(buttonElement);
+
+							var a = button.getElementsByTagName("a")[0];
+							var aElement = document.createElement("a");
+							aElement.href = a.getAttribute("href");
+							aElement.textContent = a.textContent;
+							buttonElement.appendChild(aElement);
+
+							// Append to div
+							document.getElementById("containerHere").appendChild(htmlContainer);
+						} catch (error) {
+							console.error("Error parsing XML:", error);
+						}
+					}
+				};
+				xhttp.open("GET", "../XML/deleteProfile.xml", true);
+				xhttp.send();
+			}
+        </script>
+
+
+		<?php include '../Webpages/Footer.php'; ?>
+
+		<!-- mouse trail -->
+		<script src="../Js/mouse.js"></script>
+		
+		<!-- dark mode js -->
+		<script src="../Js/dark-mode.js"></script>
 	</body>
 </html>

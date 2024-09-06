@@ -33,8 +33,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['adminUname']) && isset
     }
 } else {
     // If no username or password provided, redirect back to the login page
-    header("location: ../Webpages/home.php");
-    exit();
+    //header("location: ../home.php");
+    //exit();
+    echo ' <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- XSAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/themes/light-theme.css">
+    <!-- XAlert core JS -->
+    <script src="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/xsalert.js"></script>
+    <script>
+        XSAlert({
+            title: "Woopsie",
+            message: "You are not meant to be here ...",
+            icon: \'error\',
+            autoCloseTimer: 600,
+            hideProgressBar: false, // true to hide
+            hideProgressIcon: false, // true to hide
+            hideOkButton: true,
+            hideCancelButton: true
+            // You can also perform an action after cllosing the alert
+        }).then((result) => {
+            if(result == \'autoClosed\') {
+                XSAlert({icon: \'warning\', message: \'Exit this page below\', hideCancelButton: true, hideOkButton: true, 
+                    closeOnOutsideClick: false, footer: \'<a href="../home.php">Home</a>\'})
+            }
+        })
+    </script>';
 }
 mysqli_close($conn);
 ?>

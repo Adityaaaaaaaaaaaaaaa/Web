@@ -1,0 +1,268 @@
+:root {
+	/* dark colour mode*/
+	/* global */
+	--border-test: yellow; /* just for testing layouts and borders clash */
+    --buttonbg-color: #0d00ff;
+	--buttonbg-color-hover: #00ff04;
+    --button-color: white;
+	--button-color-hover: black;
+    --button-boxShadow: 0  0 7px 5px rgba(108, 99, 255, 1);
+    --button-boxShadow-hover: 0  0 7px 5px rgb(99, 255, 193);
+    --text-color: white;
+    --table-color: 1px solid white;
+}
+
+:root.light-mode {
+	/* light colour mode */
+	--border-test: black; /* just for testing  layouts and  borders clash */
+    --buttonbg-color: #6c63ff;
+	--buttonbg-color-hover: #4df2b0;
+    --button-color: white;
+	--button-color-hover: black;
+    --button-boxShadow: 0  0 7px 5px rgba(108, 99, 255, 1);
+    --button-boxShadow-hover: 0  0 7px 5px rgb(99, 255, 193);
+    --text-color: black;
+    --table-color: 1px solid black;
+}
+
+#tableHeading {
+    color: var(--text-color);
+    display: block;
+    /* margin: 1% 50% 1% 50%; */
+    margin: 0 auto;
+    width: fit-content;
+    padding: 5px;
+}
+
+#tableMain, th, td {
+    border: var(--table-color);
+}
+
+#tableMain:hover {
+    cursor: pointer;
+}
+
+/* table */
+#table {
+    max-height: fit-content;
+    color: var(--text-color);
+    padding: 5px;
+}
+
+#table table {
+    margin: 0 auto;
+}
+
+#tableMain {
+    border-collapse: collapse;
+}
+
+.tableHeader {
+    color: var(--text-color);
+    padding: 5px;
+    text-align: center;
+}
+
+.columnCell {
+    color: var(--text-color);
+    padding: 5px;
+    text-align: left;
+}
+
+/*template div*/
+#addDataDiv {
+    margin: 1% 5% 3% 5%;
+    padding: 5px;
+}
+
+#addData {
+    color: var(--text-color);
+    margin: 10px auto;
+    max-width: fit-content;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 100;
+}
+
+.totalStat {
+    color: var(--text-color);
+    font-size: 20px;
+    max-width: fit-content;
+    margin: 5px auto 5px 5px;
+    display: block;
+    padding: 5px;
+}
+
+.comEmail {
+    color: var(--text-color);
+    margin: 5px;
+    padding: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.liUl {
+    list-style-type: none;
+    margin: 1px;
+    padding: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: space-around;
+}
+
+.para {
+    margin:5px 0px;
+}
+
+.conmail li {
+    padding: 3px;
+}
+
+/*inquiry template specific*/
+.comFb {
+    color: var(--text-color);
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.comFb p {
+    margin: 0px 10px 10px 10px;
+}
+
+.message {
+    color: var(--text-color);
+    margin: 10px;
+}
+
+.message ul {
+    list-style-type: none;
+    margin: 2px;
+    padding: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/*Inquiry template*/
+#Gdata {
+    color: var(--text-color);
+    display: block;
+    margin: 10px;
+    padding: 5px;
+}
+
+#Rdata {
+    color: var(--text-color);
+    display: block;
+    margin: 10px;
+    padding: 5px;
+}
+
+#Gdata ul, #Rdata ul {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    padding: 0 5% 0;
+    list-style: square;
+}
+
+/* file template */
+#filePercentage {
+    margin: 10px 10px 15px 10px;
+}
+
+#filePercentage p{
+    color: var(--text-color);
+}
+
+#filePercentage ul {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    padding: 0 5% 0;
+    list-style: square;
+    color: var(--text-color);
+}
+
+#filePercentage ul li {
+    padding: 0 0 1% 0;
+}
+
+.fileInfo {
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    max-width: fit-content;
+    margin: 5px auto 5px 10px;
+    display: block;
+}
+
+#fileBox {
+    color: var(--text-color);
+    margin: 3% 10px 3% 10px;
+}
+
+#fileSizeHeading {
+    color: var(--text-color);;
+}
+
+.filesize {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    padding: 0 5% 0;
+    list-style: square;
+    color: var(--text-color);
+}
+
+/* button CSS */
+#btnDiv {
+	margin: 1% 50% 1% 50%;
+}
+
+.bckBtn {
+    max-width: fit-content;
+    padding: 10px 20px;
+    background-color: var(--buttonbg-color);
+    color: var(--button-color);
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: var(--button-boxShadow);
+    transition: background-color 1s ease;
+}
+
+.bckBtn:hover {
+    background-color: var(--buttonbg-color-hover);
+	color: var(--button-color-hover);
+    box-shadow: var(--button-boxShadow-hover);
+}

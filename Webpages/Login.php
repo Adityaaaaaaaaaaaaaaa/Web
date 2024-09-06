@@ -1,9 +1,11 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Login Form</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../CSS/Login style.css">
+        <link rel="stylesheet" href="../CSS/home.css">
         <style>
             #loginMsg, #registerMsg {
                 font-family: 'Times New Roman', sans-serif;
@@ -17,19 +19,6 @@
                 justify-content: center;
                 align-items: center;
                 min-height: 100vh;
-            }
-
-            /* back ground image */
-            .backgroundimgLogin {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url('../Images/backgrounds/willow-xk-nl-1AVWC1RE-unsplash.jpg'); 
-                background-size: 100% 100%;
-                filter: blur(5px); 
-                z-index: -1;
             }
         </style>
         <script>  
@@ -172,9 +161,70 @@
 				}
 			};
 		</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <!--<script> /*ajax for xml form, xml xsd, xslt working but javascript not working to swtich form and so is the form process /*
+            $(document).ready(function () {
+                function displayLoginForm() {
+                    $.ajax({
+                        url: "../XML/login.xml",
+                        dataType: "xml",
+                        success: function (response) {
+                            $.ajax({
+                                url: "../XSLT/login.xslt",
+                                dataType: "xml",
+                                success: function (xsl) {
+                                    var xsltProcessor = new XSLTProcessor();
+                                    xsltProcessor.importStylesheet(xsl);
+                                    var transformed = xsltProcessor.transformToFragment(response, document);
+
+                                    $("#content_here").empty().append(transformed);
+
+                                    // Add event listeners to the buttons for form switching
+                                    $('#content_here').find('.switchbut').on('click', function() {
+                                        var x = document.getElementById("f-login");
+                                        var y = document.getElementById("f-regis");
+                                        var z = document.getElementById("FormBox-id");
+                                        
+                                        if (this.id === 'switch-login') {
+                                            x.style.left = '50px';
+                                            y.style.left = '450px';
+                                            z.style.left = '0px';
+                                        } else if (this.id === 'switch-register') {
+                                            x.style.left = '-400px';
+                                            y.style.left = '50px';
+                                            z.style.left = '110px';
+                                        }
+                                    });
+
+                                    function goBack() {
+                                        window.history.back();
+                                    }
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.error("XSLT Error:", textStatus, errorThrown);
+                                    alert("An error occurred while processing the XSLT.");
+                                }
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error("AJAX Error:", textStatus, errorThrown);
+                            alert("An error occurred while loading the XML.");
+                        }
+                    });
+                }
+
+                // Call the function to display the form when the page is loaded
+                displayLoginForm();
+            });
+        </script>-->
+
     </head>
     <body>
-        <div class="backgroundimgLogin"></div>
+        
+        <!-- Particle container -->
+        <div id="particle-container"></div>
+
+        <!--<div id="content_here"></div>-->
 
         <div class="loginform fade-in">
             <div class="mainForm-box" id="FormBox-id">
@@ -185,11 +235,11 @@
 
                 <div>
                     <form id="f-login"  name="loginForm" class="log-f" method="post" action="../PHP/checkLogin.php" >
-                        <h1>LOG IN</h1>
+                        <h1>< LOG IN ></h1>
 
                         <input type="text" class="input-box" name="mLogUname" placeholder="Enter Username" onblur="ajaxLogin()" required>
                         <div id="loginMsg"></div>
-                        <input type="password" class="input-box" name="mLogPwd" placeholder="Add a Password" required>
+                        <input type="password" class="input-box" name="mLogPwd" placeholder="Enter Password" required>
 
                         <button type="submit" name="submitLog" class="SubBtn">Login Now</button>
                         <button type="button" class="backBtn" onclick="goBack()">Back</button>
@@ -198,19 +248,18 @@
 
                 <div>
                     <form id="f-regis" name="registerForm" class="Reg-f" method="post" action="../PHP/checkRegis.php" onsubmit="return checkformRg(this)">
-                        <h1>Register</h1>
+                        <h1>< Register ></h1>
 
                         <input type="text" class="input-box" name="mRegFname" placeholder="Enter you first name" >
                         <input type="text" class="input-box" name="mRegLname" placeholder="Enter your last name" >
-                        <input type="text" class="input-box" name="mRegUname" placeholder="Username" onblur="ajaxRegister()" required>
+                        <input type="text" class="input-box" name="mRegUname" placeholder="Create a Username" onblur="ajaxRegister()" required>
                         <div id="registerMsg"></div>
                         <input type="email" class="input-box" name="mRegEmail" placeholder="Enter your Email here" >
                         <input type="phone" class="input-box" name="mRegPhone" placeholder="Enter your Phone number here" >
-                        <input type="password" class="input-box" name="mRegPwd" placeholder="Add a Password" required>
+                        <input type="password" class="input-box" name="mRegPwd" placeholder="Create a Password" required>
 
                         <button type="submit" name="submitReg" class="SubBtn">Register</button>
                         <button type="button" class="backBtn" onclick="goBack()">Back</button>
-
                     </form>
                 </div><br>
 
@@ -240,5 +289,30 @@
 
             </div>
         </div>
+
+        <!-- mouse trail -->
+        <script src="../Js/mouse.js"></script>
+
+        <script>
+            // Function to create particles
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 20 + 5; // Randomize particle size
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = window.innerHeight + 'px'; // Start particles from the bottom
+                document.getElementById('particle-container').appendChild(particle);
+                
+                // Remove particle after animation duration
+                setTimeout(() => {
+                    particle.remove();
+                }, 10000); //particle animation duration
+            }
+
+            // Generate particles at regular intervals
+            setInterval(createParticle, 100); //particle density and speed
+        </script>
     </body>
 </html>

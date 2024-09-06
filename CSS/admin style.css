@@ -40,7 +40,7 @@
 	font-size: 14px; 
 }
 
-/*  button with glowing effect */
+/*  button glowing effect */
 .submitBtn, .backBtn {
 	background-color: #4CAF50;
 	color: white;
@@ -57,7 +57,7 @@
 
 .submitBtn:hover, .backBtn:hover {
 	animation: glowing 1.5s infinite;
-	transform: scale(1.02); /* Add a slight scale effect */
+	transform: scale(1.02);
 }
 
 @keyframes glowing {
@@ -89,7 +89,7 @@ h1 {
 #adUname, #adPwd {
 	font-family: 'Times New Roman', sans-serif;
 	font-size: 13px;
-	color: gold; /* Adjust the color as needed */
+	color: gold;
 	margin-top: 3px;
 }
 
@@ -99,7 +99,32 @@ h1 {
 	transition: opacity 1s ease-in-out;
 }
 
-/* Admin page styling ------------------------------------------- */
+/* Admin page styling ----------------------------------------------------- */
+:root {
+	/* dark colour mode*/
+	--border-test: yellow; /* just for testing layouts and borders clash */
+	--dashboard-name: rgb(147, 93, 201);
+	--dashboard-name-dropShadow: 0px 0px 10px 2px rgb(0, 255, 255);
+	--upload-Download-formBg: #9e9e9e;
+	--input-fileselect-border: 1px solid #ff0000;
+	--buttonbg-color: #0d00ff;
+	--buttonbg-color-hover: #00ff04;
+    --button-color: white;
+	--button-color-hover: black;
+}
+
+:root.light-mode {
+	/* light colour mode */
+	--border-test: black; /* just for testing  layouts and  borders clash */
+	--dashboard-name: rgb(105, 131, 131);
+	--dashboard-name-dropShadow: 0px 0px 10px 2px rgba(255, 0, 0);
+	--upload-Download-formBg: rgb(194, 194, 194);
+	--input-fileselect-border: 1px solid #1500ff;
+	--buttonbg-color: #6c63ff;
+	--buttonbg-color-hover: #4df2b0;
+    --button-color: white;
+	--button-color-hover: black;
+}
 
 /* Styling for the main content */
 .main {
@@ -114,10 +139,10 @@ h1 {
 
 /* Styling for the dashboard section */
 .dashboard-section {
-	background-color: paleturquoise;
+	background-color: var(--dashboard-name);
 	padding: 20px;
 	border-radius: 10px;
-	box-shadow: 0px 0px 10px 2px rgba(255, 0, 0);
+	box-shadow: var(--dashboard-name-dropShadow);
 	text-align: center;
 }
 
@@ -129,26 +154,31 @@ h1 {
 	margin: 10px 0;
 }
 
-/* Styling for the table stats */
+/*  table stats */
 #tableStats {
 	margin-top: 20px;
 }
 
 #stats {
 	font-size: 18px;
-	margin: 10px 0;
+	margin: 20px 0;
 	color: aliceblue;
 }
 
-/* Styling for the form  */
+/*  form  */
 #formAdmin {
-	margin-top: 20px;
+	margin: 20px auto;
+	padding: 15px;
+}
+
+#tableList:hover {
+	cursor: pointer;
 }
 
 #tableList {
 	padding: 8px;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	border-radius: 7px;
 }
 
 #displayDataBtn {
@@ -165,7 +195,76 @@ h1 {
 	background-color: #0056b3;
 }
 
-/* adminData.php */
+
+/* CSS for upload and download sections */
+/* Container for both sections */
+.database {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 20px auto;
+    width: auto;
+}
+
+/* Style for file upload and download form */
+.update-form, form[action="../PHP/download.php"] {
+    background-color: var(--upload-Download-formBg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    width: 45%;
+}
+
+label {
+    display: block;
+    margin: 10px;
+    font-weight: bold;
+}
+
+/* response text for upload */
+#uploadResponse {
+    display: block;
+    margin: 10px;
+	font-family: "Roboto Mono", monospace;
+}
+
+.inputx,
+#fileSelect {
+    margin: 10px;
+    padding: 10px;
+    border: var(--input-fileselect-border);
+    border-radius: 5px;
+    width: auto;
+	cursor: pointer;
+}
+
+.subbutton,
+button[name="download"] {
+	margin: 10px;
+    padding: 10px 20px;
+    background-color: var(--buttonbg-color);
+    color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(108, 99, 255, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.subbutton:hover,
+button[name="download"]:hover {
+    background-color: var(--buttonbg-color-hover);
+	color: var(--button-color-hover);
+}
+
+option {
+    background-color: #e0dfdf;
+    padding: 5px;
+    border-radius: 5px;
+	width: auto;
+}
+
+/* adminData.php -- Not in use, keep commented ------------------------------------------------------------------*
 .data-table {
 	margin: 20px auto;
 	border-collapse: collapse;
@@ -195,7 +294,7 @@ h1 {
 	background-color: #444; 
 }
 
-/* Style the back button */
+/* Style the back button *
 .button-container {
 	display: flex;
 	justify-content: center;
@@ -218,3 +317,42 @@ h1 {
 	background-color: #0056b3;
 	box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
 }
+
+/* Admin login page particle animation */
+/* Styles for particle container */
+#particle-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow: hidden;
+}
+
+/* Styles for particles */
+.particle {
+	position: absolute;
+	border-radius: 50%;
+	background: linear-gradient(135deg, rgb(0, 0, 0), rgb(0, 255, 0)); /* Gradient background for the circles */
+	pointer-events: none;
+	animation: move 10s ease-in-out infinite; 
+	opacity: 0; 
+}
+
+/* Keyframes for particle animation */
+@keyframes move {
+	0% {
+		transform: translateY(0) translateX(0) scale(1);
+		opacity: 0;
+	}
+	50% {
+		transform: translateY(-400px) translateX(-200px) scale(0.7); /* Move particles diagonally */
+		opacity: 0.6; 
+	}
+	100% {
+		transform: translateY(-800px) translateX(400px) scale(0); /* Move particles further */
+		opacity: 0; 
+	}
+}
+

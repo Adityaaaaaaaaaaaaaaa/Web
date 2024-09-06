@@ -1,5 +1,21 @@
+:root {
+	/* dark colour mode*/
+	--heading-color: #b0c4de;
+	--form-shadow: #E0115F;
+	--form-bgColor: rgba(255, 255, 255, 0.1);
+	--formText-color: #d3d3d3;
+}
+
+:root.light-mode {
+	/* light colour mode */
+	--heading-color: #6ea4e9;
+	--form-shadow: #ff0000;
+	--form-bgColor: #393939;
+	--formText-color: #bdbdbd;
+}
+
 body {
-	background-color: #211d23;
+	/*background-color: #211d23;*/
 	font-family: Cambria;
 }
 
@@ -12,19 +28,19 @@ body {
 #container {
 	width: 750px;
 	margin: 50px auto;
-	background-color: rgb(35.67, 59.955, 59.955, .9);
+	background-color: var(--form-bgColor);
 	border-radius: 15px;
-	box-shadow: 0px 0px 70px 10px /*#00ffff;*/ #E0115F;
-	padding: 30px;		
+	box-shadow: 0px 0px 70px 10px var(--form-shadow);
+	padding: 30px;	
 }
 
 /* all id's of the different Div tags on the 3 forms */
 .divlabel {
     line-height: 30px;
-	padding: 10px;
 	margin: auto;
+	margin-top: 2%;
 	font-family: fantasy, serif, 'Impact';
-	color: #d3d3d3;
+	color: var(--formText-color);
 	display: inline-block;
 }
 
@@ -36,7 +52,7 @@ body {
 	padding-left: 15px;
 	margin: 10px;
 	font-family: Arial, Helvetica, sans-serif;
-	color: #d3d3d3;
+	color: var(--formText-color);
 	display: inline-block;
 }
 
@@ -48,7 +64,7 @@ body {
     margin: auto;
 	margin-left: 10px;
 	font-family: Arial, Helvetica, sans-serif;
-	color: #d3d3d3;
+	color: var(--formText-color);
 	display: inline-block;
 }
 
@@ -62,13 +78,14 @@ input, label {
 
 input {
 	transition: box-shadow .5s;
-	width: 320px;
+	width: 350px;
 	height: 40px;
 	margin: 10px;
 	border-radius:10px;
 	border: 2px solid #808080;
 	background: lightgrey;
 	float: left;
+	cursor: pointer;
 }
 
 input:hover {
@@ -85,13 +102,13 @@ input::placeholder {
 h1{
 	font-size: 40px;
 	font-family: 'Baskerville' , serif;
-	color: #b0c4de;
+	color: var(--heading-color);
 }
 
 h5 {
 	font-size: 30px;
 	font-family: bradley hand , cursive;
-	color: #b0c4de;			
+	color: var(--heading-color);			
 }
 
 #yesx, #nox {
@@ -111,22 +128,24 @@ h5 {
 }
 
 #nox {
-	margin-left: auto;
+	margin-left: 15px;
 }
 
 #nox:hover {
 	box-shadow: 0 0 30px 10px red;
 	background-color: snow;
+	cursor: pointer;
 }
 
 #yesx:hover {
 	box-shadow: 0 0 30px 10px #00ff00;
 	background-color: snow;
+	cursor: pointer;
 }
 
 /* CSS class for fade-in transition */
 .fade-in {
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s ease-in-out;
 }
 
@@ -146,4 +165,5 @@ h5 {
 #yesx1:hover {
 	box-shadow: 0 0 30px 10px #00ff00;
 	background-color: snow;
+	cursor: pointer;
 }

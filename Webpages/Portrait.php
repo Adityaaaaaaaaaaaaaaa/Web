@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -32,10 +33,13 @@
 			}
 
 			.text {
-				background-color: rgb(111.56, 111.56, 111.56, .9);
-				font-size: 16px;
-				padding: 5px 5px;
+				font-size: 15px;
+				padding: 5px 10px;
 				line-height: 25px;
+				margin-top: 150px;
+				border: 1px solid var(--button-border); 
+				background-color: var(--textBg-color);
+				box-shadow: var(--text-boxShadow);
 				border-radius: 5px;
 			}
 		</style>
@@ -43,58 +47,19 @@
 	</head>
 	<body>
 
-		<div>
-			<ul>
-				<li><a href="../home.php"><i class ="fa fa-fw-home">Home</a></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Gallery</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/NatureLandscape.php">Nature and Landscape</a>
-					<a href="../Webpages/Stilllife.php">Still life</a>
-					<a href="../Webpages/Portrait.php">Portraits</a>
-					<a href="../Webpages/WallArt.php">Wall Art</a>
-				</div></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Contact</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/Inquiryform.php">Inquiry form</a>
-					<?php
-						session_start();
-						if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
-						echo '<a href="../Webpages/Reservationform.php">Reservation form</a>';
-						} else {
-						echo '<a href="../Webpages/Login.php">Reservation form</a>';
-						}
-					?>
-					<a href="../Webpages/Feedbackform.php">Feedback</a> 
-				</div></li>    
-				<li><a href="../Webpages/Aboutus.php"><i class ="fa fa-fw-user">About us</a></li>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "Profile" link
-					echo '<li><a href="../Webpages/profile.php"><i class="fa fa-fw fa-user"></i>Profile</a></li>';
-					}
-				?>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "logout" link
-					echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Log out</a></li>';
-					} else {
-					 // If not logged in, show "Login" link
-					echo '<li><a href="../Webpages/Login.php"><i class="fa fa-fw fa-sign-out"></i>login</a></li>';
-					}
-				?>
-			</ul>
-		</div><br>
+		<?php include "../Webpages/Header.php"; ?>
 		
 		<dic class="headings">
 			<h1 class="main-title">Portrait Photography</h1>
 		</div>
 
-		<div class="bigbox">
+		<!-- Portrait Gallery -->
+<!-- 		<div class="bigbox">
 
 			<div id="imgbox">
 				<img class="img" src="../Images/Portrait/5b3c3b9a-5d2b-4acd-99bd-ee57334bd6c2.jpeg" alt=''>
 				<div class="middle">
-					<div class="text"><?php
+					<div class="text"><?php /*
 				if(isset($_SESSION['user_login'])){
 				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
 				} else {
@@ -1022,12 +987,95 @@
 				echo '<a href="../Webpages/Reservationform.php">Buy !</a>';
 				} else {
 				echo '<a href="../Webpages/Login.php">login to buy!</a>';
-				}
+				}*/
 				?><br><a href="../Images/Portrait/wallpaperflare.com_wallpaper.jpg" target="_self">View</a></div>
 				</div>
 			</div>
 
-		</div>
+		</div> -->
+
+		<?php
+			/* Load the XML content -----------------------------------------------------------*
+			// DOM Tree based parser 
+			$xml = new DOMDocument();
+			$xml->load("../XML/Portrait.xml");
+
+			// Load the XSLT stylesheet
+			$xsl = new DOMDocument();
+			$xsl->load("../XSLT/Gallery_Portrait.xslt");
+
+			// Create an XSLT processor and import the XSLT stylesheet
+			$proc = new XSLTProcessor();
+			$proc->importStylesheet($xsl);
+
+			// Transform the XML with the XSLT stylesheet
+			$html = $proc->transformToXML($xml);
+
+			// Output the HTML
+			echo $html;*/
+			/* ---------------------------------------------------------------------------- */
+
+			// Create an XMLReader instance
+			$reader = new XMLReader();
+			// Open the XML file
+			$reader->open("../XML/Portrait.xml");
+
+			// Initialize variables to store image data
+			$images = array();
+
+			while ($reader->read()) {
+				if ($reader->nodeType === XMLReader::ELEMENT && $reader->name === "imgbox") {
+					$src = '';
+					$buyHref = '';
+					$login = '';
+			
+					while ($reader->read() && ($reader->nodeType !== XMLReader::END_ELEMENT || $reader->name !== "imgbox")) {
+						if ($reader->nodeType === XMLReader::ELEMENT) {
+							switch ($reader->name) {
+								case "img":
+									$src = $reader->getAttribute("src");
+									break;
+								case "a":
+									if ($reader->getAttribute("id") === "Buy") {
+										$buyHref = $reader->getAttribute("href");
+									} elseif ($reader->getAttribute("id") === "login") {
+										$login = $reader->getAttribute("href");
+									}
+									break;
+							}
+						}
+					}
+			
+					if (!empty($src)) {
+						$images[] = array(
+							"src" => $src,
+							"buyHref" => $buyHref,
+							"login" => $login
+						);
+					}
+				}
+			}
+			
+			// Close the XMLReader
+			$reader->close();
+
+			echo '<div class="bigbox">';
+			foreach ($images as $image) {
+				echo "<div id='imgbox'>";
+				echo "<img class='img' src='{$image['src']}'>";
+				echo "<div class='middle'>";
+				echo "<div class='text'>";
+				if (isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])) {
+					echo "<a href='{$image['buyHref']}'>Buy !</a>";
+				} else {
+					echo "<a href='{$image['login']}'>login</a>";
+				}
+				echo "<br><a href='{$image['src']}' target='_self'>View</a></div>";
+				echo "</div>";
+				echo "</div>";
+			}
+			echo '</div>';
+		?>
 
 		<button onclick="topFunction()" id="myBtn" title="Click here to go to the top of this page">Back to top</button>
 
@@ -1053,37 +1101,7 @@
 			}
 		</script>					
 
-		<footer>
-			<div class="footer-container">
-
-				<div class="logo">
-					<a href="../home.php"><img src="../Images/Website logo/TakeTwo.png" id="smalllogo" alt="TAKE TWO logo" /></a>
-				</div>
-
-				<div class="quicklinks">
-					<ul>
-						<li><a href="../Webpages/Inquiryform.php">Contact</a></li>
-						<li><a href="../Webpages/Feedbackform.php">Feedback</a></li>
-						<li><a href="../Webpages/Aboutus.php">About Us</a></li>
-						<?php
-						if(isset($_SESSION['adminUname'])){
-							// If logged in, show "logout" link
-							echo '<li><a href="../Webpages/Admin.php"><i class="fa fa-fw fa-user"></i>Admin</a></li>';
-							echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Admin Log out</a></li>';
-							} else {
-							// If not logged in, show "Login" link
-							echo '<li><a href="../Webpages/AdminLogin.php"><i class="fa fa-fw fa-sign-out"></i>Admin</a></li>';
-							}
-						?>
-					</ul>
-				</div>
-
-				<div class="about">
-					<p>Personalized service  -||-  Attention to detail  -||-  Moments  -||-  Customer satisfaction  -||-  Customized solutions  -||-  Memories <hr>&diams; Copyright &copy; 2023 , All photos used were properly sourced and used under proper licensing &diams;</p>
-				</div>
-
-			</div>
-		</footer>
+		<?php include '../Webpages/Footer.php'; ?>
 
 		<!-- heading jquery -->
 		<script>
@@ -1115,6 +1133,12 @@
 				typeWriterLoop('.main-title', mainTitleText, mainTitleSpeed);
 			});
 		</script>
+
+		<!-- mouse trail -->
+		<script src="../Js/mouse.js"></script>
+
+		<!-- dark mode js -->
+		<script src="../Js/dark-mode.js"></script>
 
 	</body>
 </html>

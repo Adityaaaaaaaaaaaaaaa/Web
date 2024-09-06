@@ -73,7 +73,7 @@ if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
 		</script>
 
 		<style>
-			{
+			a {
 				text-decoration: none;
 				color: black;
 			}
@@ -90,6 +90,7 @@ if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
 				font-family: fantasy, serif, 'Impact';
 				font-size: 10px;
 				background-color: #a9a9a9;
+				cursor: pointer;
 			}
 
 			#showPasswordButton:hover {
@@ -100,47 +101,7 @@ if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
 	</head>
 	<body>
 
-	<div>
-			<ul>
-				<li><a href="../home.php"><i class ="fa fa-fw-home">Home</a></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Gallery</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/NatureLandscape.php">Nature and Landscape</a>
-					<a href="../Webpages/Stilllife.php">Still life</a>
-					<a href="../Webpages/Portrait.php">Portraits</a>
-					<a href="../Webpages/WallArt.php">Wall Art</a>
-				</div></li>
-				<li class="dropdown"><a href = "javascript:void(0)" class="fa fa-fw-dropbtn">Contact</a> 
-				<div class = "dropdown-content">
-					<a href="../Webpages/Inquiryform.php">Inquiry form</a>
-					<?php
-						if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
-						echo '<a href="../Webpages/Reservationform.php">Reservation form</a>';
-						} else {
-						echo '<a href="../Webpages/Login.php">Reservation form</a>';
-						}
-					?>
-					<a href="../Webpages/Feedbackform.php">Feedback</a> 
-				</div></li>    
-				<li><a href="../Webpages/Aboutus.php"><i class ="fa fa-fw-user">About us</a></li>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "Profile" link
-					echo '<li><a href="../Webpages/profile.php"><i class="fa fa-fw fa-user"></i>Profile</a></li>';
-					}
-				?>
-				<?php
-					if((isset($_SESSION['user_login']) || isset($_SESSION['adminUname']))){
-					// If logged in, show "logout" link
-					echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Log out</a></li>';
-					} else {
-					 // If not logged in, show "Login" link
-					echo '<li><a href="../Webpages/Login.php"><i class="fa fa-fw fa-sign-out"></i>login</a></li>';
-					}
-				?>
-			</ul>
-		</div><br>	
-
+		<?php include "../Webpages/Header.php"; ?>
 
 		<div id="container" class="fade-in">
 
@@ -186,35 +147,13 @@ if(isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])){
 			</form>
 		</div>
 
-		<footer>
-			<div class="footer-container">
+		<?php include '../Webpages/Footer.php'; ?>
 
-				<div class="logo">
-					<a href="../home.php"><img src="../Images/Website logo/TakeTwo.png" id="smalllogo" alt="TAKE TWO logo" /></a>
-				</div>
+		<!-- mouse trail -->
+		<script src="../Js/mouse.js"></script>
 
-				<div class="quicklinks">
-					<ul>
-						<li><a href="../Webpages/Inquiryform.php">Contact</a></li>
-						<li><a href="../Webpages/Feedbackform.php">Feedback</a></li>
-						<li><a href="../Webpages/Aboutus.php">About Us</a></li>
-						<?php
-						if(isset($_SESSION['adminUname'])){
-							// If logged in, show "logout" link
-							echo '<li><a href="../Webpages/Admin.php"><i class="fa fa-fw fa-user"></i>Admin</a></li>';
-							echo '<li><a href="../Webpages/Logout.php"><i class="fa fa-fw fa-user"></i>Admin Log out</a></li>';
-							} else {
-							// If not logged in, show "Login" link
-							echo '<li><a href="../Webpages/AdminLogin.php"><i class="fa fa-fw fa-sign-out"></i>Admin</a></li>';
-							}
-						?>
-					</ul>
-				</div>
-				
-				<div class="about">
-					<p>Personalized service  -||-  Attention to detail  -||-  Moments  -||-  Customer satisfaction  -||-  Customized solutions  -||-  Memories <hr>&diams; Copyright &copy; 2023 , All photos used were properly sourced and used under proper licensing &diams;</p>
-				</div>
-			</div>
-		</footer>
+		<!-- dark mode js -->
+		<script src="../Js/dark-mode.js"></script>
+		
 	</body>
 </html>

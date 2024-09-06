@@ -1,0 +1,64 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="a">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="href" use="optional"/>
+					<xs:attribute type="xs:string" name="id" use="optional"/>
+					<xs:attribute type="xs:string" name="target" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="text">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="a" maxOccurs="unbounded" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="class" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="img">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute type="xs:string" name="class" use="optional"/>
+					<xs:attribute type="xs:string" name="src" use="optional"/>
+					<xs:attribute type="xs:string" name="alt" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="middle">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="text"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="class" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="imgbox">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="img"/>
+				<xs:element ref="middle"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="id" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bigbox">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="imgbox" maxOccurs="unbounded" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="class"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="imgcontainer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="bigbox"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
