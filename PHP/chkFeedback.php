@@ -1,77 +1,76 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        require_once "Taketwoconnect.php"; 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Form data from POST request
+    $fdFname = $_POST['fdFname'];
+    $fdLname = $_POST['fdLname'];
+    $age = isset($_POST['age']) ? $_POST['age'] : "";
+    $gender = isset($_POST['gender']) ? $_POST['gender'] : "";
+    $qualityService = isset($_POST['qtser']) ? $_POST['qtser'] : "";
+    $prodQuality = isset($_POST['prodq']) ? $_POST['prodq'] : "";
+    $recommend = isset($_POST['recom']) ? $_POST['recom'] : "";
+    $suggestion = isset($_POST['fbmsg']) ? $_POST['fbmsg'] : "";
 
-        // Clean and sanitize the input data
-        $fdFname = mysqli_real_escape_string($conn, $_POST['fdFname']);
-        $fdLname = mysqli_real_escape_string($conn, $_POST['fdLname']);
-        
-        // Capture the selected age option
-        $age = "";
-        if (isset($_POST['age'])) {
-            $age = mysqli_real_escape_string($conn, $_POST['age']);
-        }
+    // Create an array with the data
+    $data = array(
+        'fdFname' => $fdFname,
+        'fdLname' => $fdLname,
+        'age' => $age,
+        'gender' => $gender,
+        'qtser' => $qualityService,
+        'prodq' => $prodQuality,
+        'recom' => $recommend,
+        'fbmsg' => $suggestion
+    );
 
-        // Capture the selected gender option
-        $gender = "";
-        if (isset($_POST['gender'])) {
-            $gender = mysqli_real_escape_string($conn, $_POST['gender']);
-        }
+    // Convert the data to JSON format
+    $jsonData = json_encode($data);
 
-        // Capture the selected quality service option
-        $qualityService = "";
-        if (isset($_POST['qtser'])) {
-            $qualityService = mysqli_real_escape_string($conn, $_POST['qtser']);
-        }
+    // Set up the HTTP request
+    $url = 'http://127.0.0.1:8888/Web/Server/Feedback_REST.php';
 
-        // Capture the selected photo quality option
-        $prodQuality = "";
-        if (isset($_POST['prodq'])) {
-            $photoQuality = mysqli_real_escape_string($conn, $_POST['prodq']);
-        }
+    // Create the HTTP context for the POST request
+    $options = array(
+        'http' => array(
+            'header'  => "Content-Type: application/json\r\n",
+            'method'  => 'POST',
+            'content' => $jsonData
+        )
+    );
+    $context  = stream_context_create($options);
 
-        // Capture the selected recommend option
-        $recommend = "";
-        if (isset($_POST['recom'])) {
-            $recommend = mysqli_real_escape_string($conn, $_POST['recom']);
-        }
+    // Send the request and get the response
+    $response = file_get_contents($url, false, $context);
 
-        $suggestion = mysqli_real_escape_string($conn, $_POST['fbmsg']);
+    // Decode the response
+    $result = json_decode($response, true);
 
-        $insertQuery = "INSERT INTO feedback (cName, cSurname, cAge, cgender, cQuality_service, cProduct_quality, cRecommend, cSuggestion) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        $stmt = mysqli_prepare($conn, $insertQuery);
-        mysqli_stmt_bind_param($stmt, "ssssssss", $fdFname, $fdLname, $age, $gender, $qualityService, $prodQuality, $recommend, $suggestion);
-
-        if (mysqli_stmt_execute($stmt)) {
-            //header("Location: http://127.0.0.1:8888/2210294_2210332/home.php");
-            header("Location: ../home.php");
-            exit();
-        } else {
-            echo "Error inserting data: " . mysqli_error($conn);
-        }
-
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
+    // Check the response and act accordingly
+    if ($result && $result['status'] == 'success') {
+        // Redirect to home page if successful
+        header("Location: ../home.php");
+        exit();
     } else {
-        echo ' <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- XSAlert CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/themes/light-theme.css">
-        <!-- XAlert core JS -->
-        <script src="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/xsalert.js"></script>
-        <script>
-        XSAlert({
-            title: "Ouch!",
-            message: "Invalid Request",
-            icon: \'warning\',
-            hideCancelButton: true,
-            closeOnOutsideClick: false,
-            hideOkButton: true,
-            closeWithESC: false,
-            footer: \'<a href="../home.php">Home</a>\'
-        })
-        </script>';
+        // Display the error message
+        echo "Error: " . $result['message'];
     }
+} else {
+    echo ' <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- XSAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/themes/light-theme.css">
+    <!-- XAlert core JS -->
+    <script src="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/xsalert.js"></script>
+    <script>
+    XSAlert({
+        title: "Ouch!",
+        message: "Invalid Request",
+        icon: \'warning\',
+        hideCancelButton: true,
+        closeOnOutsideClick: false,
+        hideOkButton: true,
+        closeWithESC: false,
+        footer: \'<a href="../home.php">Home</a>\'
+    })
+    </script>';
+}
 ?>

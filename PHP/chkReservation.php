@@ -1,51 +1,72 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        include "Taketwoconnect.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Form data from POST request
+    $rsvFname = $_POST['rsvFname'];
+    $rsvLname = $_POST['rsvLname'];
+    $rsvPhone = $_POST['rsvPhone'];
+    $rsvEmail = $_POST['rsvEmail'];
+    $rsvDate = $_POST['rsvDate'];
+    $rsvMsg = $_POST['rsvMsg'];
 
-        // Clean and sanitize input data
-        $rsvFname = mysqli_real_escape_string($conn, $_POST['rsvFname']);
-        $rsvLname = mysqli_real_escape_string($conn, $_POST['rsvLname']);
-        $rsvPhone = mysqli_real_escape_string($conn, $_POST['rsvPhone']);
-        $rsvEmail = mysqli_real_escape_string($conn, $_POST['rsvEmail']);
-        $rsvDate = mysqli_real_escape_string($conn, $_POST['rsvDate']);
-        $rsvMsg = mysqli_real_escape_string($conn, $_POST['rsvMsg']);
+    // Create an array with the data
+    $data = array(
+        'rsvFname' => $rsvFname,
+        'rsvLname' => $rsvLname,
+        'rsvPhone' => $rsvPhone,
+        'rsvEmail' => $rsvEmail,
+        'rsvDate' => $rsvDate,
+        'rsvMsg' => $rsvMsg
+    );
 
-        $insertQuery = "INSERT INTO reservation (cName, cSurname, cPhone, cEmail, cMeeting_date, cMessage) 
-                        VALUES (?, ?, ?, ?, ?, ?)";
+    // Convert the data to JSON format
+    $jsonData = json_encode($data);
 
-        $stmt = mysqli_prepare($conn, $insertQuery);
+    // Set up the HTTP request
+    $url = 'http://127.0.0.1:8888/Web/Server/Reservation_REST.php';
 
-        mysqli_stmt_bind_param($stmt, "ssssss", $rsvFname, $rsvLname, $rsvPhone, $rsvEmail, $rsvDate, $rsvMsg);
+    // Create the HTTP context for the POST request
+    $options = array(
+        'http' => array(
+            'header'  => "Content-Type: application/json\r\n",
+            'method'  => 'POST',
+            'content' => $jsonData
+        )
+    );
+    $context  = stream_context_create($options);
 
-        if (mysqli_stmt_execute($stmt)) {
-            //header("Location: http://127.0.0.1:8888/2210294_2210332/home.php"); // Redirect to the home page
-            header("Location: ../home.php");
-            exit();
-        } else {
-            echo "Error inserting data: " . mysqli_error($conn);
-        }
+    // Send the request and get the response
+    $response = file_get_contents($url, false, $context);
 
-        mysqli_stmt_close($stmt);
+    // Decode the response
+    $result = json_decode($response, true);
 
-        mysqli_close($conn);
+    // Check the response and act accordingly
+    if ($result && $result['status'] == 'success') {
+        // Redirect to home page if successful
+        header("Location: ../home.php");
+        exit();
     } else {
-        echo ' <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- XSAlert CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/themes/light-theme.css">
-        <!-- XAlert core JS -->
-        <script src="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/xsalert.js"></script>
-        <script>
-        XSAlert({
-            title: "Ouch!",
-            message: "Invalid Request",
-            icon: \'warning\',
-            hideCancelButton: true,
-            closeOnOutsideClick: false,
-            hideOkButton: true,
-            closeWithESC: false,
-            footer: \'<a href="../home.php">Home</a>\'
-        })
-        </script>';
+        // Display the error message
+        echo "Error: " . $result['message'];
     }
+} else {
+    echo ' <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- XSAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/themes/light-theme.css">
+    <!-- XAlert core JS -->
+    <script src="https://cdn.jsdelivr.net/gh/frankeno/xsalert@main/src/xsalert.js"></script>
+    <script>
+    XSAlert({
+        title: "Ouch!",
+        message: "Invalid Request",
+        icon: \'warning\',
+        hideCancelButton: true,
+        closeOnOutsideClick: false,
+        hideOkButton: true,
+        closeWithESC: false,
+        footer: \'<a href="../home.php">Home</a>\'
+    })
+    </script>';
+}
 ?>
