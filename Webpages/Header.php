@@ -7,6 +7,7 @@
                 <a href="../Webpages/Stilllife.php">Still life</a>
                 <a href="../Webpages/Portrait.php">Portraits</a>
                 <a href="../Webpages/WallArt.php">Wall Art</a>
+                <a href="../Webpages/UnsplashAPI.php">Image Search</a>
             </div>
         </li>
     	<li class="dropdown">
