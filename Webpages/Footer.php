@@ -36,4 +36,6 @@
 		
 	</div>
 </footer>
+<script src="../Js/mouse.js"></script>
+<script src="../Js/dark-mode.js"></script>
 <script src="../Js/year.js"></script>

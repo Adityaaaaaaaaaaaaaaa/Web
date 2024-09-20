@@ -96,8 +96,5 @@
     ?>
 
     <?php include '../Webpages/Footer.php'; ?>
-
-    <script src="../Js/mouse.js"></script>
-    <script src="../Js/dark-mode.js"></script>
 </body>
 </html>

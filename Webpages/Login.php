@@ -165,6 +165,7 @@
 
     </head>
     <body>
+        <?php include '../Webpages/Header.php'; ?>
         
         <!-- Particle container -->
         <div id="particle-container"></div>
@@ -233,6 +234,8 @@
             </div>
         </div>
 
+        <?php include '../Webpages/Footer.php'; ?>
+
         <script>
             // Function to create particles
             function createParticle() {
@@ -254,6 +257,5 @@
             // Generate particles at regular intervals
             setInterval(createParticle, 100); //particle density and speed
         </script>
-        <script src="../Js/mouse.js"></script>
     </body>
 </html>

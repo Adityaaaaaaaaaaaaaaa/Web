@@ -24,6 +24,8 @@
 
 	require_once('../Nusoap/nusoap.php');
 
+	include '../Webpages/Header.php';
+
 	// Initialize the SOAP client
 	$client = new nusoap_client('http://127.0.0.1:8888/2210294_2210332/Server/Admin_Server.php?wsdl', true);
 
@@ -73,4 +75,7 @@
 	} else {
 		echo "No table selected!";
 	}
+
+	include '../Webpages/Footer.php';
+
 ?>

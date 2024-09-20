@@ -138,9 +138,6 @@
 				typeWriterLoop('.main-title', mainTitleText, mainTitleSpeed);
 			});
 		</script>
-
-		<script src="../Js/mouse.js"></script>
-		<script src="../Js/dark-mode.js"></script>
 	</body>
 </html>
 

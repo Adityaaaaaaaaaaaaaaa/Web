@@ -137,3 +137,76 @@ th {
 td:nth-child(even) {
     background-color: var(--tableBg2);
 }
+
+/* General Reset *
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body *
+body {
+    font-family: 'Arial', sans-serif;
+    background: #e0e0e0; /* Light background for contrast *
+    color: #333;
+}
+
+/* Glassmorphism Effect for Estimate Section */
+#result, #currencyConversion {
+    background: rgba(255, 255, 255, 0.2); /* Transparent white */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for glass effect */
+    color: #fff;
+    font-size: 1.3em;
+}
+
+/* Main Content Styling */
+#costCalculator {
+    background: rgba(255, 255, 255, 0.8); /* Light transparent white */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+/* Form Elements */
+select, input[type="number"], .buttonSection {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Hover Effects */
+select:hover, input[type="number"]:hover, .buttonSection:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.buttonSection {
+    cursor: pointer;
+    background-color: #5a52ff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.buttonSection:hover {
+    background-color: #4aff4d;
+    color: #000;
+}
