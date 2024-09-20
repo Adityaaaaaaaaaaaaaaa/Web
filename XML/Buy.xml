@@ -39,37 +39,52 @@
                 <th>Package</th>
                 <th>Description</th>
                 <th>Price</th>
-                </tr>
+            </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Essential</td>
-                <td>Perfect for personal portraits, headshots or Mugshots! Includes up to 1-hour session and 10 edited photos.</td>
-                <td>$ 99</td>
+                <td>Perfect for personal portraits, headshots or mugshots! Includes up to 1-hour session and 10 edited photos.</td>
+                <td>$99</td>
             </tr>
             <tr>
                 <td>Classic</td>
-                <td>Great for family or engagement photoshoots. Includes up to 2-hour session, 20/30 edited photos, and one location.</td>
-                <td>$ 199</td>
+                <td>Great for family or engagement photoshoots. Includes up to 2-hour session, 20-30 edited photos, and one location.</td>
+                <td>$199</td>
             </tr>
             <tr>
                 <td>Deluxe</td>
-                <td>Ideal for birthdays, photoshoot or just for fun. Includes up to 4-hour session, 50 edited photos, multiple locations, and customized editing.</td>
-                <td>$ 349</td>
+                <td>Ideal for birthdays, personal celebrations. Includes up to 4-hour session, 50 edited photos, multiple locations, and customized editing.</td>
+                <td>$349</td>
             </tr>
             <tr>
                 <td>Corporate</td>
-                <td>Suitable for corporate events or professional branding. Includes up to 6-hour session, 100 edited photos, full coverage, and online gallery.</td>
-                <td>Get in touch via our contact options</td>
-            </tr>                    
+                <td>Perfect for corporate events or professional branding. Includes up to 6-hour session, 100 edited photos, full coverage, and an online gallery.</td>
+                <td>Contact us</td>
+            </tr>
             <tr>
                 <td>Events</td>
-                <td>Event based, Multiple locations, Hard/soft copy of photos, Full coverage, Custom Editing</td>
-                <td>Get in touch via our contact options</td>
+                <td>Event-based sessions. Multiple locations, full coverage, hard/soft copy of photos, and custom editing.</td>
+                <td>Contact us</td>
+            </tr>
+            <tr>
+                <td>Social Media Package</td>
+                <td>Includes 20 photos optimized for social media, 2 hours of shooting time, and advanced editing for digital platforms.</td>
+                <td>$150</td>
+            </tr>
+            <tr>
+                <td>Wedding Package</td>
+                <td>Full-day coverage, up to 8 hours, multiple locations, 200+ edited photos, custom album, and online gallery.</td>
+                <td>$999</td>
+            </tr>
+            <tr>
+                <td>Travel Package</td>
+                <td>Includes travel to up to 3 locations, 100 edited photos, and custom editing for landscape or adventure shoots.</td>
+                <td>$499</td>
             </tr>
         </tbody>
     </table>
-
+    
     <br/>
 
     <RbuyBtn class="buyBtn">

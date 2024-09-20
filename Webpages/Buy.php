@@ -8,12 +8,6 @@
 		<link rel="stylesheet" href="../CSS/Buy.css">
 		<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 		<script>
-			window.onload = function() {
-				var mainContent = document.querySelector(".main");
-				mainContent.style.opacity = "1";
-			};
-		</script>
-		<script>
 			$(document).ready(function() {
 				$.ajax({
 					type: "GET",
@@ -23,7 +17,7 @@
 						$(xml).find('content').each(function() {
 							var contentDiv = $('<div>').addClass('content main');
 							
-							// big heading la
+							// big heading
 							var heading2 = $('<h2>').addClass('heading').text($(this).find('Bheading2').text());
 							contentDiv.append(heading2);
 
@@ -43,13 +37,12 @@
 							section1.append(div1);
 							contentDiv.append(section1);
 
-							// Button 1 pou buy
+							// Buy button
 							var button1 = $('<button>').addClass($(this).find('BbuyBtn').attr('class'));
 							var buttonText1 = $('<span>').text($(this).find('BbuyBtn label').text());
 							var link1 = $('<a>').attr('href', $(this).find('BbuyBtn link').attr('href')).text($(this).find('BbuyBtn link').text());
 							button1.append(buttonText1, '<br>', link1);
 							contentDiv.append(button1);
-
 
 							// Section 2: Reserve a Custom Session
 							var section2 = $('<div>');
@@ -70,14 +63,13 @@
 							section3.append(table);
 							contentDiv.append(section3);
 
-							// Button 2 pou reserve
+							// Reserve button
 							var button2 = $('<button>').addClass($(this).find('RbuyBtn').attr('class'));
 							var buttonText2 = $('<span>').text($(this).find('RbuyBtn label').text());
 							var link2 = $('<a>').attr('href', $(this).find('RbuyBtn link').attr('href')).text($(this).find('RbuyBtn link').text());
 							button2.append(buttonText2, '<br>', link2);
 							contentDiv.append(button2);
 
-							// add on page
 							$('#xmlContent').append(contentDiv);
 						});
 					},
@@ -88,95 +80,183 @@
 			});
 		</script> 
 
+<script>
+$(document).ready(function() {
+    // Hide sections by default
+    $('#extraPhotosSection').hide();
+    $('#addonsSection').hide();
+    $('#addonsChoice').hide();
+    $('#estimateBtn').hide();
+    $('#currencySection').hide();
+    
+    // When a package is selected, show the extra photos section
+    $('#packageDropdown').on('change', function() {
+        if ($(this).val() !== '') {
+            $('#extraPhotosSection').slideDown();
+        }
+    });
+
+    // After selecting extra photos, ask if the user wants add-ons
+    $('#extraPhotos').on('input', function() {
+        if ($(this).val() >= 0) {
+            $('#addonsChoice').fadeIn();
+        }
+    });
+
+    // Handle add-ons choice (Yes/No)
+    $('input[name="addonsChoice"]').on('change', function() {
+        if ($('input[name="addonsChoice"]:checked').val() === 'Yes') {
+            $('#addonsSection').slideDown();
+        } else {
+            $('#addonsSection').slideUp();
+        }
+        $('#estimateBtn').fadeIn();
+    });
+
+   // Calculate the total estimate in Mauritian Rupees using the Calculator API
+	$('#estimateBtn').on('click', function() {
+    var packageCost = parseFloat($('#packageDropdown').val());
+    var extraPhotos = parseInt($('#extraPhotos').val()) || 0;
+    var addonCost = parseFloat($('#addonsDropdown').val()) || 0;
+
+    console.log("Package cost:", packageCost, "Extra Photos:", extraPhotos, "Addon cost:", addonCost);
+
+    $.ajax({
+        type: "POST",
+        url: "../Server/SOAP_Calculator.php",
+        data: {
+            packageCost: packageCost,
+            extraPhotos: extraPhotos * 100, // 100 MUR per extra photo
+            addonCost: addonCost
+        },
+        success: function(response) {
+            console.log("Response from calculator:", response);
+            var data = JSON.parse(response);
+            if (data.totalCost) {
+                $('#result').text('Your estimated cost: MUR ' + data.totalCost).data('total-cost', data.totalCost);
+                $('#currencySection').slideDown(); // Show currency conversion dropdown
+            } else {
+                $('#result').text('Error: ' + data.error);
+            }
+        },
+        error: function(xhr, status, error) {
+            $('#result').text('Error: ' + error);
+        }
+    });
+});
+
+
+    // Trigger conversion when a currency is selected
+    $('#currencyDropdown').on('change', function() {
+        var totalCost = $('#result').data('total-cost');
+        var selectedCurrency = $(this).val();
+        if (totalCost) {
+            convertCurrency(totalCost, selectedCurrency); // Trigger currency conversion
+        } else {
+            $('#currencyConversion').text('Please calculate the total cost in MUR first.');
+        }
+    });
+});
+
+// Function to convert the total into the selected currency
+function convertCurrency(totalCost, currency) {
+    $.ajax({
+        type: "POST",
+        url: "../Server/SOAP_Convertor.php",
+        data: {
+            amount: totalCost,
+            currency: currency
+        },
+        success: function(response) {
+            console.log("Currency conversion response:", response);
+            var data = JSON.parse(response);
+
+            if (data.convertedAmount) {
+                // Display only the converted amount in the new currency
+                $('#currencyConversion').html(
+                    'Converted Amount: ' + data.convertedAmount.toFixed(2) + ' ' + currency
+                );
+            } else {
+                $('#currencyConversion').text('Error: ' + (data.error || 'Unable to convert currency.'));
+            }
+        },
+        error: function(xhr, status, error) {
+            $('#currencyConversion').text('Error: ' + error);
+        }
+    });
+}
+
+
+
+
+    </script>
+
+
 	</head>
 	<body>
 
 		<?php include "../Webpages/Header.php"; ?>
 
 		<div id="xmlContent">
-			<!-- ajax will display it here , the xml-->
+			<!-- AJAX will display it here -->
 		</div>
 
 		<form id="costCalculator">
-			<h3>Estimate Your Photography Service!</h3>
-			<p>Select your package:
-				<select id="packageDropdown">
-					<option value="99">Essential Package ($99)</option>
-					<option value="199">Classic Package ($199)</option>
-					<option value="349">Deluxe Package ($349)</option>
-				</select>
-			</p>
+        <h3>Estimate Your Photography Service!</h3>
+        
+        <!-- Package Selection -->
+        <p>Select your package:
+            <select id="packageDropdown">
+                <option value="" selected>Select Package</option>
+                <option value="4000">Essential Package (MUR 4,000)</option>
+                <option value="7500">Classic Package (MUR 7,500)</option>
+                <option value="12000">Deluxe Package (MUR 12,000)</option>
+            </select>
+        </p>
 
-			<p>Extra Photos:
-				<input type="number" id="extraPhotos" value="0" min="0"> ($10 per extra photo)
-			</p>
+        <!-- Extra Photos Section (Initially Hidden) -->
+        <p id="extraPhotosSection">
+            Extra Photos:
+            <input type="number" id="extraPhotos" value="0" min="0"> (MUR 100 per extra photo)
+        </p>
 
-			<p>Add-ons:
-				<select id="addonsDropdown">
-					<option value="0">None</option>
-					<option value="50">High-Res Editing ($50)</option>
-					<option value="100">Location Shoot ($100)</option>
-				</select>
-			</p>
+        <!-- Ask if the user wants add-ons -->
+        <p id="addonsChoice" style="display:none;">
+            Would you like to add additional services?
+            <input type="radio" name="addonsChoice" value="Yes"> Yes
+            <input type="radio" name="addonsChoice" value="No"> No
+        </p>
 
-			<button type="button" class="buttonSection" onclick="calculateTotal()">Get Your Estimate</button>
-		</form>
+        <!-- Add-ons Section (Initially Hidden) -->
+        <p id="addonsSection" style="display:none;">
+            Add-ons:
+            <select id="addonsDropdown">
+                <option value="0">None</option>
+                <option value="1000">High-Res Editing (MUR 1,000)</option>
+                <option value="2000">Location Shoot (MUR 2,000)</option>
+            </select>
+        </p>
 
-		<div id="result">Your estimated cost will appear here!</div>
-		<div id="currencyConversion"></div>
+        <!-- Button for Estimate (Initially Hidden) -->
+        <button type="button" id="estimateBtn" class="buttonSection" style="display:none;">Get Your Estimate</button>
+    </form>
 
-		<script>
-			// Function to calculate total using the SOAP calculator service
-			function calculateTotal() {
-				var packageCost = parseFloat(document.getElementById('packageDropdown').value);
-				var extraPhotos = parseInt(document.getElementById('extraPhotos').value);
-				var addonCost = parseFloat(document.getElementById('addonsDropdown').value);
+    <!-- Display estimated cost -->
+    <div id="result">Your estimated cost will appear here!</div>
 
-				// Send the request to the PHP SOAP calculator service
-				$.ajax({
-					type: "POST",
-					url: "../Server/SOAP_Calculator.php",
-					data: {
-						packageCost: packageCost,
-						extraPhotos: extraPhotos,
-						addonCost: addonCost
-					},
-					success: function(response) {
-						var data = JSON.parse(response);
-						if (data.totalCost) {
-							document.getElementById('result').innerText = 'Your estimated cost: $' + data.totalCost;
-							convertCurrency(data.totalCost);  // Trigger currency conversion after calculation
-						} else {
-							document.getElementById('result').innerText = 'Error: ' + data.error;
-						}
-					}
-				});
-			}
+    <!-- Currency conversion section (Initially Hidden) -->
+    <p id="currencySection" style="display:none;">
+        <select id="currencyDropdown">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="AUD">AUD</option>
+            <option value="CAD">CAD</option>
+        </select>
+    </p>
 
-			// Function to convert the total cost into another currency
-			function convertCurrency(totalCost) {
-				var currency = prompt("Enter currency (USD, EUR, GBP, etc.):");
-
-				// Send the request to the PHP SOAP currency converter service
-				$.ajax({
-					type: "POST",
-					url: "../Server/SOAP_Convertor.php",
-					data: {
-						amount: totalCost,
-						currency: currency
-					},
-					success: function(response) {
-						var data = JSON.parse(response);
-						if (data.convertedAmount) {
-							document.getElementById('currencyConversion').innerText = 'Converted cost: ' + data.convertedAmount + ' ' + currency;
-						} else {
-							document.getElementById('currencyConversion').innerText = 'Error: ' + data.error;
-						}
-					}
-				});
-			}
-		</script>
-
+    <div id="currencyConversion">Converted cost will appear here!</div>
+		
 		<?php include '../Webpages/Footer.php'; ?>
 
 	</body>
