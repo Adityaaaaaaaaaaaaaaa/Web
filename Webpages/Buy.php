@@ -146,16 +146,40 @@ $(document).ready(function() {
 });
 
 
-    // Trigger conversion when a currency is selected
-    $('#currencyDropdown').on('change', function() {
-        var totalCost = $('#result').data('total-cost');
-        var selectedCurrency = $(this).val();
-        if (totalCost) {
-            convertCurrency(totalCost, selectedCurrency); // Trigger currency conversion
-        } else {
-            $('#currencyConversion').text('Please calculate the total cost in MUR first.');
-        }
-    });
+// Trigger currency conversion when a currency is selected
+$('#currencyDropdown').on('change', function() {
+    var totalCost = $('#result').data('total-cost');
+    var selectedCurrency = $(this).val();
+
+    if (totalCost) {
+        $.ajax({
+            type: "POST",
+            url: "../Server/SOAP_Convertor.php",
+            data: {
+                totalCost: totalCost,
+                currency: selectedCurrency
+            },
+            success: function(response) {
+                var data = JSON.parse(response);
+                if (data.convertedAmount) {
+                    // Display the converted total in the new currency
+                    $('#currencyConversion').html(
+                        'Converted Amount: ' + data.convertedAmount + ' ' + selectedCurrency
+                    );
+                } else {
+                    $('#currencyConversion').text('Error: ' + (data.error || 'Unable to convert currency.'));
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#currencyConversion').text('Error: ' + error);
+            }
+        });
+    } else {
+        $('#currencyConversion').text('Please calculate the total cost in MUR first.');
+    }
+});
+
+
 });
 
 // Function to convert the total into the selected currency
