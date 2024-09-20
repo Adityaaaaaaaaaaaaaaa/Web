@@ -228,7 +228,7 @@
 		<!-- Currency conversion section (Initially Hidden) -->
 		<p id="currencySection" style="display:none;">
 			<select id="currencyDropdown">
-				<option value="MUR" selected>Select Currency</option>
+			`	<option value="MUR" selected>Select Currency</option>
 				<option value="USD">USD - United States Dollar</option>
 				<option value="EUR">EUR - Euro</option>
 				<option value="GBP">GBP - British Pound</option>

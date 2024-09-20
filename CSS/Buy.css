@@ -210,3 +210,22 @@ select:hover, input[type="number"]:hover, .buttonSection:hover {
     background-color: #4aff4d;
     color: #000;
 }
+
+/* Currency Conversion Dropdown Styling */
+#currencySection select {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for currency dropdown */
+#currencySection select:hover {
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
