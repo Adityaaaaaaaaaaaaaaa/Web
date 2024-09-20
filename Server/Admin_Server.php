@@ -32,7 +32,8 @@
 		} elseif ($tableName === "feedback") {
 			$query = "SELECT * FROM feedback";
 		} elseif ($tableName === "uploaded_files") {
-			$query = "SELECT * FROM uploaded_files";
+			$columns = "id, filename, filetype, filesize, upload_date";
+			$query = "SELECT $columns FROM uploaded_files";
 		} else {
 			return "Invalid table selection.";
 		}
