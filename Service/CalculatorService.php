@@ -27,10 +27,9 @@ class CalculatorService
         }
     }
 
-    // New function to calculate the total in the new currency
+    // New function to calculate the total in a new currency
     public function calculateConvertedTotal($totalInMUR, $exchangeRate)
     {
-        $totalInNewCurrency = $totalInMUR * $exchangeRate;
-        return round($totalInNewCurrency, 2);  // Return the total rounded to 2 decimal places
+        return round($totalInMUR * $exchangeRate, 2);  // Return the total rounded to 2 decimal places
     }
 }

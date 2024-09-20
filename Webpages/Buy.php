@@ -80,141 +80,95 @@
 			});
 		</script> 
 
-<script>
-$(document).ready(function() {
-    // Hide sections by default
-    $('#extraPhotosSection').hide();
-    $('#addonsSection').hide();
-    $('#addonsChoice').hide();
-    $('#estimateBtn').hide();
-    $('#currencySection').hide();
-    
-    // When a package is selected, show the extra photos section
-    $('#packageDropdown').on('change', function() {
-        if ($(this).val() !== '') {
-            $('#extraPhotosSection').slideDown();
-        }
-    });
+	<script>
+	$(document).ready(function() {
+		// Hide sections by default
+		$('#extraPhotosSection').hide();
+		$('#addonsSection').hide();
+		$('#addonsChoice').hide();
+		$('#estimateBtn').hide();
+		$('#currencySection').hide();
+		
+		// When a package is selected, show the extra photos section
+		$('#packageDropdown').on('change', function() {
+			if ($(this).val() !== '') {
+				$('#extraPhotosSection').slideDown();
+				$('#addonsChoice').fadeIn();
+			}
+		});
 
-    // After selecting extra photos, ask if the user wants add-ons
-    $('#extraPhotos').on('input', function() {
-        if ($(this).val() >= 0) {
-            $('#addonsChoice').fadeIn();
-        }
-    });
+		// Handle add-ons choice (Yes/No)
+		$('input[name="addonsChoice"]').on('change', function() {
+			if ($('input[name="addonsChoice"]:checked').val() === 'Yes') {
+				$('#addonsSection').slideDown();
+			} else {
+				$('#addonsSection').slideUp();
+			}
+			$('#estimateBtn').fadeIn();
+		});
 
-    // Handle add-ons choice (Yes/No)
-    $('input[name="addonsChoice"]').on('change', function() {
-        if ($('input[name="addonsChoice"]:checked').val() === 'Yes') {
-            $('#addonsSection').slideDown();
-        } else {
-            $('#addonsSection').slideUp();
-        }
-        $('#estimateBtn').fadeIn();
-    });
+		// Calculate the total estimate in Mauritian Rupees using the CombinedService API
+		$('#estimateBtn').on('click', function() {
+			var packageCost = parseFloat($('#packageDropdown').val());
+			var extraPhotos = parseInt($('#extraPhotos').val()) || 0;
+			var addonCost = parseFloat($('#addonsDropdown').val()) || 0;
 
-   // Calculate the total estimate in Mauritian Rupees using the Calculator API
-	$('#estimateBtn').on('click', function() {
-    var packageCost = parseFloat($('#packageDropdown').val());
-    var extraPhotos = parseInt($('#extraPhotos').val()) || 0;
-    var addonCost = parseFloat($('#addonsDropdown').val()) || 0;
+			$.ajax({
+				type: "POST",
+				url: "../Server/ServiceHandler.php",  // Pointing to the single service handler
+				data: {
+					action: 'calculate',
+					packageCost: packageCost,
+					extraPhotos: extraPhotos * 100, // 100 MUR per extra photo
+					addonCost: addonCost
+				},
+				success: function(response) {
+					var data = JSON.parse(response);
+					if (data.totalCost) {
+						$('#result').text('Your estimated cost: MUR ' + data.totalCost).data('total-cost', data.totalCost);
+						$('#currencySection').slideDown(); // Show currency conversion dropdown
+					} else {
+						$('#result').text('Error: ' + data.error);
+					}
+				},
+				error: function(xhr, status, error) {
+					$('#result').text('Error: ' + error);
+				}
+			});
+		});
 
-    console.log("Package cost:", packageCost, "Extra Photos:", extraPhotos, "Addon cost:", addonCost);
+		// Trigger currency conversion when a currency is selected
+		$('#currencyDropdown').on('change', function() {
+			var totalCost = $('#result').data('total-cost');
+			var selectedCurrency = $(this).val();
 
-    $.ajax({
-        type: "POST",
-        url: "../Server/SOAP_Calculator.php",
-        data: {
-            packageCost: packageCost,
-            extraPhotos: extraPhotos * 100, // 100 MUR per extra photo
-            addonCost: addonCost
-        },
-        success: function(response) {
-            console.log("Response from calculator:", response);
-            var data = JSON.parse(response);
-            if (data.totalCost) {
-                $('#result').text('Your estimated cost: MUR ' + data.totalCost).data('total-cost', data.totalCost);
-                $('#currencySection').slideDown(); // Show currency conversion dropdown
-            } else {
-                $('#result').text('Error: ' + data.error);
-            }
-        },
-        error: function(xhr, status, error) {
-            $('#result').text('Error: ' + error);
-        }
-    });
-});
-
-
-// Trigger currency conversion when a currency is selected
-$('#currencyDropdown').on('change', function() {
-    var totalCost = $('#result').data('total-cost');
-    var selectedCurrency = $(this).val();
-
-    if (totalCost) {
-        $.ajax({
-            type: "POST",
-            url: "../Server/SOAP_Convertor.php",
-            data: {
-                totalCost: totalCost,
-                currency: selectedCurrency
-            },
-            success: function(response) {
-                var data = JSON.parse(response);
-                if (data.convertedAmount) {
-                    // Display the converted total in the new currency
-                    $('#currencyConversion').html(
-                        'Converted Amount: ' + data.convertedAmount + ' ' + selectedCurrency
-                    );
-                } else {
-                    $('#currencyConversion').text('Error: ' + (data.error || 'Unable to convert currency.'));
-                }
-            },
-            error: function(xhr, status, error) {
-                $('#currencyConversion').text('Error: ' + error);
-            }
-        });
-    } else {
-        $('#currencyConversion').text('Please calculate the total cost in MUR first.');
-    }
-});
-
-
-});
-
-// Function to convert the total into the selected currency
-function convertCurrency(totalCost, currency) {
-    $.ajax({
-        type: "POST",
-        url: "../Server/SOAP_Convertor.php",
-        data: {
-            amount: totalCost,
-            currency: currency
-        },
-        success: function(response) {
-            console.log("Currency conversion response:", response);
-            var data = JSON.parse(response);
-
-            if (data.convertedAmount) {
-                // Display only the converted amount in the new currency
-                $('#currencyConversion').html(
-                    'Converted Amount: ' + data.convertedAmount.toFixed(2) + ' ' + currency
-                );
-            } else {
-                $('#currencyConversion').text('Error: ' + (data.error || 'Unable to convert currency.'));
-            }
-        },
-        error: function(xhr, status, error) {
-            $('#currencyConversion').text('Error: ' + error);
-        }
-    });
-}
-
-
-
-
-    </script>
-
+			if (totalCost) {
+				$.ajax({
+					type: "POST",
+					url: "../Server/ServiceHandler.php",  // Same service handler
+					data: {
+						action: 'convert',
+						totalCost: totalCost,
+						currency: selectedCurrency
+					},
+					success: function(response) {
+						var data = JSON.parse(response);
+						if (data.convertedAmount) {
+							$('#currencyConversion').html('Converted Amount: ' + data.convertedAmount + ' ' + selectedCurrency);
+						} else {
+							$('#currencyConversion').text('Error: ' + (data.error || 'Unable to convert currency.'));
+						}
+					},
+					error: function(xhr, status, error) {
+						$('#currencyConversion').text('Error: ' + error);
+					}
+				});
+			} else {
+				$('#currencyConversion').text('Please calculate the total cost in MUR first.');
+			}
+		});
+	});
+	</script>
 
 	</head>
 	<body>
@@ -226,60 +180,60 @@ function convertCurrency(totalCost, currency) {
 		</div>
 
 		<form id="costCalculator">
-        <h3>Estimate Your Photography Service!</h3>
-        
-        <!-- Package Selection -->
-        <p>Select your package:
-            <select id="packageDropdown">
-                <option value="" selected>Select Package</option>
-                <option value="4000">Essential Package (MUR 4,000)</option>
-                <option value="7500">Classic Package (MUR 7,500)</option>
-                <option value="12000">Deluxe Package (MUR 12,000)</option>
-            </select>
-        </p>
+			<h3>Estimate Your Photography Service!</h3>
+			
+			<!-- Package Selection -->
+			<p>Select your package:
+				<select id="packageDropdown">
+					<option value="" selected>Select Package</option>
+					<option value="4000">Essential Package (MUR 4,000)</option>
+					<option value="7500">Classic Package (MUR 7,500)</option>
+					<option value="12000">Deluxe Package (MUR 12,000)</option>
+				</select>
+			</p>
 
-        <!-- Extra Photos Section (Initially Hidden) -->
-        <p id="extraPhotosSection">
-            Extra Photos:
-            <input type="number" id="extraPhotos" value="0" min="0"> (MUR 100 per extra photo)
-        </p>
+			<!-- Extra Photos Section (Initially Hidden) -->
+			<p id="extraPhotosSection">
+				Extra Photos:
+				<input type="number" id="extraPhotos" value="0" min="0"> (MUR 100 per extra photo)
+			</p>
 
-        <!-- Ask if the user wants add-ons -->
-        <p id="addonsChoice" style="display:none;">
-            Would you like to add additional services?
-            <input type="radio" name="addonsChoice" value="Yes"> Yes
-            <input type="radio" name="addonsChoice" value="No"> No
-        </p>
+			<!-- Ask if the user wants add-ons -->
+			<p id="addonsChoice" style="display:none;">
+				Would you like to add additional services?
+				<input type="radio" name="addonsChoice" value="Yes"> Yes
+				<input type="radio" name="addonsChoice" value="No"> No
+			</p>
 
-        <!-- Add-ons Section (Initially Hidden) -->
-        <p id="addonsSection" style="display:none;">
-            Add-ons:
-            <select id="addonsDropdown">
-                <option value="0">None</option>
-                <option value="1000">High-Res Editing (MUR 1,000)</option>
-                <option value="2000">Location Shoot (MUR 2,000)</option>
-            </select>
-        </p>
+			<!-- Add-ons Section (Initially Hidden) -->
+			<p id="addonsSection" style="display:none;">
+				Add-ons:
+				<select id="addonsDropdown">
+					<option value="0">None</option>
+					<option value="1000">High-Res Editing (MUR 1,000)</option>
+					<option value="2000">Location Shoot (MUR 2,000)</option>
+				</select>
+			</p>
 
-        <!-- Button for Estimate (Initially Hidden) -->
-        <button type="button" id="estimateBtn" class="buttonSection" style="display:none;">Get Your Estimate</button>
-    </form>
+			<!-- Button for Estimate (Initially Hidden) -->
+			<button type="button" id="estimateBtn" class="buttonSection" style="display:none;">Get Your Estimate</button>
+		</form>
 
-    <!-- Display estimated cost -->
-    <div id="result">Your estimated cost will appear here!</div>
+		<!-- Display estimated cost -->
+		<div id="result">Your estimated cost will appear here!</div>
 
-    <!-- Currency conversion section (Initially Hidden) -->
-    <p id="currencySection" style="display:none;">
-        <select id="currencyDropdown">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="AUD">AUD</option>
-            <option value="CAD">CAD</option>
-        </select>
-    </p>
+		<!-- Currency conversion section (Initially Hidden) -->
+		<p id="currencySection" style="display:none;">
+			<select id="currencyDropdown">
+				<option value="USD">USD</option>
+				<option value="EUR">EUR</option>
+				<option value="GBP">GBP</option>
+				<option value="AUD">AUD</option>
+				<option value="CAD">CAD</option>
+			</select>
+		</p>
 
-    <div id="currencyConversion">Converted cost will appear here!</div>
+		<div id="currencyConversion">Converted cost will appear here!</div>
 		
 		<?php include '../Webpages/Footer.php'; ?>
 

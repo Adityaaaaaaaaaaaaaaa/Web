@@ -22,7 +22,13 @@ class CurrencyConverterService
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec($ch);
+        $curlError = curl_error($ch); // Capture any cURL errors
         curl_close($ch);
+
+        // Check for cURL error
+        if ($curlError) {
+            return false;  // Log or return error
+        }
 
         // Parse the JSON response
         $data = json_decode($response, true);
@@ -36,7 +42,8 @@ class CurrencyConverterService
 
             return $exchangeRate;  // Return the calculated exchange rate
         } else {
-            return false;  // If the exchange rate couldn't be retrieved
+            // If there's an issue with the API response
+            return false;  // Log or handle error here
         }
     }
 }
