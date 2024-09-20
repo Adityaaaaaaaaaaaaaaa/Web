@@ -44,47 +44,47 @@
         <tbody>
             <tr>
                 <td>Essential</td>
-                <td>Perfect for personal portraits, headshots or mugshots! Includes up to 1-hour session and 10 edited photos.</td>
-                <td>$99</td>
+                <td>Great for a quick personal photoshoot! Includes a 1-hour session and 10 edited photos.</td>
+                <td>MUR 4,000</td>
             </tr>
             <tr>
                 <td>Classic</td>
-                <td>Great for family or engagement photoshoots. Includes up to 2-hour session, 20-30 edited photos, and one location.</td>
-                <td>$199</td>
+                <td>Perfect for couples, engagements, or family portraits. Includes up to 2-hour session, 20-30 edited photos, and one location.</td>
+                <td>MUR 7,500</td>
             </tr>
             <tr>
                 <td>Deluxe</td>
-                <td>Ideal for birthdays, personal celebrations. Includes up to 4-hour session, 50 edited photos, multiple locations, and customized editing.</td>
-                <td>$349</td>
+                <td>Ideal for special events like birthdays or anniversaries. Includes up to 4-hour session, 50 edited photos, multiple locations, and customized editing.</td>
+                <td>MUR 12,000</td>
             </tr>
             <tr>
                 <td>Corporate</td>
-                <td>Perfect for corporate events or professional branding. Includes up to 6-hour session, 100 edited photos, full coverage, and an online gallery.</td>
+                <td>For corporate branding or events. Up to 6-hour session, 100 edited photos, and online gallery delivery.</td>
                 <td>Contact us</td>
             </tr>
             <tr>
                 <td>Events</td>
-                <td>Event-based sessions. Multiple locations, full coverage, hard/soft copy of photos, and custom editing.</td>
+                <td>Full event coverage. Includes multiple locations, all-day coverage, and custom editing.</td>
                 <td>Contact us</td>
             </tr>
             <tr>
                 <td>Social Media Package</td>
-                <td>Includes 20 photos optimized for social media, 2 hours of shooting time, and advanced editing for digital platforms.</td>
-                <td>$150</td>
+                <td>Optimized for social media! 20 high-quality photos, 2 hours of shooting, with advanced editing.</td>
+                <td>MUR 5,500</td>
             </tr>
             <tr>
                 <td>Wedding Package</td>
-                <td>Full-day coverage, up to 8 hours, multiple locations, 200+ edited photos, custom album, and online gallery.</td>
-                <td>$999</td>
+                <td>Full-day coverage (up to 8 hours), 200+ edited photos, custom wedding album, and online gallery.</td>
+                <td>MUR 45,000</td>
             </tr>
             <tr>
                 <td>Travel Package</td>
-                <td>Includes travel to up to 3 locations, 100 edited photos, and custom editing for landscape or adventure shoots.</td>
-                <td>$499</td>
+                <td>Includes travel to 3 locations, 100 edited photos, and adventure-focused custom editing.</td>
+                <td>MUR 20,000</td>
             </tr>
         </tbody>
     </table>
-    
+        
     <br/>
 
     <RbuyBtn class="buyBtn">

@@ -8,7 +8,7 @@ class CurrencyConverterService
     public function __construct()
     {
         // Fixer.io API key
-        $this->apiKey = '573da3b52a27bab46bc67602a0ca67e2';
+        $this->apiKey = '80f4a4907ca2682769d4569618edae01';
         $this->apiUrl = 'http://data.fixer.io/api/latest';
     }
 
