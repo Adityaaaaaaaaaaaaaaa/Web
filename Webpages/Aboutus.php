@@ -68,7 +68,7 @@
     require_once('../Nusoap/nusoap.php');
 
     // Create a new SOAP client
-    $client = new nusoap_client('http://127.0.0.1:8888/Web/Server/aboutus_server.php?wsdl', true);
+    $client = new nusoap_client('http://127.0.0.1:8888/2210294_2210332/Server/Aboutus_server.php?wsdl', true);
 
     // Check for any client construction errors
     $err = $client->getError();

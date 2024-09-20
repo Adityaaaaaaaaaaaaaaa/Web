@@ -24,13 +24,15 @@
 		global $conn;
 
 		if ($tableName === "client") {
-			$query = "SELECT id, clnFn, clnLn, clnUn, clnEmail, clnPhone FROM client";
+			$query = "SELECT * FROM client";
 		} elseif ($tableName === "reservation") {
-			$query = "SELECT id, cName, cSurname, cPhone, cEmail, cMeeting_date FROM reservation";
+			$query = "SELECT * FROM reservation";
 		} elseif ($tableName === "inquiry") {
-			$query = "SELECT id, cName, cSurname, cEmail, cMessage FROM inquiry";
+			$query = "SELECT * FROM inquiry";
 		} elseif ($tableName === "feedback") {
-			$query = "SELECT id, cName, cSurname, cAge, cgender, cQuality_service FROM feedback";
+			$query = "SELECT * FROM feedback";
+		} elseif ($tableName === "uploaded_files") {
+			$query = "SELECT * FROM uploaded_files";
 		} else {
 			return "Invalid table selection.";
 		}
