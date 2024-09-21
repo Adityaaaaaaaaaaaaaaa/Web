@@ -164,9 +164,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
     </head>
-    <body>
-        <?php include '../Webpages/Header.php'; ?>
-        
+    <body>        
         <!-- Particle container -->
         <div id="particle-container"></div>
 
@@ -233,8 +231,6 @@
 
             </div>
         </div>
-
-        <?php include '../Webpages/Footer.php'; ?>
 
         <script>
             // Function to create particles

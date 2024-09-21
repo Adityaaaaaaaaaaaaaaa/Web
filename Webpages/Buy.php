@@ -88,6 +88,7 @@
 			$('#addonsChoice').hide();
 			$('#estimateBtn').hide();
 			$('#currencySection').hide();
+			$('#currencyConversion').hide();
 			
 			// When a package is selected, show the extra photos section
 			$('#packageDropdown').on('change', function() {
@@ -125,8 +126,9 @@
 					success: function(response) {
 						var data = JSON.parse(response);
 						if (data.totalCost) {
-							$('#result').text('Your estimated cost: MUR ' + data.totalCost).data('total-cost', data.totalCost);
+							$('#result').text('Your estimated cost: Rs ' + data.totalCost).data('total-cost', data.totalCost);
 							$('#currencySection').slideDown(); // Show currency conversion dropdown
+							$('#currencyConversion').slideDown();
 						} else {
 							$('#result').text('Error: ' + data.error);
 						}
@@ -145,7 +147,7 @@
 				if (totalCost) {
 					$.ajax({
 						type: "POST",
-						url: "../Server/ServiceHandler.php",  // Same service handler
+						url: "../Server/ServiceHandler.php",
 						data: {
 							action: 'convert',
 							totalCost: totalCost,
@@ -179,71 +181,67 @@
 			<!-- AJAX will display it here -->
 		</div>
 
-		<form id="costCalculator">
-			<h3>Estimate Your Photography Service!</h3>
-			
-			<!-- Package Selection -->
-			<p>Select your package:
-				<select id="packageDropdown">
-					<option value="" selected>Select Package</option>
-					<option value="4000">Essential Package (MUR 4,000)</option>
-					<option value="7500">Classic Package (MUR 7,500)</option>
-					<option value="12000">Deluxe Package (MUR 12,000)</option>
+		<section id="costCalculatorSection">
+			<form id="costCalculator">
+				<h3>Want to plan your budget? Try out our cost calculator for an estimate!</h3>
+				
+				<p>Select your package:
+					<select id="packageDropdown">
+						<option value="" selected>Select Package</option>
+						<option value="4000">Essential Package (MUR 4,000)</option>
+						<option value="7500">Classic Package (MUR 7,500)</option>
+						<option value="12000">Deluxe Package (MUR 12,000)</option>
+					</select>
+				</p>
+
+				<p id="extraPhotosSection">
+					Extra Photos:
+					<input type="number" id="extraPhotos" value="0" min="0"> (Rs 100 per extra photo)
+				</p>
+
+				<p id="addonsChoice" style="display:none;">
+					Would you like to add additional services?
+					<input type="radio" name="addonsChoice" value="Yes"> Yes
+					<input type="radio" name="addonsChoice" value="No"> No
+				</p>
+
+				<p id="addonsSection" style="display:none;">
+					Add-ons:
+					<select id="addonsDropdown">
+						<option value="0">None</option>
+						<option value="500">Express Delivery (MUR 500)</option>
+						<option value="1000">High-Res Editing (MUR 1,000)</option>
+						<option value="1500">Custom Frames (MUR 1,500)</option>
+						<option value="2000">Location Shoot (MUR 2,000)</option>
+						<option value="3000">Photo Album (MUR 3,000)</option>
+					</select>
+				</p>
+
+				<!-- Button for Estimate (Initially Hidden) -->
+				<button type="button" id="estimateBtn" class="buttonSection" style="display:none;">Get Your Estimate</button>
+			</form>
+
+			<div id="result">Your estimated cost will appear here!</div>
+
+			<!-- Currency conversion section (Initially Hidden) -->
+			<p id="currencySection" style="display:none;">
+				<select id="currencyDropdown">
+				`	<option value="MUR" selected>Select Currency</option>
+					<option value="USD">USD - United States Dollar</option>
+					<option value="EUR">EUR - Euro</option>
+					<option value="GBP">GBP - British Pound</option>
+					<option value="AUD">AUD - Australian Dollar</option>
+					<option value="CAD">CAD - Canadian Dollar</option>
+					<option value="ZAR">ZAR - South African Rand</option>
+					<option value="INR">INR - Indian Rupee</option>
+					<option value="JPY">JPY - Japanese Yen</option>
+					<option value="CNY">CNY - Chinese Yuan</option>
 				</select>
 			</p>
 
-			<!-- Extra Photos Section (Initially Hidden) -->
-			<p id="extraPhotosSection">
-				Extra Photos:
-				<input type="number" id="extraPhotos" value="0" min="0"> (MUR 100 per extra photo)
-			</p>
+			<div id="currencyConversion">Choose a currency and convert your total cost!</div>
+		</section>
 
-			<!-- Ask if the user wants add-ons -->
-			<p id="addonsChoice" style="display:none;">
-				Would you like to add additional services?
-				<input type="radio" name="addonsChoice" value="Yes"> Yes
-				<input type="radio" name="addonsChoice" value="No"> No
-			</p>
-
-			<!-- Add-ons Section (Initially Hidden) -->
-			<p id="addonsSection" style="display:none;">
-				Add-ons:
-				<select id="addonsDropdown">
-					<option value="0">None</option>
-                    <option value="500">Express Delivery (MUR 500)</option>
-                    <option value="1000">High-Res Editing (MUR 1,000)</option>
-                    <option value="1500">Custom Frames (MUR 1,500)</option>
-                    <option value="2000">Location Shoot (MUR 2,000)</option>
-                    <option value="3000">Photo Album (MUR 3,000)</option>
-				</select>
-			</p>
-
-			<!-- Button for Estimate (Initially Hidden) -->
-			<button type="button" id="estimateBtn" class="buttonSection" style="display:none;">Get Your Estimate</button>
-		</form>
-
-		<!-- Display estimated cost -->
-		<div id="result">Your estimated cost will appear here!</div>
-
-		<!-- Currency conversion section (Initially Hidden) -->
-		<p id="currencySection" style="display:none;">
-			<select id="currencyDropdown">
-			`	<option value="MUR" selected>Select Currency</option>
-				<option value="USD">USD - United States Dollar</option>
-				<option value="EUR">EUR - Euro</option>
-				<option value="GBP">GBP - British Pound</option>
-				<option value="AUD">AUD - Australian Dollar</option>
-				<option value="CAD">CAD - Canadian Dollar</option>
-				<option value="ZAR">ZAR - South African Rand</option>
-				<option value="INR">INR - Indian Rupee</option>
-				<option value="JPY">JPY - Japanese Yen</option>
-				<option value="CNY">CNY - Chinese Yuan</option>
-			</select>
-		</p>
-
-		<div id="currencyConversion">Converted cost will appear here!</div>
-
-		
 		<?php include '../Webpages/Footer.php'; ?>
 
 	</body>

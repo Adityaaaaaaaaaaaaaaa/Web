@@ -173,9 +173,9 @@
 			// Function to return "Buy" or "Login" link based on session status
 			function getBuyOrLoginLinks(imageUrl) {
 				<?php if (isset($_SESSION['user_login']) || isset($_SESSION['adminUname'])) { ?>
-					return `<a href='#'>Buy !</a>`;
+					return `<a href='../Webpages/Buy.php'>Buy !</a>`;
 				<?php } else { ?>
-					return `<a href='#'>Login to buy!</a>`;
+					return `<a href='../Webpages/Login.php'>Login to buy!</a>`;
 				<?php } ?>
 			}
 		</script>

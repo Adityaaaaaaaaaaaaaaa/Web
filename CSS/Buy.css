@@ -175,14 +175,15 @@ body {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    max-width: 800px;
+    max-width: 50%;
     margin: 30px auto;
+    text-align: center;
 }
 
 /* Form Elements */
 select, input[type="number"], .buttonSection {
     display: block;
-    width: 90%;
+    width: 50%;
     margin: 10px auto;
     padding: 15px;
     font-size: 16px;
@@ -229,3 +230,8 @@ select:hover, input[type="number"]:hover, .buttonSection:hover {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
 }
 
+#costCalculatorSection {
+    padding: 2.5%;
+    align-content: center;
+    justify-content: center;
+}
