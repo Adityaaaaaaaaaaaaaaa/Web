@@ -172,6 +172,79 @@
 		});
 	</script>
 
+	<style><style>
+  #costCalculatorSection {
+    background-color: #f2f8f2;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+  }
+
+  #costCalculator h3 {
+    font-size: 20px;
+    color: #2d572c;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  #costCalculator p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #444;
+  }
+
+  #packageDropdown, #extraPhotos, #addonsDropdown, #currencyDropdown {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #9dc79d;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-top: 8px;
+  }
+
+  #packageDropdown:focus, #extraPhotos:focus, #addonsDropdown:focus, #currencyDropdown:focus {
+    border-color: #2d572c;
+    box-shadow: 0 0 3px rgba(45, 87, 44, 0.5);
+    outline: none;
+  }
+
+  #estimateBtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 15px auto;
+    transition: background-color 0.2s ease;
+  }
+
+  #estimateBtn:hover {
+    background-color: #45a049;
+  }
+
+  #result, #currencyConversion {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  #currencySection {
+    margin-top: 15px;
+    text-align: center;
+  }
+</style>
+
+
+	</style>
+
 	</head>
 	<body>
 
