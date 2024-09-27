@@ -1,5 +1,5 @@
 <?php
-require_once('../Nusoap/nusoap.php');
+require_once('../Library/nusoap.php');
 
 // Create a new SOAP server instance
 $server = new nusoap_server();

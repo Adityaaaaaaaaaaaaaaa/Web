@@ -22,7 +22,7 @@
 			</script>';
 	}
 
-	require_once('../Nusoap/nusoap.php');
+	require_once('../Library/nusoap.php');
 
 	include '../Webpages/Header.php';
 

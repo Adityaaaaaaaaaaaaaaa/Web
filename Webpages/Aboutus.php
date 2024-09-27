@@ -65,7 +65,7 @@
 
     <?php
     // Include the NuSOAP library
-    require_once('../Nusoap/nusoap.php');
+    require_once('../Library/nusoap.php');
 
     // Create a new SOAP client
     $client = new nusoap_client('http://127.0.0.1:8888/2210294_2210332/Server/Aboutus_server.php?wsdl', true);
