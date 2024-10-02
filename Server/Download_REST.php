@@ -1,11 +1,9 @@
 <?php
 	include "../PHP/Taketwoconnect.php";
 
-	// DownloadService class to handle all operations
 	class DownloadService {
 		private $conn;
 
-		// Constructor to initialize the database connection
 		public function __construct($conn) {
 			$this->conn = $conn;
 		}
@@ -90,7 +88,6 @@
 					}
 				}
 
-				// Use DOMDocument to pretty-print XML
 				$dom = new DOMDocument('1.0');
 				$dom->preserveWhiteSpace = false;
 				$dom->formatOutput = true;
@@ -180,7 +177,6 @@
 		}
 	}
 
-	// Instantiate the service and process the request
 	$service = new DownloadService($conn);
 
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {

@@ -66,7 +66,6 @@ session_start();
                     <div class="dashboard-section">
                         <p><h2>Welcome, <?php
 											if((isset($_SESSION['adminUname']))){
-												// If logged in, show "logout" link
 												echo $_SESSION['adminUname'];
 											}
 										?>
@@ -136,7 +135,6 @@ session_start();
 						?>
 					</select>
 
-					<!-- Hidden div to contain download options -->
 					<div id="downloadOptions" class="inputx" style="display: none;">
 						<label for="formatSelect">Select Format:</label>
 						<select name="formatSelect" id="formatSelect" class="inputx">
@@ -146,11 +144,9 @@ session_start();
 						</select>
 					</div>
 
-					<!-- Dropdown for uploaded files -->
 					<div id="fileOptions" class="inputx" style="display: none;">
 						<label for="fileSelect">Select File:</label>
 						<select name="fileSelect" id="fileSelect" class="inputx">
-							<!-- Options will be loaded dynamically using PHP -->
 						</select>
 					</div>
 
@@ -168,9 +164,9 @@ session_start();
 				var downloadOptions = document.getElementById("downloadOptions");
 				var fileOptions = document.getElementById("fileOptions");
 
-				if (selectedTable === "x") { // Assuming "x" represents the default option
+				if (selectedTable === "x") { 
 					downloadOptions.style.display = "none";
-					fileOptions.style.display = "none"; // Hide file options as well
+					fileOptions.style.display = "none"; 
 				} else if (selectedTable === "uploaded_files") {
 					downloadOptions.style.display = "none";
 					fileOptions.style.display = "block";
@@ -202,12 +198,10 @@ session_start();
 		<script>
 			$(document).ready(function() {
 				$('#uploadForm').submit(function(e) {
-					e.preventDefault(); // Prevent the form from submitting normally
+					e.preventDefault(); 
 					
-					// Create a FormData object to store the form data
 					var formData = new FormData(this);
 					
-					// Send an AJAX request to upload.php
 					$.ajax({
 						type: 'POST',
 						url: '../PHP/upload.php',
@@ -216,7 +210,6 @@ session_start();
 						processData: false,
 						contentType: false,
 						success: function(response) {
-							// Display the response message
 							$('#uploadResponse').text(response.response);
 						},
 						error: function(xhr, status, error) {

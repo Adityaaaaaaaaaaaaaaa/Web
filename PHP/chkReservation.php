@@ -1,6 +1,5 @@
 <?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		// Form data from POST request
 		$rsvFname = $_POST['rsvFname'];
 		$rsvLname = $_POST['rsvLname'];
 		$rsvPhone = $_POST['rsvPhone'];
@@ -8,7 +7,6 @@
 		$rsvDate = $_POST['rsvDate'];
 		$rsvMsg = $_POST['rsvMsg'];
 
-		// Create an array with the data
 		$data = array(
 			'rsvFname' => $rsvFname,
 			'rsvLname' => $rsvLname,
@@ -18,13 +16,10 @@
 			'rsvMsg' => $rsvMsg
 		);
 
-		// Convert the data to JSON format
 		$jsonData = json_encode($data);
 
-		// Set up the HTTP request
 		$url = 'http://127.0.0.1:8888/2210294_2210332/Server/Reservation_REST.php';
 
-		// Create the HTTP context for the POST request
 		$options = array(
 			'http' => array(
 				'header'  => "Content-Type: application/json\r\n",
@@ -32,21 +27,17 @@
 				'content' => $jsonData
 			)
 		);
+		
 		$context  = stream_context_create($options);
 
-		// Send the request and get the response
 		$response = file_get_contents($url, false, $context);
 
-		// Decode the response
 		$result = json_decode($response, true);
 
-		// Check the response and act accordingly
 		if ($result && $result['status'] == 'success') {
-			// Redirect to home page if successful
 			header("Location: ../home.php");
 			exit();
 		} else {
-			// Display the error message
 			echo "Error: " . $result['message'];
 		}
 	} else {

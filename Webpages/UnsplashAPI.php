@@ -8,56 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
 		<link rel="stylesheet" type="text/css" href="../CSS/Gallery style CSS.css"> 
 		<script src="../Js/jquery-3.7.0.js"></script>
-
-		<style>
-		#searchQuery {
-    		width: 300px; /* Adjust width as needed */
-			padding: 10px 15px;
-			font-size: 16px;
-			border: 2px solid #ccc;
-			border-radius: 25px;
-			background-color: #f5f5f5;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			outline: none;
-			transition: all 0.3s ease;
-			margin-left:20px;
-		}
-
-		#searchQuery:focus {
-			border-color: #ff9800;
-			box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
-			background-color: #fff;
-		}
-
-		#searchQuery::placeholder {
-			color: #999;
-			font-style: italic;
-		}
-
-		#searchBtn, #randomBtn {
-			padding: 10px 20px;
-			font-size: 16px;
-			color: white;
-			background-color: #007BFF;
-			border: none;
-			border-radius: 25px;
-			cursor: pointer;
-			transition: background-color 0.3s ease, transform 0.2s ease;
-			margin-left:20px;	
-		}
-
-	#searchBtn:hover, #randomBtn:hover {
-		background-color: #0056b3;
-		transform: scale(1.05);
-	}
-
-	#searchBtn:active, #randomBtn:active {
-		background-color: #004080;
-		transform: scale(1);
-	}
-
-
-		</style>
 	</head>
 	<body>
 		<?php include "../Webpages/Header.php"; ?>
@@ -66,19 +16,16 @@
 			<h1 class="main-title">Search or Get Random Images</h1>
 		</div>
 
-		<!-- Search form for the user -->
 		<div class="search-container">
 			<input type="text" id="searchQuery" placeholder="Enter keyword to search for images">
 			<button id="searchBtn">Search</button>
 			<button id="randomBtn">Random</button> <!-- Random button -->
 		</div>
 
-		<!-- Div to display the images dynamically -->
 		<div class="bigbox" id="imageGallery"></div>
 
 		<?php include '../Webpages/Footer.php'; ?>
 
-		<!-- heading jquery -->
 		<script>
 			$(document).ready(function() {
 				function typeWriterLoop(element, text, speed) {
@@ -107,21 +54,18 @@
 				var mainTitleSpeed = 100;
 				typeWriterLoop('.main-title', mainTitleText, mainTitleSpeed);
 
-				// Event listener for search button click (fetch random 30 images based on query)
 				document.getElementById('searchBtn').addEventListener('click', function() {
 					const query = document.getElementById('searchQuery').value.trim();
 					if (query) {
-						fetchRandomUnsplashImages(query, 30); // Fetch 30 images based on search query
+						fetchRandomUnsplashImages(query, 30);
 					}
 				});
 
-				// Event listener for random button click (fetch 30 random images)
 				document.getElementById('randomBtn').addEventListener('click', function() {
-					fetchRandomImages(30); // Fetch 30 random images
+					fetchRandomImages(30);
 				});
 			});
 
-			// Fetch random images based on a search query and retry if fewer than expected
 			function fetchRandomUnsplashImages(query, count, fetchedImages = []) {
 				const accessKey = 'FyOl7pUHQEsiiCKv_SJlKHuPNQ3I4GMqHaGSmDrNN2I'; // Unsplash API key
 				const apiUrl = `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&count=${count}&client_id=${accessKey}`;
@@ -138,19 +82,16 @@
 							data = [data];
 						}
 
-						// Filter landscape images and add them to the fetchedImages array
 						data.forEach(image => {
 							if (image.width > image.height) {
 								fetchedImages.push(image);
 							}
 						});
 
-						// If fewer than the desired count, fetch more images
 						if (fetchedImages.length < count) {
 							let remainingCount = count - fetchedImages.length;
 							fetchRandomUnsplashImages(query, remainingCount, fetchedImages);
 						} else {
-							// Once we have enough images, render them
 							renderImages(fetchedImages);
 						}
 					})
@@ -160,7 +101,6 @@
 					});
 			}
 
-			// Fetch completely random images and retry if fewer than expected
 			function fetchRandomImages(count, fetchedImages = []) {
 				const accessKey = 'FyOl7pUHQEsiiCKv_SJlKHuPNQ3I4GMqHaGSmDrNN2I'; // Unsplash API key
 				const apiUrl = `https://api.unsplash.com/photos/random?count=${count}&client_id=${accessKey}`;

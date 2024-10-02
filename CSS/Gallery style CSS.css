@@ -176,3 +176,52 @@ img:not(#smalllogo) { /* exclude css on footer logo */
 	background-color: #211d23;	
 }
 
+#searchQuery {
+	width: 25%;
+	padding: 10px 15px;
+	font-size: 16px;
+	border: 2px solid #ccc;
+	border-radius: 15px;
+	background-color: #f5f5f5;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	outline: none;
+	transition: all 0.3s ease;
+	margin-left:20px;
+}
+
+#searchQuery:focus {
+	border-color: #ff9800;
+	box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
+	background-color: #fff;
+}
+
+#searchQuery::placeholder {
+	color: #999;
+	font-style: italic;
+}
+
+#searchBtn, #randomBtn {
+	padding: 10px 20px;
+	font-size: 16px;
+	color: white;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	margin-left:20px;	
+}
+
+#searchBtn:hover, #randomBtn:hover {
+	background-color: #0056b3;
+	transform: scale(1.05);
+}
+
+#searchBtn:active, #randomBtn:active {
+	background-color: #004080;
+	transform: scale(1);
+}
+
+.search-container {
+	margin-bottom: 3%;
+}
