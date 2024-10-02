@@ -1,22 +1,7 @@
 <?php
-require_once('../Nusoap/nusoap.php');
+require_once('../Library/nusoap.php');
 
-// Create a new SOAP server instance
-$server = new nusoap_server();
-$server->configureWSDL('aboutusService', 'urn:aboutusService');
-
-// Register the function that will be exposed to the SOAP client
-$server->register('getAboutUsContent',
-    array(),  // No input parameters
-    array('return' => 'xsd:string'),  // Output will be a string (HTML content)
-    'urn:aboutusService',
-    'urn:aboutusService#getAboutUsContent',
-    'rpc',
-    'encoded',
-    'Fetches the aboutus.xml file, applies XSLT, and returns HTML content'
-);
-
-// Define the function that fetches the XML, applies XSLT, and returns the HTML content
+// Define the standalone function outside the class
 function getAboutUsContent() {
     // Load the XML file
     $xml = new DOMDocument();
@@ -37,6 +22,42 @@ function getAboutUsContent() {
     return $html;
 }
 
-// Process the SOAP requests
-$server->service(file_get_contents("php://input"));
+class AboutUsService {
+    private $server;
+
+    public function __construct() {
+        // Initialize the SOAP server
+        $this->server = new nusoap_server();
+        $this->configureWSDL();
+        $this->registerMethods();
+    }
+
+    // Configure the WSDL
+    private function configureWSDL() {
+        $this->server->configureWSDL('aboutusService', 'urn:aboutusService');
+    }
+
+    // Register the function to the SOAP server
+    private function registerMethods() {
+        $this->server->register(
+            'getAboutUsContent',
+            array(),  // No input parameters
+            array('return' => 'xsd:string'),  // Output is a string (HTML content)
+            'urn:aboutusService',
+            'urn:aboutusService#getAboutUsContent',
+            'rpc',
+            'encoded',
+            'Fetches the aboutus.xml file, applies XSLT, and returns HTML content'
+        );
+    }
+
+    // The public function to handle the SOAP requests
+    public function service() {
+        $this->server->service(file_get_contents("php://input"));
+    }
+}
+
+// Instantiate the service and handle requests
+$aboutUsService = new AboutUsService();
+$aboutUsService->service();
 ?>
