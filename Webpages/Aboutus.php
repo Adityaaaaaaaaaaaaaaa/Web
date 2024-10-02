@@ -64,23 +64,18 @@
 	<?php include "../Webpages/Header.php"; ?>
 
 	<?php
-		// Include the NuSOAP library
 		require_once('../Library/nusoap.php');
 
-		// Create a new SOAP client
 		$client = new nusoap_client('http://127.0.0.1:8888/2210294_2210332/Server/Aboutus_server.php?wsdl', true);
 
-		// Check for any client construction errors
 		$err = $client->getError();
 		if ($err) {
 			echo 'Client creation error: ' . $err;
 			exit();
 		}
 
-		// Call the SOAP method
 		$response = $client->call('getAboutUsContent');
 
-		// Check for faults or errors in the response
 		if ($client->fault) {
 			echo 'Fault: ';
 			print_r($response);
@@ -89,7 +84,6 @@
 			if ($err) {
 				echo 'Error: ' . $err;
 			} else {
-				// Output the HTML returned by the SOAP service
 				echo $response;
 			}
 		}

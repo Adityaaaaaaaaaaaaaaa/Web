@@ -1,5 +1,5 @@
 <?php
-	require_once '../Service/Service.php';  // Load the combined service
+	require_once '../Service/Service.php'; 
 
 	try {
 		$service = new CombinedService();

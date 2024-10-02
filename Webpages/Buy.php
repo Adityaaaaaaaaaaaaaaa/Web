@@ -79,99 +79,185 @@
 				});
 			});
 		</script> 
-
-	<script>
-		$(document).ready(function() {
-			// Hide sections by default
-			$('#extraPhotosSection').hide();
-			$('#addonsSection').hide();
-			$('#addonsChoice').hide();
-			$('#estimateBtn').hide();
-			$('#currencySection').hide();
-			$('#currencyConversion').hide();
-			
-			// When a package is selected, show the extra photos section
-			$('#packageDropdown').on('change', function() {
-				if ($(this).val() !== '') {
-					$('#extraPhotosSection').slideDown();
-					$('#addonsChoice').fadeIn();
-				}
-			});
-
-			// Handle add-ons choice (Yes/No)
-			$('input[name="addonsChoice"]').on('change', function() {
-				if ($('input[name="addonsChoice"]:checked').val() === 'Yes') {
-					$('#addonsSection').slideDown();
-				} else {
-					$('#addonsSection').slideUp();
-				}
-				$('#estimateBtn').fadeIn();
-			});
-
-			// Calculate the total estimate in Mauritian Rupees using the CombinedService API
-			$('#estimateBtn').on('click', function() {
-				var packageCost = parseFloat($('#packageDropdown').val());
-				var extraPhotos = parseInt($('#extraPhotos').val()) || 0;
-				var addonCost = parseFloat($('#addonsDropdown').val()) || 0;
-
-				$.ajax({
-					type: "POST",
-					url: "../Server/ServiceHandler.php",  // Pointing to the single service handler
-					data: {
-						action: 'calculate',
-						packageCost: packageCost,
-						extraPhotos: extraPhotos * 100, // 100 MUR per extra photo
-						addonCost: addonCost
-					},
-					success: function(response) {
-						var data = JSON.parse(response);
-						if (data.totalCost) {
-							$('#result').text('Your estimated cost: Rs ' + data.totalCost).data('total-cost', data.totalCost);
-							$('#currencySection').slideDown(); // Show currency conversion dropdown
-							$('#currencyConversion').slideDown();
-						} else {
-							$('#result').text('Error: ' + data.error);
-						}
-					},
-					error: function(xhr, status, error) {
-						$('#result').text('Error: ' + error);
+		<script>
+			$(document).ready(function() {
+				$('#extraPhotosSection').hide();
+				$('#addonsSection').hide();
+				$('#addonsChoice').hide();
+				$('#estimateBtn').hide();
+				$('#currencySection').hide();
+				$('#currencyConversion').hide();
+				
+				// When a package is selected, show the extra photos section
+				$('#packageDropdown').on('change', function() {
+					if ($(this).val() !== '') {
+						$('#extraPhotosSection').slideDown();
+						$('#addonsChoice').fadeIn();
 					}
 				});
-			});
 
-			// Trigger currency conversion when a currency is selected or clicked
-			$('#currencyDropdown').on('change click', function() {
-				var totalCost = $('#result').data('total-cost');
-				var selectedCurrency = $(this).val();
+				// Handle add-ons choice (Yes/No)
+				$('input[name="addonsChoice"]').on('change', function() {
+					if ($('input[name="addonsChoice"]:checked').val() === 'Yes') {
+						$('#addonsSection').slideDown();
+					} else {
+						$('#addonsSection').slideUp();
+					}
+					$('#estimateBtn').fadeIn();
+				});
 
-				if (totalCost) {
+				$('#estimateBtn').on('click', function() {
+					var packageCost = parseFloat($('#packageDropdown').val());
+					var extraPhotos = parseInt($('#extraPhotos').val()) || 0;
+					var addonCost = parseFloat($('#addonsDropdown').val()) || 0;
+
 					$.ajax({
 						type: "POST",
-						url: "../Server/ServiceHandler.php",
+						url: "../Server/ServiceHandler.php",  
 						data: {
-							action: 'convert',
-							totalCost: totalCost,
-							currency: selectedCurrency
+							action: 'calculate',
+							packageCost: packageCost,
+							extraPhotos: extraPhotos * 100,
+							addonCost: addonCost
 						},
 						success: function(response) {
 							var data = JSON.parse(response);
-							if (data.convertedAmount) {
-								$('#currencyConversion').html('Converted Amount: ' + data.convertedAmount + ' ' + selectedCurrency);
+							if (data.totalCost) {
+								$('#result').text('Your estimated cost: Rs ' + data.totalCost).data('total-cost', data.totalCost);
+								$('#currencySection').slideDown(); 
+								$('#currencyConversion').slideDown();
 							} else {
-								$('#currencyConversion').text('Error: ' + (data.error || 'Unable to convert currency.'));
+								$('#result').text('Error: ' + data.error);
 							}
 						},
 						error: function(xhr, status, error) {
-							$('#currencyConversion').text('Error: ' + error);
+							$('#result').text('Error: ' + error);
 						}
 					});
-				} else {
-					$('#currencyConversion').text('Please calculate the total cost in MUR first.');
-				}
-			});
-		});
-	</script>
+				});
 
+				// Trigger currency conversion when a currency is selected or clicked
+				$('#currencyDropdown').on('change click', function() {
+					var totalCost = $('#result').data('total-cost');
+					var selectedCurrency = $(this).val();
+
+					if (totalCost) {
+						$.ajax({
+							type: "POST",
+							url: "../Server/ServiceHandler.php",
+							data: {
+								action: 'convert',
+								totalCost: totalCost,
+								currency: selectedCurrency
+							},
+							success: function(response) {
+								var data = JSON.parse(response);
+								if (data.convertedAmount) {
+									$('#currencyConversion').html('Converted Amount: ' + data.convertedAmount + ' ' + selectedCurrency);
+								} else {
+									$('#currencyConversion').text('Error: ' + (data.error || 'Unable to convert currency.'));
+								}
+							},
+							error: function(xhr, status, error) {
+								$('#currencyConversion').text('Error: ' + error);
+							}
+						});
+					} else {
+						$('#currencyConversion').text('Please calculate the total cost in MUR first.');
+					}
+				});
+			});
+		</script>
+		<style>
+			#costCalculatorSection {
+				background-color: #f2f8f2;
+				padding: 15px;
+				border-radius: 8px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				width: 50%;
+				margin: 5% auto 5% auto;
+				font-family: 'Arial', sans-serif;
+			}
+
+			#costCalculator {
+				background: rgba(255, 255, 255, 0.8);
+				padding: 20px;
+				border-radius: 15px;
+				box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+				width: 80%;
+				margin: 30px auto;
+				text-align: center;
+			}
+
+			#costCalculator h3 {
+				font-size: 20px;
+				color: #2d572c;
+				margin: 6%;
+				text-align: center;
+			}
+
+			#costCalculator p {
+				margin: 5%;
+				font-size: 14px;
+				color: #444;
+			}
+
+			#packageDropdown, #extraPhotos, #addonsDropdown, #currencyDropdown {
+				width: 100%;
+				padding: 8px;
+				border: 1px solid #9dc79d;
+				border-radius: 7px;
+				background-color: #fff;
+			}
+
+			#packageDropdown:focus, #extraPhotos:focus, #addonsDropdown:focus, #currencyDropdown:focus {
+				border-color: #2d572c;
+				box-shadow: 0 0 3px rgba(45, 87, 44, 0.5);
+				outline: none;
+			}
+
+			#estimateBtn {
+				background-color: #4CAF50;
+				color: white;
+				border: none;
+				padding: 8px 16px;
+				font-size: 14px;
+				border-radius: 4px;
+				cursor: pointer;
+				display: block;
+				margin: 15px auto;
+				transition: background-color 0.2s ease;
+			}
+
+			#estimateBtn:hover {
+				background-color: #45a049;
+			}
+
+			#result, #currencyConversion {
+				font-size: 16px;
+				color: black;
+				text-align: center;
+				margin-top: 15px;
+				background-color: #E2DFD2;
+			}
+
+			#currencySection {
+				margin-top: 15px;
+				text-align: center;
+			}
+
+			#currencySection select {
+				background-color: #f1f1f1;
+				border: none;
+				padding: 10px;
+				font-size: 16px;
+				border-radius: 10px;
+				text-align: center;
+				width: 45%;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				transition: background-color 0.3s ease, box-shadow 0.3s ease;
+			}
+		</style>
 	</head>
 	<body>
 

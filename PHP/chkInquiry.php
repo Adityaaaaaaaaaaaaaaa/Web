@@ -1,12 +1,10 @@
 <?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		// Form data from POST request
 		$iqFname = $_POST['iqFname'];
 		$iqLname = $_POST['iqLname'];
 		$iqEmail = $_POST['iqEmail'];
 		$iqMsg = $_POST['iqMsg'];
 
-		// Create an array with the data
 		$data = array(
 			'iqFname' => $iqFname,
 			'iqLname' => $iqLname,
@@ -14,13 +12,10 @@
 			'iqMsg' => $iqMsg
 		);
 
-		// Convert the data to JSON format
 		$jsonData = json_encode($data);
 
-		// Set up the HTTP request
 		$url = 'http://127.0.0.1:8888/2210294_2210332/Server/Inquiry_REST.php';
 
-		// Create the HTTP context for the POST request
 		$options = array(
 			'http' => array(
 				'header'  => "Content-Type: application/json\r\n",
@@ -30,13 +25,10 @@
 		);
 		$context  = stream_context_create($options);
 
-		// Send the request and get the response
 		$response = file_get_contents($url, false, $context);
 
-		// Decode the response
 		$result = json_decode($response, true);
 
-		// Check the response and act accordingly
 		// if ($result && $result['status'] == 'success') {
 		//     // Redirect to home page if successful
 		//     header("Location: ../home.php");

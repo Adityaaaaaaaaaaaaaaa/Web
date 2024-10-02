@@ -10,7 +10,6 @@
 
         $sql = "SELECT * FROM adminx WHERE adminUname = '$userName' AND adminPwd ='$passDelete';";
         
-        // Execute the query
         $result = mysqli_query($conn, $sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
